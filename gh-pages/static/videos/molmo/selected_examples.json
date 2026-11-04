@@ -1,0 +1,888 @@
+{
+  "description": "Illustrative selected examples; aggregate performance comes from the experiment figure.",
+  "timing": "Native simulator speed. The shorter clip holds its final frame until the longer clip ends.",
+  "checkpoint_steps": {
+    "64": 499999,
+    "144": 750000
+  },
+  "validated_episodes": 120,
+  "sampling_plan": [
+    {
+      "training_seed": 0,
+      "task_id": 140,
+      "matched_initial_states": 3
+    },
+    {
+      "training_seed": 0,
+      "task_id": 155,
+      "matched_initial_states": 6
+    },
+    {
+      "training_seed": 0,
+      "task_id": 226,
+      "matched_initial_states": 3
+    },
+    {
+      "training_seed": 0,
+      "task_id": 345,
+      "matched_initial_states": 3
+    },
+    {
+      "training_seed": 0,
+      "task_id": 357,
+      "matched_initial_states": 3
+    },
+    {
+      "training_seed": 1,
+      "task_id": 140,
+      "matched_initial_states": 12
+    },
+    {
+      "training_seed": 1,
+      "task_id": 155,
+      "matched_initial_states": 3
+    },
+    {
+      "training_seed": 1,
+      "task_id": 226,
+      "matched_initial_states": 3
+    },
+    {
+      "training_seed": 1,
+      "task_id": 345,
+      "matched_initial_states": 3
+    },
+    {
+      "training_seed": 1,
+      "task_id": 357,
+      "matched_initial_states": 3
+    },
+    {
+      "training_seed": 2,
+      "task_id": 140,
+      "matched_initial_states": 3
+    },
+    {
+      "training_seed": 2,
+      "task_id": 155,
+      "matched_initial_states": 3
+    },
+    {
+      "training_seed": 2,
+      "task_id": 226,
+      "matched_initial_states": 3
+    },
+    {
+      "training_seed": 2,
+      "task_id": 345,
+      "matched_initial_states": 3
+    },
+    {
+      "training_seed": 2,
+      "task_id": 357,
+      "matched_initial_states": 3
+    },
+    {
+      "training_seed": 0,
+      "task_id": 356,
+      "matched_initial_states": 3
+    }
+  ],
+  "sampling_note": "The initial 90-episode sample contained no 64-failure/144-success atomizer pair. A fixed additional nine matched initial states were then recorded for training seed 1 with the same checkpoints, adding 18 episodes. Every attempted rollout is retained; these are selected qualitative examples. On 2026-11-03, three matched bowl initial states were recorded with training seed 0 (six additional episodes). All attempts are retained; the first success/success pair was selected. A fixed three-state knife follow-up (seed 0, episodes 3\u20135; job 3843659) was recorded after visual review of abrupt terminal motion. None is a success/success pair. The original clip remains labelled with simulator outcomes and a motion note; all attempts are retained.",
+  "recorded_pairs": [
+    {
+      "training_seed": 0,
+      "task_id": 140,
+      "episode": 0,
+      "success_64": true,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 140,
+      "episode": 1,
+      "success_64": true,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 140,
+      "episode": 2,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 155,
+      "episode": 0,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 155,
+      "episode": 1,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 155,
+      "episode": 2,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 226,
+      "episode": 0,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 226,
+      "episode": 1,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 226,
+      "episode": 2,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 345,
+      "episode": 0,
+      "success_64": true,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 345,
+      "episode": 1,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 345,
+      "episode": 2,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 357,
+      "episode": 0,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 357,
+      "episode": 1,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 357,
+      "episode": 2,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 140,
+      "episode": 0,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 140,
+      "episode": 1,
+      "success_64": true,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 140,
+      "episode": 2,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 140,
+      "episode": 3,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 140,
+      "episode": 4,
+      "success_64": true,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 140,
+      "episode": 5,
+      "success_64": true,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 140,
+      "episode": 6,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 140,
+      "episode": 7,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 140,
+      "episode": 8,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 140,
+      "episode": 9,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 140,
+      "episode": 10,
+      "success_64": true,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 140,
+      "episode": 11,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 155,
+      "episode": 0,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 155,
+      "episode": 1,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 155,
+      "episode": 2,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 226,
+      "episode": 0,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 226,
+      "episode": 1,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 226,
+      "episode": 2,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 345,
+      "episode": 0,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 345,
+      "episode": 1,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 345,
+      "episode": 2,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 357,
+      "episode": 0,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 357,
+      "episode": 1,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 1,
+      "task_id": 357,
+      "episode": 2,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 2,
+      "task_id": 140,
+      "episode": 0,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 2,
+      "task_id": 140,
+      "episode": 1,
+      "success_64": true,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 2,
+      "task_id": 140,
+      "episode": 2,
+      "success_64": true,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 2,
+      "task_id": 155,
+      "episode": 0,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 2,
+      "task_id": 155,
+      "episode": 1,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 2,
+      "task_id": 155,
+      "episode": 2,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 2,
+      "task_id": 226,
+      "episode": 0,
+      "success_64": true,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 2,
+      "task_id": 226,
+      "episode": 1,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 2,
+      "task_id": 226,
+      "episode": 2,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 2,
+      "task_id": 345,
+      "episode": 0,
+      "success_64": true,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 2,
+      "task_id": 345,
+      "episode": 1,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 2,
+      "task_id": 345,
+      "episode": 2,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 2,
+      "task_id": 357,
+      "episode": 0,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 2,
+      "task_id": 357,
+      "episode": 1,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 2,
+      "task_id": 357,
+      "episode": 2,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 356,
+      "episode": 0,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 356,
+      "episode": 1,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 356,
+      "episode": 2,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 155,
+      "episode": 3,
+      "success_64": true,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 155,
+      "episode": 4,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 155,
+      "episode": 5,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true
+    }
+  ],
+  "examples": [
+    {
+      "training_seed": 1,
+      "task_id": 140,
+      "episode": 3,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true,
+      "object": "Atomizer",
+      "selection_rule": "first paired 64-failure/144-success example in training-seed/episode order",
+      "files": [
+        "atomizer-exterior.mp4",
+        "atomizer-wrist.mp4"
+      ],
+      "combined_file": "atomizer-bon-seed1-episode03-outcomes.mp4",
+      "ogpo": {
+        "episode": 3,
+        "combined_file": "ogpo/atomizer-ogpo-64-vs-144-both.mp4",
+        "training_tasks": [
+          64,
+          144
+        ],
+        "training_seed": 0,
+        "checkpoints": {
+          "64": "mt64_bronet_qvr16_seed0_10k",
+          "144": "mt144_bronet_qvr16_r15_seed0_15k"
+        },
+        "checkpoint_steps": {
+          "64": 10000,
+          "144": 15000
+        },
+        "success_64": true,
+        "success_144": true,
+        "frames": 16,
+        "fps": "500/33",
+        "identical_initial_state_and_images": true,
+        "selection_rule": "Existing website initial state, fixed before either OGPO rollout."
+      },
+      "original_combined_file": "atomizer-both.mp4",
+      "frames": 451,
+      "fps": "500/33",
+      "outcome_titles": true,
+      "outcome_source": "Simulator success flag in each complete recording; not inferred from clip duration.",
+      "source_recordings": [
+        "outputs/molmo-videos/clips/bon_tasks64_seed1/molmo_140/episode_03",
+        "outputs/molmo-videos/clips/bon_tasks144_seed1/molmo_140/episode_03"
+      ],
+      "outcome_export_sha256": "0566e0ec36c0a510c442e88ff2c53f7fb85448120e1aecbfc86d5d73bb43c941"
+    },
+    {
+      "training_seed": 1,
+      "task_id": 226,
+      "episode": 1,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true,
+      "object": "Wine bottle",
+      "selection_rule": "manually selected matching outcome pair for visual clarity; all audited outcomes are included",
+      "files": [
+        "wine-bottle-exterior.mp4",
+        "wine-bottle-wrist.mp4"
+      ],
+      "combined_file": "wine-bottle-bon-seed1-episode01-outcomes.mp4",
+      "ogpo": {
+        "task_id": 226,
+        "object": "Wine bottle",
+        "episode": 4,
+        "combined_file": "ogpo/wine-bottle-episode-04-ogpo-64-vs-144-both.mp4",
+        "training_tasks": [
+          64,
+          144
+        ],
+        "training_seed": 0,
+        "checkpoints": {
+          "64": "mt64_bronet_qvr16_seed0_10k",
+          "144": "mt144_bronet_qvr16_r15_seed0_15k"
+        },
+        "checkpoint_steps": {
+          "64": 10000,
+          "144": 15000
+        },
+        "success_64": false,
+        "success_144": true,
+        "frames": 451,
+        "fps": "500/33",
+        "identical_initial_state_and_images": true,
+        "selection_rule": "Selected episode 4 from a fixed six-state matched sample after the original episode-1 timeout. This pair is a 64-task failure and 144-task success; all attempts are retained. This is an illustrative example, not an aggregate performance estimate.",
+        "sampling_audit": "ogpo/wine-additional-sample.json"
+      },
+      "ogpo_previous_examples": [
+        {
+          "episode": 1,
+          "combined_file": "ogpo/wine-bottle-ogpo-64-vs-144-both.mp4",
+          "training_tasks": [
+            64,
+            144
+          ],
+          "training_seed": 0,
+          "checkpoints": {
+            "64": "mt64_bronet_qvr16_seed0_10k",
+            "144": "mt144_bronet_qvr16_r15_seed0_15k"
+          },
+          "checkpoint_steps": {
+            "64": 10000,
+            "144": 15000
+          },
+          "success_64": false,
+          "success_144": false,
+          "frames": 451,
+          "fps": "500/33",
+          "identical_initial_state_and_images": true,
+          "selection_rule": "Existing website initial state, fixed before either OGPO rollout."
+        }
+      ],
+      "original_combined_file": "wine-bottle-both.mp4",
+      "frames": 451,
+      "fps": "500/33",
+      "outcome_titles": true,
+      "outcome_source": "Simulator success flag in each complete recording; not inferred from clip duration.",
+      "source_recordings": [
+        "outputs/molmo-videos/clips/bon_tasks64_seed1/molmo_226/episode_01",
+        "outputs/molmo-videos/clips/bon_tasks144_seed1/molmo_226/episode_01"
+      ],
+      "outcome_export_sha256": "d8ebd5ec3415e41aa55cde2d53a162e7d482a25c10e217b8ae010869043a753e"
+    },
+    {
+      "training_seed": 1,
+      "task_id": 345,
+      "episode": 1,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true,
+      "object": "Fork",
+      "selection_rule": "first paired success/success example in training-seed/episode order",
+      "files": [
+        "fork-exterior.mp4",
+        "fork-wrist.mp4"
+      ],
+      "combined_file": "fork-bon-seed1-episode01-outcomes.mp4",
+      "ogpo": {
+        "episode": 1,
+        "combined_file": "ogpo/fork-ogpo-64-vs-144-both.mp4",
+        "training_tasks": [
+          64,
+          144
+        ],
+        "training_seed": 0,
+        "checkpoints": {
+          "64": "mt64_bronet_qvr16_seed0_10k",
+          "144": "mt144_bronet_qvr16_r15_seed0_15k"
+        },
+        "checkpoint_steps": {
+          "64": 10000,
+          "144": 15000
+        },
+        "success_64": false,
+        "success_144": true,
+        "frames": 451,
+        "fps": "500/33",
+        "identical_initial_state_and_images": true,
+        "selection_rule": "Existing website initial state, fixed before either OGPO rollout."
+      },
+      "original_combined_file": "fork-both.mp4",
+      "frames": 153,
+      "fps": "500/33",
+      "outcome_titles": true,
+      "outcome_source": "Simulator success flag in each complete recording; not inferred from clip duration.",
+      "source_recordings": [
+        "outputs/molmo-videos/clips/bon_tasks64_seed1/molmo_345/episode_01",
+        "outputs/molmo-videos/clips/bon_tasks144_seed1/molmo_345/episode_01"
+      ],
+      "outcome_export_sha256": "87652df6d689e9dd9403cf96c4d89119b11b58c96bee3506c0d542a5ada28a9b"
+    },
+    {
+      "training_seed": 0,
+      "task_id": 155,
+      "episode": 0,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true,
+      "object": "Knife",
+      "selection_rule": "first pair with the same outcome in training-seed/episode order",
+      "files": [
+        "knife-exterior.mp4",
+        "knife-wrist.mp4"
+      ],
+      "combined_file": "knife-bon-seed0-episode00-outcomes.mp4",
+      "ogpo": {
+        "episode": 0,
+        "combined_file": "ogpo/knife-ogpo-64-vs-144-both.mp4",
+        "training_tasks": [
+          64,
+          144
+        ],
+        "training_seed": 0,
+        "checkpoints": {
+          "64": "mt64_bronet_qvr16_seed0_10k",
+          "144": "mt144_bronet_qvr16_r15_seed0_15k"
+        },
+        "checkpoint_steps": {
+          "64": 10000,
+          "144": 15000
+        },
+        "success_64": true,
+        "success_144": false,
+        "frames": 451,
+        "fps": "500/33",
+        "identical_initial_state_and_images": true,
+        "selection_rule": "Existing website initial state, fixed before either OGPO rollout."
+      },
+      "original_combined_file": "knife-both.mp4",
+      "frames": 222,
+      "fps": "500/33",
+      "outcome_titles": true,
+      "outcome_source": "Simulator success flag in each complete recording; not inferred from clip duration.",
+      "source_recordings": [
+        "outputs/molmo-videos/clips/bon_tasks64_seed0/molmo_155/episode_00",
+        "outputs/molmo-videos/clips/bon_tasks144_seed0/molmo_155/episode_00"
+      ],
+      "outcome_export_sha256": "6eeaabbd9ef54dd40de9f6a1520cd2c7e93e48dd32e79d0c0ffbfdc586189216",
+      "visual_review_note": "64-task knife: the simulator reports success, but the final motion is abrupt."
+    },
+    {
+      "training_seed": 2,
+      "task_id": 357,
+      "episode": 2,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true,
+      "object": "Remote control",
+      "selection_rule": "Matched success/success pair selected after reviewing complete raw recordings for a clearer visible lift; all attempts retained.",
+      "combined_file": "remote-control-bon-seed2-episode02-outcomes.mp4",
+      "ogpo": {
+        "episode": 2,
+        "combined_file": "ogpo/remote-control-ogpo-64-vs-144-both.mp4",
+        "training_tasks": [
+          64,
+          144
+        ],
+        "training_seed": 0,
+        "checkpoints": {
+          "64": "mt64_bronet_qvr16_seed0_10k",
+          "144": "mt144_bronet_qvr16_r15_seed0_15k"
+        },
+        "checkpoint_steps": {
+          "64": 10000,
+          "144": 15000
+        },
+        "success_64": true,
+        "success_144": true,
+        "frames": 71,
+        "fps": "500/33",
+        "identical_initial_state_and_images": true,
+        "selection_rule": "Existing website initial state, fixed before either OGPO rollout."
+      },
+      "previous_bon_selections": [
+        {
+          "training_seed": 0,
+          "task_id": 357,
+          "episode": 2,
+          "success_64": true,
+          "success_144": true,
+          "identical_initial_images": true,
+          "object": "Remote control",
+          "selection_rule": "first paired success/success example in training-seed/episode order",
+          "files": [
+            "remote-control-exterior.mp4",
+            "remote-control-wrist.mp4"
+          ],
+          "combined_file": "remote-control-both.mp4"
+        }
+      ],
+      "original_combined_file": "remote-control-both.mp4",
+      "frames": 412,
+      "fps": "500/33",
+      "outcome_titles": true,
+      "outcome_source": "Simulator success flag in each complete recording; not inferred from clip duration.",
+      "source_recordings": [
+        "outputs/molmo-videos/clips/bon_tasks64_seed2/molmo_357/episode_02",
+        "outputs/molmo-videos/clips/bon_tasks144_seed2/molmo_357/episode_02"
+      ],
+      "outcome_export_sha256": "971ceceb2a5b615f1ba4e521413c359ae82551b94bc3f6b02f2b68aa89bdfdab",
+      "archived_original_camera_files": [
+        "remote-control-exterior.mp4",
+        "remote-control-wrist.mp4"
+      ]
+    },
+    {
+      "training_seed": 0,
+      "task_id": 356,
+      "episode": 0,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true,
+      "object": "Bowl",
+      "selection_rule": "first paired success/success example in training-seed/episode order",
+      "files": [
+        "bowl-exterior.mp4",
+        "bowl-wrist.mp4"
+      ],
+      "combined_file": "bowl-bon-seed0-episode00-outcomes.mp4",
+      "original_combined_file": "bowl-both.mp4",
+      "frames": 227,
+      "fps": "500/33",
+      "outcome_titles": true,
+      "outcome_source": "Simulator success flag in each complete recording; not inferred from clip duration.",
+      "source_recordings": [
+        "outputs/molmo-videos/bowl-clips/bon_tasks64_seed0/molmo_356/episode_00",
+        "outputs/molmo-videos/bowl-clips/bon_tasks144_seed0/molmo_356/episode_00"
+      ],
+      "outcome_export_sha256": "0658b61e27dcb83c359ebc7c9491abde337b8689f6f191929ae606551fb6f820"
+    }
+  ],
+  "camera_layout": "Wrist above exterior; 64 tasks on the left, 144 on the right. All four views share one playback timeline."
+}

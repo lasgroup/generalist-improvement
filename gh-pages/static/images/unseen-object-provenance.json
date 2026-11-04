@@ -1,0 +1,92 @@
+[
+  {
+    "file": "atomizer-closeup.png",
+    "task_id": 140,
+    "object_name": "atomizer_e0cab0ef1fe80f6fe596048b9bc862a1_1_0_6",
+    "prompt": "pick up the bottle.",
+    "azimuth": 45,
+    "resolution": [
+      1024,
+      1024
+    ],
+    "elevation": -22,
+    "camera_distance": 0.4996263714341642,
+    "source_file": "outputs/molmo-videos/unseen-closeups/atomizer-45.png",
+    "sha256": "060b50fc41b9a97b94cfae6b800685c60d74b23268676d76da4df01cd619a992"
+  },
+  {
+    "file": "wine-bottle-closeup.png",
+    "task_id": 226,
+    "object_name": "winebottle_201eb4050e30f10e57909e4c975910e9_1_0_6",
+    "prompt": "pick up the bottle.",
+    "azimuth": 45,
+    "resolution": [
+      1024,
+      1024
+    ],
+    "elevation": -22,
+    "camera_distance": 0.6701098783986955,
+    "source_file": "outputs/molmo-videos/unseen-closeups/wine-bottle-45.png",
+    "sha256": "53cc7eedf3aa0f5d9d01ca8df6af408721152d5fb2ed598e542b3effc565f85b"
+  },
+  {
+    "file": "fork-closeup.png",
+    "task_id": 345,
+    "object_name": "fork_a17d780ca6a79038b069eb7768c962c4_1_0_2",
+    "prompt": "pick up the fork.",
+    "azimuth": 135,
+    "resolution": [
+      1024,
+      1024
+    ],
+    "elevation": -65,
+    "camera_distance": 0.3698042673449823,
+    "source_file": "outputs/molmo-videos/unseen-closeups/fork-135.png",
+    "sha256": "ca8bdce46bab2b00ec05fc492b53bf53dce28436be9fcc4c1881d3c01bd2a226"
+  },
+  {
+    "file": "knife-closeup.png",
+    "task_id": 155,
+    "object_name": "butterknife_f211d9b5a6beb604cda0c1df985a0093_1_0_6",
+    "prompt": "pick up the knife.",
+    "azimuth": 225,
+    "resolution": [
+      1024,
+      1024
+    ],
+    "elevation": -65,
+    "camera_distance": 0.3657640504858186,
+    "source_file": "outputs/molmo-videos/unseen-closeups/knife-225.png",
+    "sha256": "52ff3bf07fada77198d1807730793126c164bdb749ee6545089027afd472411f"
+  },
+  {
+    "file": "remote-control-closeup.png",
+    "task_id": 357,
+    "object_name": "remotecontrol_488ea7924f7cb4d329c991926df62222_1_0_2",
+    "prompt": "pick up the remote.",
+    "azimuth": 45,
+    "resolution": [
+      1024,
+      1024
+    ],
+    "elevation": 60,
+    "camera_distance": 0.3311370663615322,
+    "source_file": "outputs/molmo-videos/unseen-remote-closeups/remote-control-45.png",
+    "sha256": "3bc03322f52dacc3961035b345e2afc7efaa8b17ac6b48a36bda5ee326cb6e31"
+  },
+  {
+    "file": "bowl-closeup.png",
+    "task_id": 356,
+    "object_name": "bowl_1225dcc85067784fe806e13437861b11_1_0_2",
+    "prompt": "pick up the bowl.",
+    "azimuth": 45,
+    "resolution": [
+      1024,
+      1024
+    ],
+    "elevation": -40,
+    "camera_distance": 0.39211767834551997,
+    "source_file": "outputs/molmo-videos/unseen-closeups/bowl-45.png",
+    "sha256": "2b09bd28628a5729e69fb0779ccc18496961f0d8d345c444810daeabf8db7804"
+  }
+]

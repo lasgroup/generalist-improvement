@@ -1,0 +1,66 @@
+{
+  "audit_passed": true,
+  "validated_episodes": 12,
+  "checkpoints": {
+    "64": "mt64_bronet_qvr16_seed0_10k",
+    "144": "mt144_bronet_qvr16_r15_seed0_15k"
+  },
+  "sampling_plan": "Fixed six matched states (0\u20135), following the original episode-1 timeout.",
+  "interpretation": "All attempts retained; selected qualitative examples do not estimate aggregate performance.",
+  "pairs": [
+    {
+      "episode": 0,
+      "task_id": 226,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "episode": 1,
+      "task_id": 226,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "episode": 2,
+      "task_id": 226,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "episode": 3,
+      "task_id": 226,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "episode": 4,
+      "task_id": 226,
+      "success_64": false,
+      "success_144": true,
+      "steps_64": 450,
+      "steps_144": 30,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "episode": 5,
+      "task_id": 226,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    }
+  ]
+}

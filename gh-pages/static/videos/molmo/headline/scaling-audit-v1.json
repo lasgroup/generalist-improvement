@@ -1,0 +1,1344 @@
+{
+  "passed": true,
+  "validated_episodes": 12,
+  "matched_pairs": 6,
+  "all_planned_outcomes_retained": true,
+  "tasks": [
+    140,
+    356,
+    345,
+    155,
+    357,
+    226
+  ],
+  "episode": 0,
+  "plan": {
+    "version": 1,
+    "purpose": "Matched 64-versus-144 OGPO recordings on the six shared unseen object categories; all fixed-sample outcomes retained.",
+    "sampling_rule": "One fixed seeded episode (episode 0) per shared unseen-object task, matching the original 64-task recordings. All six outcomes are retained without outcome-based selection.",
+    "original_plan_sha256": "fe9b86dd5db32d878354f9f79e7fbbde2032a69b49a96055877f9db688d5542a",
+    "source_config_64": "scripts/configs/multitask/bofn/molmo/bofn_molmo_tasks64_seed0_v0.yaml",
+    "source_config_64_sha256": "157e025d34d84eb81140c14737bd19fd3a3881a1eb06a27b32260bce371fbc0f",
+    "checkpoint_name": "mt144_bronet_qvr16_r15_seed0_15k",
+    "training_task_count": 144,
+    "training_seed": 0,
+    "checkpoint_step": 15000,
+    "checkpoint_metadata_source": "Supplied Drive export folder name; the original144 inventory only records name, folder URL and file sizes.",
+    "reference_checkpoint": "mt64_bronet_qvr16_seed0_10k",
+    "primary_episode": 0,
+    "primary_tasks": [
+      140,
+      356,
+      345,
+      155,
+      357,
+      226
+    ],
+    "evaluation_tasks": [
+      140,
+      356,
+      345,
+      155,
+      357,
+      226
+    ],
+    "unseen_scene_tasks_64": [
+      8,
+      273,
+      222,
+      73,
+      346,
+      49,
+      21,
+      379
+    ],
+    "unseen_object_tasks_64": [
+      140,
+      356,
+      345,
+      155,
+      357,
+      163,
+      208,
+      226
+    ],
+    "recording_tasks": [
+      140,
+      356,
+      345,
+      155,
+      357,
+      226
+    ],
+    "episodes_by_task": {
+      "140": [
+        0
+      ],
+      "356": [
+        0
+      ],
+      "345": [
+        0
+      ],
+      "155": [
+        0
+      ],
+      "357": [
+        0
+      ],
+      "226": [
+        0
+      ]
+    },
+    "split_verification_144": {
+      "status": "verified",
+      "source_config": "headline-scaling-split144.yaml",
+      "source_sha256": "da52633069b00e29762fbd9a1f300e5e994cf2a91003e9c6c7f9c2223b11096f",
+      "training_tasks": [
+        332,
+        33,
+        242,
+        369,
+        126,
+        383,
+        295,
+        81,
+        407,
+        410,
+        642,
+        786,
+        164,
+        86,
+        70,
+        267,
+        366,
+        138,
+        143,
+        212,
+        523,
+        597,
+        669,
+        729,
+        18,
+        292,
+        48,
+        185,
+        24,
+        62,
+        377,
+        78,
+        196,
+        237,
+        32,
+        381,
+        28,
+        311,
+        50,
+        56,
+        399,
+        187,
+        121,
+        27,
+        100,
+        15,
+        198,
+        71,
+        309,
+        227,
+        265,
+        325,
+        277,
+        127,
+        254,
+        166,
+        204,
+        233,
+        328,
+        68,
+        11,
+        361,
+        103,
+        4,
+        260,
+        221,
+        348,
+        305,
+        104,
+        334,
+        376,
+        382,
+        22,
+        210,
+        176,
+        373,
+        93,
+        394,
+        6,
+        47,
+        415,
+        595,
+        618,
+        985,
+        19,
+        296,
+        82,
+        39,
+        162,
+        148,
+        150,
+        7,
+        430,
+        695,
+        727,
+        909,
+        124,
+        141,
+        149,
+        211,
+        251,
+        275,
+        312,
+        34,
+        358,
+        368,
+        387,
+        88,
+        12,
+        208,
+        224,
+        229,
+        236,
+        25,
+        324,
+        327,
+        355,
+        389,
+        80,
+        91,
+        160,
+        991,
+        900,
+        973,
+        915,
+        953,
+        504,
+        896,
+        957,
+        362,
+        650,
+        980,
+        241,
+        315,
+        450,
+        544,
+        603,
+        643,
+        721,
+        746,
+        777,
+        831,
+        85,
+        854
+      ],
+      "val_in_tasks": [
+        8,
+        273,
+        222,
+        73,
+        346,
+        49,
+        379,
+        21,
+        163,
+        154,
+        684,
+        842
+      ],
+      "val_out_tasks": [
+        140,
+        356,
+        345,
+        155,
+        357,
+        226
+      ],
+      "note": "Record exactly the shared six val_out categories. Task163 is val_in at144; task208 is explicitly in144 training, so both are excluded."
+    },
+    "splits_at_144": {
+      "140": "unseen_object",
+      "356": "unseen_object",
+      "345": "unseen_object",
+      "155": "unseen_object",
+      "357": "unseen_object",
+      "226": "unseen_object"
+    },
+    "camera": "wrist",
+    "references": {
+      "140:0": {
+        "metadata": "headline-clips/ogpo/molmo_140/episode_00/metadata.json",
+        "sha256": "fc6a7d9573cff82f88db8c1da181a029b6be4afd5ffcb6489232d196b939112a",
+        "sample_group": "fixed_episode0"
+      },
+      "356:0": {
+        "metadata": "headline-clips/ogpo/molmo_356/episode_00/metadata.json",
+        "sha256": "dc1861985103ce26c6f3441d5f55f8d5219ac33734a23c280a67a689e55d2f2d",
+        "sample_group": "fixed_episode0"
+      },
+      "345:0": {
+        "metadata": "headline-clips/ogpo/molmo_345/episode_00/metadata.json",
+        "sha256": "91b5e396308741a8d0d8656c28d1f5f6dd354b77cde7c030786ca24d945b44f5",
+        "sample_group": "fixed_episode0"
+      },
+      "155:0": {
+        "metadata": "headline-clips/ogpo/molmo_155/episode_00/metadata.json",
+        "sha256": "4061185b22c05da5ee0bffe8c4fcbf3b7a29650d9221fdeeea2abcc50e4cde10",
+        "sample_group": "fixed_episode0"
+      },
+      "357:0": {
+        "metadata": "headline-clips/ogpo/molmo_357/episode_00/metadata.json",
+        "sha256": "12a4634350333dc2b6d0e18d3b9faa51d53ef0c4a220387086a435ee41ad7f86",
+        "sample_group": "fixed_episode0"
+      },
+      "226:0": {
+        "metadata": "headline-clips/ogpo/molmo_226/episode_00/metadata.json",
+        "sha256": "92366e9b757226a54a0ea222292e72f976cfdf1ec4285995b6f093d57d24bfc8",
+        "sample_group": "fixed_episode0"
+      }
+    }
+  },
+  "plan_sha256": "55aafd102745801885efabf65901ae0e3e87b10a730841a8985b638fbb83e512",
+  "exporter_sha256": "0bd31812a654951c243ff09421b63383069cddd417511fb897a64c9ea6cec7c4",
+  "camera": "wrist",
+  "checkpoint_provenance": {
+    "64": {
+      "checkpoint": "mt64_bronet_qvr16_seed0_10k",
+      "source_url": "https://drive.google.com/drive/folders/1uIUV26QAwPEdoufMfjq5g85K3FBlf1Zb",
+      "provenance_path": "/Users/yardas/vla-post-training/outputs/molmo-videos/ogpo64/download_provenance.json",
+      "provenance_sha256": "6a9cdf037d8fa68f0ef23dc2ab707cd920e1761d1fb5c192ade54b04e33ddd6d",
+      "manifest_ocdbt_sha256": "049adc525b68c37aa2cefc498eb86ad06586a4696304109e3022d3d777c1250b",
+      "download": {
+        "source": "https://drive.google.com/drive/folders/1uIUV26QAwPEdoufMfjq5g85K3FBlf1Zb",
+        "files": [
+          {
+            "id": "1pU0ykdeOtEIkNWutJtNAV7fNyNkLdXSW",
+            "path": "assets/droid/norm_stats.json",
+            "size": 4540,
+            "sha256": "57ce9956f9e07d65f8a8205aabec72d436a2c8927f53edb40c7a77b14a5a90c7"
+          },
+          {
+            "id": "1-sSwijX6QlVaPz3mgdkqHLb31I8g37fR",
+            "path": "params/_CHECKPOINT_METADATA",
+            "size": 258,
+            "sha256": "a1052892c2b109c512194f456f345dbc20db27af8c852b2070484d216c5d4255"
+          },
+          {
+            "id": "1FdFOkwriEimVb5BIjwn38R04-Klxwxoo",
+            "path": "params/d/abbe1dfd2c406c3e71f606374a052f70",
+            "size": 2126,
+            "sha256": "44e4615533bdf9b8bdafbe9735847a31b2d34d3cf5d60ff2f92cefe0da513290"
+          },
+          {
+            "id": "1RyuGvJDUSS_1jeqv3Qy21--Dhc0syFPx",
+            "path": "params/manifest.ocdbt",
+            "size": 117,
+            "sha256": "049adc525b68c37aa2cefc498eb86ad06586a4696304109e3022d3d777c1250b"
+          },
+          {
+            "id": "1CTfNn-HBOoPLkQlWMPCjMuJMRExHlWhl",
+            "path": "params/_METADATA",
+            "size": 19966,
+            "sha256": "c6fdd698f1dd28cd8b376529398ed607605caa75fde03e3c2e135dbcb9749e5c"
+          },
+          {
+            "id": "1VFNCDTA3dqul_P28-qGja9ZiaSTyoSfp",
+            "path": "params/ocdbt.process_0/d/551218523a2f0c634c5862b20397b758",
+            "size": 2111,
+            "sha256": "c11b49aed2898575d0062ee78299594dc5e377f94f76817b637b0d61adce2c52"
+          },
+          {
+            "id": "1n4SkMUkOaxfPx38-iq8wZEIg66T-R5IY",
+            "path": "params/ocdbt.process_0/d/1ccf045e2ac1eca5e661d5d8350ec21a",
+            "size": 1889431552,
+            "sha256": "a857206ceb9c74ffb8a657975488d9b62e09581203672cc6481bf9214a49f780"
+          },
+          {
+            "id": "1_e4QjhA069sR7Us2ECpJOpftGcusjtXY",
+            "path": "params/ocdbt.process_0/d/dc208f61dad52a173caa1971b0c26fde",
+            "size": 2332184576,
+            "sha256": "fff33633ab19f59c2d7e94819a79d8d0001f1167f9411cefbb7f0c8a95c566c4"
+          },
+          {
+            "id": "1frSoQiXXG2hjDHMwUhL16-NAvet-Xz1K",
+            "path": "params/ocdbt.process_0/d/d316f017bb15f12ae945dafba5dc47be",
+            "size": 1120608256,
+            "sha256": "45c1eaa67b09b9fc610d5dd1b89ff740b43364e2f93544c362d4263190d017bd"
+          },
+          {
+            "id": "1OIgolPXiq0RY9e9pPH0cGBPI6L2whFsb",
+            "path": "params/ocdbt.process_0/d/30d27ed867447b1e163bb34d5cfff519",
+            "size": 516407296,
+            "sha256": "1a4de18554c7f005ac112eb8d40be80759cbdb0f5837432e9e9c678eece33c57"
+          },
+          {
+            "id": "1j4jwX2SPq2ozqd5h6Eilvy2uiAXqcJLd",
+            "path": "params/ocdbt.process_0/d/261d6d603b411d71f0650583e9d83ddd",
+            "size": 168509440,
+            "sha256": "cdba0611cd45301a4eaaef519e390daf37615d0d1fbea704a353a2f9240a8cce"
+          },
+          {
+            "id": "15BDHOmqittkoCDIZeCD0vi-hVGoohab_",
+            "path": "params/ocdbt.process_0/d/5216d44be5f2dcec892e4c09b3e5e3da",
+            "size": 91205632,
+            "sha256": "576d6320fa50a06b308f1a5d5ea75822c17c7c5e7b7a09435e9748fdb27acae5"
+          },
+          {
+            "id": "1oHVx_3Cl488j0fylgohV8mewhx1YU7uV",
+            "path": "params/ocdbt.process_0/d/ae62cffa8d4af58c733155a67aa53d8a",
+            "size": 29581312,
+            "sha256": "53afa03a7783073f375051328f579734907f1013b571075153060097edbf978b"
+          },
+          {
+            "id": "1iPwqen9dBWeCx_GxrY53kE5HOGY-OQMf",
+            "path": "params/ocdbt.process_0/d/4d03f1d20a9229af187e33c1e8bd970f",
+            "size": 11788288,
+            "sha256": "2bdf343e836558b19015965990b4b03fba35765728f4f7de59c21ea4a44ab014"
+          },
+          {
+            "id": "19Fcuw1WMWDdsyFkRGXr0apKFQz-Vlnho",
+            "path": "params/ocdbt.process_0/d/9905afdfebbb45a89cc5d0ab3dce35ec",
+            "size": 10338304,
+            "sha256": "fa0c9e9dc0abf40ffb041cffcd12cc1c895eb5c24e5f178804699f25b865005e"
+          },
+          {
+            "id": "1cFsyrH0sizz4oIqwYJRx25g3NJxGdQYV",
+            "path": "params/ocdbt.process_0/d/473f58724aa459d915076f695a143cf7",
+            "size": 201182,
+            "sha256": "1a1e2a84fbc04a9eecd54b89ca459dfdc0aeb6e2c0154cf0ce399f9796c57066"
+          },
+          {
+            "id": "1K2-xzFzONpCqRryUh_jUy8JtNzty8R6V",
+            "path": "params/ocdbt.process_0/d/16a1c65716bc92fd85ba2f63e1e20c48",
+            "size": 1127,
+            "sha256": "34446453f2277cce9c587832bc50df3e91fb3c4ba9078e49d9dd58054510d99e"
+          },
+          {
+            "id": "11-XoTAiA3YjVb7_nhKKVlnfskWXGDkBO",
+            "path": "params/ocdbt.process_0/d/59779dc3fe50a55bc822563c90cf7a62",
+            "size": 2454,
+            "sha256": "68e540a4da3278da2d1c8828fbaee430c7e4b82c30bcbb7513a24be21af629b9"
+          },
+          {
+            "id": "18oFOJoNgE6EwGvqnbqGCTMkkCVR6AT8r",
+            "path": "params/ocdbt.process_0/d/8d034d85539c8bd1c6ea7eb0cae9fb35",
+            "size": 962,
+            "sha256": "ec5af0b972ef9cc0d3d5376c60bef26ef5debb0744d9e702acbb97df4bcf7354"
+          },
+          {
+            "id": "1_djTkElYMIr3nilmoaFRfj7fsSha2RWN",
+            "path": "params/ocdbt.process_0/d/528338913a8a05ca99e5abfa4101a861",
+            "size": 212,
+            "sha256": "887ebeb146f95a9989f2c5b52821d12ac1b54abfb6519d9c4662c210319ebe69"
+          },
+          {
+            "id": "1zjwdzvOnhVGU5LjXKH10Lc2fstGFMLvM",
+            "path": "params/ocdbt.process_0/manifest.ocdbt",
+            "size": 674,
+            "sha256": "0d1fc2b0bb3ac37be4f00470e6de0e07f80758e49654974e76351a3c1fd40120"
+          }
+        ],
+        "verification": "File sizes match Drive; SHA256 records downloaded bytes."
+      },
+      "interpretation": "Historical Drive download hashes plus independently observed remote OCDBT manifest hash. This export does not rehash all checkpoint weight shards; params/_METADATA is a tensor-layout hash, not a unique weights fingerprint."
+    },
+    "144": {
+      "checkpoint": "mt144_bronet_qvr16_r15_seed0_15k",
+      "source_url": "https://drive.google.com/drive/folders/1d_LD5MN72lZ1Pm0degmskeNiFX8hWD0H",
+      "provenance_path": "/Users/yardas/vla-post-training/outputs/molmo-videos/headline/checkpoint-provenance-144/download_provenance.json",
+      "provenance_sha256": "b6b62931946b12b26b567864ae78b1abf10c3ea2ead40cb393cc31ead2e759a4",
+      "manifest_ocdbt_sha256": "03e4781ecac991d59a2eb24a11521779432bf917108c5ca1645db5f95d12fd5b",
+      "download": {
+        "source": "https://drive.google.com/drive/folders/1d_LD5MN72lZ1Pm0degmskeNiFX8hWD0H",
+        "files": [
+          {
+            "id": "1xaMCfILPJn27maMOTU40IlqlprduA-Pm",
+            "path": "assets/droid/norm_stats.json",
+            "size": 4540,
+            "sha256": "57ce9956f9e07d65f8a8205aabec72d436a2c8927f53edb40c7a77b14a5a90c7"
+          },
+          {
+            "id": "1EzrMuceiFBT7hqinhm5f8w5OGvOyMrvw",
+            "path": "params/_CHECKPOINT_METADATA",
+            "size": 258,
+            "sha256": "2f5e4934eb8b16d1bf98c51b1c83e3f410864cc439ddfed5f4d3ad9db6cf29cf"
+          },
+          {
+            "id": "1iSDqxDBWo97ZK2SW35ToWQqPaiXI1D0D",
+            "path": "params/d/6e1f1e9270b406919de39c975885e07a",
+            "size": 2149,
+            "sha256": "b590c5c75604211354eaf3b0031114be8fdf1fda807a2a75045b55d1dcc9d512"
+          },
+          {
+            "id": "1075Ns0pU3cOgHhpE6mllODxDx0q52ae6",
+            "path": "params/manifest.ocdbt",
+            "size": 117,
+            "sha256": "03e4781ecac991d59a2eb24a11521779432bf917108c5ca1645db5f95d12fd5b"
+          },
+          {
+            "id": "1cbRpfVHowDZwhwxzO8aOSTx8C1Z5aO9X",
+            "path": "params/_METADATA",
+            "size": 19966,
+            "sha256": "c6fdd698f1dd28cd8b376529398ed607605caa75fde03e3c2e135dbcb9749e5c"
+          },
+          {
+            "id": "15NvXy1npxV_Eu7o1eVbL_niPGunps4ko",
+            "path": "params/ocdbt.process_0/d/474e8d91883a8689847d70d2a2e6c823",
+            "size": 2137,
+            "sha256": "440260224647da574d7a80ca695603f45aae0ce1e52decd289ac23980d3338b1"
+          },
+          {
+            "id": "1L93PNWz-kcRXTeTewuaXLR5tgPbifEnh",
+            "path": "params/ocdbt.process_0/d/ea4f986c79238db5c4ba8fd6f0c75720",
+            "size": 1889431552,
+            "sha256": "a92fe2bbe07a6a8962a8170def3a6bc874687d3e3cdcbc2bd44dd7b4c3327270"
+          },
+          {
+            "id": "1qbmmVZkSMWaS7eZpoCwtsaL_5PAnWj5D",
+            "path": "params/ocdbt.process_0/d/2698a3feae061481d98250189eafe5f3",
+            "size": 2332176384,
+            "sha256": "c88a371d01eae0fb9056474a27532972c0a52222b30f72be06d465867ca88133"
+          },
+          {
+            "id": "1MFKqHD2QnqA_d_CLO6UJT0pyjDmqH_aF",
+            "path": "params/ocdbt.process_0/d/17aa446c61ca55c06f81f551afbcddef",
+            "size": 1120567296,
+            "sha256": "999826d7dcee39ab2e5b26cbed029837398dc3e0d196fc0c650950e6bfd5cd58"
+          },
+          {
+            "id": "1EKHRyQTHNpgAzCEXVFl-Q2Ib1_MbRtDl",
+            "path": "params/ocdbt.process_0/d/e312ff5730f74c6fc0ea9610a395c661",
+            "size": 572608512,
+            "sha256": "40e42ba5f40bd359a5c9d12329f1c537664d972939d7eb545189db5add09c137"
+          },
+          {
+            "id": "1Sr0X6UrNYN8VB_rb2Ta9rdr49c6ZU_8G",
+            "path": "params/ocdbt.process_0/d/67935c854473863c984faa4787458e10",
+            "size": 168525824,
+            "sha256": "f3d6646a4e034e5c131647c11a8cc418e02e3cc64ae2ee357a797c48db81a5ca"
+          },
+          {
+            "id": "1M2DUnQWMcL1v32ZswHNRl-R1JLnzlWee",
+            "path": "params/ocdbt.process_0/d/3afd771189e30f7e23c953edd6e0191b",
+            "size": 34992128,
+            "sha256": "3e6669c1cb8378b5639bc9c3409816e3a3886206d37427c7f4f697d5245d3b26"
+          },
+          {
+            "id": "1a6y4TAuIY37_fAyte6LYgpyfmr4VwdST",
+            "path": "params/ocdbt.process_0/d/d1702de38942020eef13ead25f3b832a",
+            "size": 29581312,
+            "sha256": "e0cb5738ad627de0f5014de2f29fdbcbbd868678e6cb90e28fa28e938102a8fb"
+          },
+          {
+            "id": "1KmnPmpj2i_RTkGhBmIVKIBfF0QKgt88b",
+            "path": "params/ocdbt.process_0/d/a3c11c30fc76e106ef239c0ddd94970c",
+            "size": 7897088,
+            "sha256": "108b495db54f9f06d82c45cd6ed15dd1fd98b32d5837b36127758d03efbca27e"
+          },
+          {
+            "id": "1bmIY9JPbdMv7Hcy4A0U6LNZX6woOW2B_",
+            "path": "params/ocdbt.process_0/d/db139022d55d9580dbf812516a8d2ebb",
+            "size": 3887826,
+            "sha256": "51f58e10d1d7f220dbbef6403c5d4adfdeed4e0944335f9a7d83c6206a6db2cf"
+          },
+          {
+            "id": "14D6KmtJ93O0kenwUzBSvHDWguFV-yDTN",
+            "path": "params/ocdbt.process_0/d/310329db9738f820b896faec28d5d340",
+            "size": 7589888,
+            "sha256": "6df2a9f9d599c568d5e7cd5a37a86eb57aac7da3a75c74546575a3c14df9d196"
+          },
+          {
+            "id": "1PbmgsaL41ttTF4_RQfIqoiPSmSHNtT_w",
+            "path": "params/ocdbt.process_0/d/a8f067cbef9c70267d6472ded45661be",
+            "size": 2576696,
+            "sha256": "c6c9481aaac98223d1a212f7064bb9a8bd0c8909ebfc8e3c78962220d75e07b8"
+          },
+          {
+            "id": "1RJ4PhLeT4gu2J-u5lrjCx6-70DRV1HiZ",
+            "path": "params/ocdbt.process_0/d/75a89838b392b95ae835ab54fc29e2b0",
+            "size": 375869,
+            "sha256": "6bdda4d90d058a9c78077a5cb1e4d1238ce3c1a35c9739160440b905216b8907"
+          },
+          {
+            "id": "18ZFescW9wmZQrvS0_yY3JspUXJ_VX86v",
+            "path": "params/ocdbt.process_0/d/4a79a7a8bfed95d84ec7ef7b962cfb65",
+            "size": 1085,
+            "sha256": "86f1f849f64cbbcb7353f2bce614a44f504b43b33dbc5e03d704f00d5fe23363"
+          },
+          {
+            "id": "18HsbUDWdkIPjxt3R_LGthnsnxkDwPWbG",
+            "path": "params/ocdbt.process_0/d/1ade723bc10a3c0f40cd871bd9462448",
+            "size": 751,
+            "sha256": "d617b8ac65bfcef3addd6ae0fb4cd07252ae51a6261a4c68830d53482e9a2711"
+          },
+          {
+            "id": "1ch0m06FPqdJHuT7LgzUzTCF6DIVtRiC4",
+            "path": "params/ocdbt.process_0/d/37c4b92e5b22e8891b91058f234ef653",
+            "size": 1014,
+            "sha256": "cdfb4b11db181cfe0244ce878137d12e82e50e9ca93301d4d7decd0ba875d657"
+          },
+          {
+            "id": "1HmFNktPu3lOkIa7ea-zx8MQGnOsAte2f",
+            "path": "params/ocdbt.process_0/d/8aaede30f5caa146a4261c6e24652ffe",
+            "size": 210,
+            "sha256": "d785886bf151df9c77d7c1aae4fe99cab528cc6ab0b42851cb7b655b6efb8fbe"
+          },
+          {
+            "id": "1COXs2IzNuJxPTqyukEIb8dg6qMhrgPTM",
+            "path": "params/ocdbt.process_0/manifest.ocdbt",
+            "size": 748,
+            "sha256": "77a1d72dc4948a0fc379ec6dd4b20a901ee7ade232f433c92b938e687ed7dd3a"
+          }
+        ],
+        "verification": "File sizes match Drive; SHA256 digests identify downloaded bytes."
+      },
+      "interpretation": "Historical Drive download hashes plus independently observed remote OCDBT manifest hash. This export does not rehash all checkpoint weight shards; params/_METADATA is a tensor-layout hash, not a unique weights fingerprint."
+    }
+  },
+  "fps": "500/33",
+  "frames": 482,
+  "duration_seconds": 31.812,
+  "expected_params_metadata_sha256_144": null,
+  "interpretation": "One fixed matched example per shared unseen-object category; not a new aggregate performance estimate.",
+  "timing": "Native simulation speed with every recorded frame retained; final frames held through 482 frames, including at least two seconds after the horizon.",
+  "success_marker": "Green tint and border from the simulator terminal success frame; failures never marked.",
+  "pairs": [
+    {
+      "task_id": 140,
+      "episode": 0,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_state": true,
+      "identical_benchmark_episode": true,
+      "identical_initial_camera_pixels": true
+    },
+    {
+      "task_id": 356,
+      "episode": 0,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_state": true,
+      "identical_benchmark_episode": true,
+      "identical_initial_camera_pixels": true
+    },
+    {
+      "task_id": 345,
+      "episode": 0,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_state": true,
+      "identical_benchmark_episode": true,
+      "identical_initial_camera_pixels": true
+    },
+    {
+      "task_id": 155,
+      "episode": 0,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_state": true,
+      "identical_benchmark_episode": true,
+      "identical_initial_camera_pixels": true
+    },
+    {
+      "task_id": 357,
+      "episode": 0,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_state": true,
+      "identical_benchmark_episode": true,
+      "identical_initial_camera_pixels": true
+    },
+    {
+      "task_id": 226,
+      "episode": 0,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_state": true,
+      "identical_benchmark_episode": true,
+      "identical_initial_camera_pixels": true
+    }
+  ],
+  "records": [
+    {
+      "folder": "/Users/yardas/vla-post-training/outputs/molmo-videos/headline/clips/ogpo/molmo_140/episode_00",
+      "task_id": 140,
+      "episode": 0,
+      "training_tasks": 64,
+      "split": "unseen_object",
+      "house_index": 221,
+      "object_name": "atomizer_e0cab0ef1fe80f6fe596048b9bc862a1_1_0_6",
+      "prompt": "pick up the bottle.",
+      "success": true,
+      "truncated": false,
+      "steps": 15,
+      "frames": 16,
+      "environment_seed": 140000,
+      "action_seed": 1140000,
+      "fps": "500/33",
+      "n_samples": 1,
+      "replan_steps": 5,
+      "denoising_steps": 10,
+      "action_horizon": 15,
+      "python_hash_seed": "0",
+      "initial_randomization": true,
+      "name": "mt64_bronet_qvr16_seed0_10k",
+      "checkpoint": "/capstor/scratch/cscs/yardas/molmo-generalization-videos/drive-checkpoints/mt64_bronet_qvr16_seed0_10k",
+      "source_url": "https://drive.google.com/drive/folders/1uIUV26QAwPEdoufMfjq5g85K3FBlf1Zb",
+      "training_seed": 0,
+      "step": 10000,
+      "source_commit": "42a2a53e0a96099daf0a889480092e854a0a5ae3",
+      "params_metadata_sha256": "c6fdd698f1dd28cd8b376529398ed607605caa75fde03e3c2e135dbcb9749e5c",
+      "norm_stats_sha256": "57ce9956f9e07d65f8a8205aabec72d436a2c8927f53edb40c7a77b14a5a90c7",
+      "camera_recorder_sha256": "3d24bbb490a81d8b823aff6e67b5c6165f72cd6dfc0d6d4c4dded188b6a88302",
+      "recorder_sha256": "9a00821b6d76c8eff1a9a137ad37a5012553fb0e022f048810ab69ba042b0568",
+      "plan_sha256": "fe9b86dd5db32d878354f9f79e7fbbde2032a69b49a96055877f9db688d5542a",
+      "inference_config": "pi05_molmo_online_filtered_sft (policy transforms only)",
+      "metadata_sha256": "fc6a7d9573cff82f88db8c1da181a029b6be4afd5ffcb6489232d196b939112a",
+      "benchmark_episode_sha256": "8c70b1bed34476de92717ad424e3dc4f99e52f9057c1e3a3e515c14004a4676e",
+      "initial_state_sha256": "debb5b1b0a53c0196b26f8a595cb4fab68b4cb37e226216e741669247a91b720",
+      "success_frame": 15,
+      "media": {
+        "wrist": {
+          "video_sha256": "4d59cc8ece0c9f96141b9546bfd70643ec92e5b7dc6bcf95800f82bec5965789",
+          "initial_file_sha256": "0f584e88cd9a98aa13ed44423bf43be26c0fb35391b88ad7c1354a2b44cb6288",
+          "initial_pixels_sha256": "c71f012a10e3a2a56e729b8964a0011b9d6786ab87ef020f20b7cd40911248c4"
+        },
+        "exterior": {
+          "video_sha256": "3238175429b90ff2f6e50dc7a4636f0c81a9bc2237e3ca01fcff8dcf3211053f",
+          "initial_file_sha256": "c657a5de563211a422997cacf1bc0110a324ddee8de962714a960bcb718f28d2",
+          "initial_pixels_sha256": "849d4d624b475233667602017455b30e8fe9495971de9862b5bc96760aba0bb5"
+        }
+      }
+    },
+    {
+      "folder": "/Users/yardas/vla-post-training/outputs/molmo-videos/headline/clips/ogpo/molmo_356/episode_00",
+      "task_id": 356,
+      "episode": 0,
+      "training_tasks": 64,
+      "split": "unseen_object",
+      "house_index": 412,
+      "object_name": "bowl_1225dcc85067784fe806e13437861b11_1_0_2",
+      "prompt": "pick up the bowl.",
+      "success": false,
+      "truncated": true,
+      "steps": 450,
+      "frames": 451,
+      "environment_seed": 356000,
+      "action_seed": 1356000,
+      "fps": "500/33",
+      "n_samples": 1,
+      "replan_steps": 5,
+      "denoising_steps": 10,
+      "action_horizon": 15,
+      "python_hash_seed": "0",
+      "initial_randomization": true,
+      "name": "mt64_bronet_qvr16_seed0_10k",
+      "checkpoint": "/capstor/scratch/cscs/yardas/molmo-generalization-videos/drive-checkpoints/mt64_bronet_qvr16_seed0_10k",
+      "source_url": "https://drive.google.com/drive/folders/1uIUV26QAwPEdoufMfjq5g85K3FBlf1Zb",
+      "training_seed": 0,
+      "step": 10000,
+      "source_commit": "42a2a53e0a96099daf0a889480092e854a0a5ae3",
+      "params_metadata_sha256": "c6fdd698f1dd28cd8b376529398ed607605caa75fde03e3c2e135dbcb9749e5c",
+      "norm_stats_sha256": "57ce9956f9e07d65f8a8205aabec72d436a2c8927f53edb40c7a77b14a5a90c7",
+      "camera_recorder_sha256": "3d24bbb490a81d8b823aff6e67b5c6165f72cd6dfc0d6d4c4dded188b6a88302",
+      "recorder_sha256": "9a00821b6d76c8eff1a9a137ad37a5012553fb0e022f048810ab69ba042b0568",
+      "plan_sha256": "fe9b86dd5db32d878354f9f79e7fbbde2032a69b49a96055877f9db688d5542a",
+      "inference_config": "pi05_molmo_online_filtered_sft (policy transforms only)",
+      "metadata_sha256": "dc1861985103ce26c6f3441d5f55f8d5219ac33734a23c280a67a689e55d2f2d",
+      "benchmark_episode_sha256": "5031a2ecaf047079692071baf5ee6535743f386273bf21dd2f5d00f47dabbc4e",
+      "initial_state_sha256": "674682e98c65b82ed7bceff41b646bf46e2c8e0009b6b081d495c82cffa2dffc",
+      "success_frame": null,
+      "media": {
+        "wrist": {
+          "video_sha256": "e3a45e00e10cc6ebfc9ed6fe9aadc480b441917e445630457b24832a59b66584",
+          "initial_file_sha256": "ab5aadfce3ef41f88497d1a8081ca0f1de813dd609f962fd8484dc3e01db71a1",
+          "initial_pixels_sha256": "ce79a9c4fba40fb0dcc42f3aa4ecc12b3078be9887b1207034ac9e1bf32e6453"
+        },
+        "exterior": {
+          "video_sha256": "e4a7ff885b8c4b126f32bda9d71e29426541afbae015a7c52efe7955f4effe5c",
+          "initial_file_sha256": "d376b408509662583bd4d1b62b0e5c7010e8b7d029898d095b7cb283bde9122a",
+          "initial_pixels_sha256": "90f9ec951f4cc81cebddd57a55c219517726a4e0f90c5916b9b11384962df13b"
+        }
+      }
+    },
+    {
+      "folder": "/Users/yardas/vla-post-training/outputs/molmo-videos/headline/clips/ogpo/molmo_345/episode_00",
+      "task_id": 345,
+      "episode": 0,
+      "training_tasks": 64,
+      "split": "unseen_object",
+      "house_index": 402,
+      "object_name": "fork_a17d780ca6a79038b069eb7768c962c4_1_0_2",
+      "prompt": "pick up the fork.",
+      "success": false,
+      "truncated": true,
+      "steps": 450,
+      "frames": 451,
+      "environment_seed": 345000,
+      "action_seed": 1345000,
+      "fps": "500/33",
+      "n_samples": 1,
+      "replan_steps": 5,
+      "denoising_steps": 10,
+      "action_horizon": 15,
+      "python_hash_seed": "0",
+      "initial_randomization": true,
+      "name": "mt64_bronet_qvr16_seed0_10k",
+      "checkpoint": "/capstor/scratch/cscs/yardas/molmo-generalization-videos/drive-checkpoints/mt64_bronet_qvr16_seed0_10k",
+      "source_url": "https://drive.google.com/drive/folders/1uIUV26QAwPEdoufMfjq5g85K3FBlf1Zb",
+      "training_seed": 0,
+      "step": 10000,
+      "source_commit": "42a2a53e0a96099daf0a889480092e854a0a5ae3",
+      "params_metadata_sha256": "c6fdd698f1dd28cd8b376529398ed607605caa75fde03e3c2e135dbcb9749e5c",
+      "norm_stats_sha256": "57ce9956f9e07d65f8a8205aabec72d436a2c8927f53edb40c7a77b14a5a90c7",
+      "camera_recorder_sha256": "3d24bbb490a81d8b823aff6e67b5c6165f72cd6dfc0d6d4c4dded188b6a88302",
+      "recorder_sha256": "9a00821b6d76c8eff1a9a137ad37a5012553fb0e022f048810ab69ba042b0568",
+      "plan_sha256": "fe9b86dd5db32d878354f9f79e7fbbde2032a69b49a96055877f9db688d5542a",
+      "inference_config": "pi05_molmo_online_filtered_sft (policy transforms only)",
+      "metadata_sha256": "91b5e396308741a8d0d8656c28d1f5f6dd354b77cde7c030786ca24d945b44f5",
+      "benchmark_episode_sha256": "c0e7572ed621981c61a76d80dbfe459bde4df16ad67202e6cb088ca019fb82c7",
+      "initial_state_sha256": "ca1499a744a7d693b30443877a715d975683f09647b1472d24f033189ca42eab",
+      "success_frame": null,
+      "media": {
+        "wrist": {
+          "video_sha256": "58ecf889786badd0c91cf7c6a8fc7a1dfb9b79bf994d4cf3d416f33641bcaadc",
+          "initial_file_sha256": "c6ab9367ad41264cb73a43199b5d4bb234031210764edd8d0bd3f2cde57dfd98",
+          "initial_pixels_sha256": "deba6227cc6b046968e1790b0ba96327a434dd70d119028df6315e9c493b8558"
+        },
+        "exterior": {
+          "video_sha256": "79636b08fca6afa48f0e4723fd77911c3025ab8aadb36293ef94d4e8e49de97e",
+          "initial_file_sha256": "28ce0b4085aa6207d700e33371d5bd2f214508c97b039642a68dc95699e01f3c",
+          "initial_pixels_sha256": "168a35051195c1b68bb3758cbeca415e50edf29d751cb743163bea9879e40bb9"
+        }
+      }
+    },
+    {
+      "folder": "/Users/yardas/vla-post-training/outputs/molmo-videos/headline/clips/ogpo/molmo_155/episode_00",
+      "task_id": 155,
+      "episode": 0,
+      "training_tasks": 64,
+      "split": "unseen_object",
+      "house_index": 237,
+      "object_name": "butterknife_f211d9b5a6beb604cda0c1df985a0093_1_0_6",
+      "prompt": "pick up the knife.",
+      "success": true,
+      "truncated": false,
+      "steps": 20,
+      "frames": 21,
+      "environment_seed": 155000,
+      "action_seed": 1155000,
+      "fps": "500/33",
+      "n_samples": 1,
+      "replan_steps": 5,
+      "denoising_steps": 10,
+      "action_horizon": 15,
+      "python_hash_seed": "0",
+      "initial_randomization": true,
+      "name": "mt64_bronet_qvr16_seed0_10k",
+      "checkpoint": "/capstor/scratch/cscs/yardas/molmo-generalization-videos/drive-checkpoints/mt64_bronet_qvr16_seed0_10k",
+      "source_url": "https://drive.google.com/drive/folders/1uIUV26QAwPEdoufMfjq5g85K3FBlf1Zb",
+      "training_seed": 0,
+      "step": 10000,
+      "source_commit": "42a2a53e0a96099daf0a889480092e854a0a5ae3",
+      "params_metadata_sha256": "c6fdd698f1dd28cd8b376529398ed607605caa75fde03e3c2e135dbcb9749e5c",
+      "norm_stats_sha256": "57ce9956f9e07d65f8a8205aabec72d436a2c8927f53edb40c7a77b14a5a90c7",
+      "camera_recorder_sha256": "3d24bbb490a81d8b823aff6e67b5c6165f72cd6dfc0d6d4c4dded188b6a88302",
+      "recorder_sha256": "9a00821b6d76c8eff1a9a137ad37a5012553fb0e022f048810ab69ba042b0568",
+      "plan_sha256": "fe9b86dd5db32d878354f9f79e7fbbde2032a69b49a96055877f9db688d5542a",
+      "inference_config": "pi05_molmo_online_filtered_sft (policy transforms only)",
+      "metadata_sha256": "4061185b22c05da5ee0bffe8c4fcbf3b7a29650d9221fdeeea2abcc50e4cde10",
+      "benchmark_episode_sha256": "716bcbdc1c44bcc58b393fce3e6632627f7fd374e15f83c0f3b9eb0308a5549f",
+      "initial_state_sha256": "23b00b0c3d4864aeb3030f30d452cf263dc54cb3c244fe1e442537d4b316e363",
+      "success_frame": 20,
+      "media": {
+        "wrist": {
+          "video_sha256": "e44a3826eb043b4b62d6c62d95fbc73938d70a7288a3eae00d5943ace9437c41",
+          "initial_file_sha256": "571f0a3d04e89cc4c07ace5f5fe2adb59930455656eb34dd293d9df0085ca3ac",
+          "initial_pixels_sha256": "c1fd63bc0de9ab6a50ad58f0ed8db4b18c8ee7425b4e411ad666c8863b31a5a7"
+        },
+        "exterior": {
+          "video_sha256": "65e79ce64c543566c5fc5d50306315af64af94832b5d9f76c857f46d76c8d5ee",
+          "initial_file_sha256": "d6e0064a39f0203d0cc17502725b827a9230785b3c9285af551bb428b530ce1e",
+          "initial_pixels_sha256": "244dc21e3878ce852219b3a1da841c58c8ba3d8a73e89d3d5b23c4902fc322f6"
+        }
+      }
+    },
+    {
+      "folder": "/Users/yardas/vla-post-training/outputs/molmo-videos/headline/clips/ogpo/molmo_357/episode_00",
+      "task_id": 357,
+      "episode": 0,
+      "training_tasks": 64,
+      "split": "unseen_object",
+      "house_index": 412,
+      "object_name": "remotecontrol_488ea7924f7cb4d329c991926df62222_1_0_2",
+      "prompt": "pick up the remote.",
+      "success": true,
+      "truncated": false,
+      "steps": 273,
+      "frames": 274,
+      "environment_seed": 357000,
+      "action_seed": 1357000,
+      "fps": "500/33",
+      "n_samples": 1,
+      "replan_steps": 5,
+      "denoising_steps": 10,
+      "action_horizon": 15,
+      "python_hash_seed": "0",
+      "initial_randomization": true,
+      "name": "mt64_bronet_qvr16_seed0_10k",
+      "checkpoint": "/capstor/scratch/cscs/yardas/molmo-generalization-videos/drive-checkpoints/mt64_bronet_qvr16_seed0_10k",
+      "source_url": "https://drive.google.com/drive/folders/1uIUV26QAwPEdoufMfjq5g85K3FBlf1Zb",
+      "training_seed": 0,
+      "step": 10000,
+      "source_commit": "42a2a53e0a96099daf0a889480092e854a0a5ae3",
+      "params_metadata_sha256": "c6fdd698f1dd28cd8b376529398ed607605caa75fde03e3c2e135dbcb9749e5c",
+      "norm_stats_sha256": "57ce9956f9e07d65f8a8205aabec72d436a2c8927f53edb40c7a77b14a5a90c7",
+      "camera_recorder_sha256": "3d24bbb490a81d8b823aff6e67b5c6165f72cd6dfc0d6d4c4dded188b6a88302",
+      "recorder_sha256": "9a00821b6d76c8eff1a9a137ad37a5012553fb0e022f048810ab69ba042b0568",
+      "plan_sha256": "fe9b86dd5db32d878354f9f79e7fbbde2032a69b49a96055877f9db688d5542a",
+      "inference_config": "pi05_molmo_online_filtered_sft (policy transforms only)",
+      "metadata_sha256": "12a4634350333dc2b6d0e18d3b9faa51d53ef0c4a220387086a435ee41ad7f86",
+      "benchmark_episode_sha256": "d86e2bf8f454fbe109e7275dad5ac32e4aa9b52c5abc93ab929e29020944fbff",
+      "initial_state_sha256": "112effcdee913943c8558047664ec5ace86dbed12209ccfb6e544e480240b8b2",
+      "success_frame": 273,
+      "media": {
+        "wrist": {
+          "video_sha256": "5e3c61fedb19a0c4d6c755e1ccb46a84cc82a39fabaf46516ae12cbe6b4dd24a",
+          "initial_file_sha256": "07ef82737c3c4a9ad9eef84de9065eac35b964c345c130093c4cffeea9ae686b",
+          "initial_pixels_sha256": "2b8167e0eff690b726d00aedeca713c40961e1d58b52a5f2f811ebed0ac1e16d"
+        },
+        "exterior": {
+          "video_sha256": "ef21996cdc0cd4ba28a2bdff1909d337a1da3d95295ad44c9069a7905cb755fb",
+          "initial_file_sha256": "d6f0a9ad93058e0fb4457fd92b57817004777aaaaf551f6176f596754ae2adbe",
+          "initial_pixels_sha256": "526f3fd1ca09cd907e68efc7b1b9424de287078aa2d97cae3f8ba472532842ba"
+        }
+      }
+    },
+    {
+      "folder": "/Users/yardas/vla-post-training/outputs/molmo-videos/headline/clips/ogpo/molmo_226/episode_00",
+      "task_id": 226,
+      "episode": 0,
+      "training_tasks": 64,
+      "split": "unseen_object",
+      "house_index": 300,
+      "object_name": "winebottle_201eb4050e30f10e57909e4c975910e9_1_0_6",
+      "prompt": "pick up the bottle.",
+      "success": false,
+      "truncated": true,
+      "steps": 450,
+      "frames": 451,
+      "environment_seed": 226000,
+      "action_seed": 1226000,
+      "fps": "500/33",
+      "n_samples": 1,
+      "replan_steps": 5,
+      "denoising_steps": 10,
+      "action_horizon": 15,
+      "python_hash_seed": "0",
+      "initial_randomization": true,
+      "name": "mt64_bronet_qvr16_seed0_10k",
+      "checkpoint": "/capstor/scratch/cscs/yardas/molmo-generalization-videos/drive-checkpoints/mt64_bronet_qvr16_seed0_10k",
+      "source_url": "https://drive.google.com/drive/folders/1uIUV26QAwPEdoufMfjq5g85K3FBlf1Zb",
+      "training_seed": 0,
+      "step": 10000,
+      "source_commit": "42a2a53e0a96099daf0a889480092e854a0a5ae3",
+      "params_metadata_sha256": "c6fdd698f1dd28cd8b376529398ed607605caa75fde03e3c2e135dbcb9749e5c",
+      "norm_stats_sha256": "57ce9956f9e07d65f8a8205aabec72d436a2c8927f53edb40c7a77b14a5a90c7",
+      "camera_recorder_sha256": "3d24bbb490a81d8b823aff6e67b5c6165f72cd6dfc0d6d4c4dded188b6a88302",
+      "recorder_sha256": "9a00821b6d76c8eff1a9a137ad37a5012553fb0e022f048810ab69ba042b0568",
+      "plan_sha256": "fe9b86dd5db32d878354f9f79e7fbbde2032a69b49a96055877f9db688d5542a",
+      "inference_config": "pi05_molmo_online_filtered_sft (policy transforms only)",
+      "metadata_sha256": "92366e9b757226a54a0ea222292e72f976cfdf1ec4285995b6f093d57d24bfc8",
+      "benchmark_episode_sha256": "747191e0b4b94f3e55b8c99c12853c1580e67c7128ea8ff1c148178d0c9a4b69",
+      "initial_state_sha256": "16e188b4cfb7bd1863992c79407847966b09b98d8c99cd5f0742e75828ac0bfb",
+      "success_frame": null,
+      "media": {
+        "wrist": {
+          "video_sha256": "0290282c2394e29fbe686b679cb2c40b1d731506495fc414b4aef17c9567e02a",
+          "initial_file_sha256": "c425ff149dace4afe0593350bb2a9d11b56c02a806562dd5f91b5c9974dfabd5",
+          "initial_pixels_sha256": "498e79a7e1da70fa135fec0a94eec8578682088d7e983ba0a49da57e48f5056d"
+        },
+        "exterior": {
+          "video_sha256": "e6a6b8e940dbecfda5ff274dc564e61a7aad52d9a0fbb57f8064322a09897908",
+          "initial_file_sha256": "cfafc9bf9e7028c5c3b8502015007fc9f25623c6d07457d5152b67efd84afdc0",
+          "initial_pixels_sha256": "b02608223814226f5b7f948ffa6f5e3ca0cc893eb63a4f66f804ee552e7bfab4"
+        }
+      }
+    },
+    {
+      "folder": "/Users/yardas/vla-post-training/outputs/molmo-videos/headline/scaling144-clips/ogpo/molmo_140/episode_00",
+      "task_id": 140,
+      "episode": 0,
+      "training_tasks": 144,
+      "split": "unseen_object",
+      "house_index": 221,
+      "object_name": "atomizer_e0cab0ef1fe80f6fe596048b9bc862a1_1_0_6",
+      "prompt": "pick up the bottle.",
+      "success": true,
+      "truncated": false,
+      "steps": 15,
+      "frames": 16,
+      "environment_seed": 140000,
+      "action_seed": 1140000,
+      "fps": "500/33",
+      "n_samples": 1,
+      "replan_steps": 5,
+      "denoising_steps": 10,
+      "action_horizon": 15,
+      "python_hash_seed": "0",
+      "initial_randomization": true,
+      "name": "mt144_bronet_qvr16_r15_seed0_15k",
+      "checkpoint": "/capstor/scratch/cscs/yardas/molmo-generalization-videos/drive-checkpoints/mt144_bronet_qvr16_r15_seed0_15k",
+      "source_url": "https://drive.google.com/drive/folders/1d_LD5MN72lZ1Pm0degmskeNiFX8hWD0H",
+      "training_seed": 0,
+      "step": 15000,
+      "source_commit": "42a2a53e0a96099daf0a889480092e854a0a5ae3",
+      "params_metadata_sha256": "c6fdd698f1dd28cd8b376529398ed607605caa75fde03e3c2e135dbcb9749e5c",
+      "norm_stats_sha256": "57ce9956f9e07d65f8a8205aabec72d436a2c8927f53edb40c7a77b14a5a90c7",
+      "camera_recorder_sha256": "3d24bbb490a81d8b823aff6e67b5c6165f72cd6dfc0d6d4c4dded188b6a88302",
+      "recorder_sha256": "ee337928d904b7dfe7da832b23ad58851fff5d6221e9863948eb5d0e5cf1d256",
+      "plan_sha256": "55aafd102745801885efabf65901ae0e3e87b10a730841a8985b638fbb83e512",
+      "inference_config": "pi05_molmo_online_filtered_sft (policy transforms only)",
+      "metadata_sha256": "ec943d763da69de361d2fc3ce04964f7209428fc202e6ce4758badf517553201",
+      "benchmark_episode_sha256": "8c70b1bed34476de92717ad424e3dc4f99e52f9057c1e3a3e515c14004a4676e",
+      "initial_state_sha256": "debb5b1b0a53c0196b26f8a595cb4fab68b4cb37e226216e741669247a91b720",
+      "success_frame": 15,
+      "media": {
+        "wrist": {
+          "video_sha256": "20e8b78d14ed188250d5f011def802c8e817de4a36ac35362633f1cf41a2b8c5",
+          "initial_file_sha256": "0f584e88cd9a98aa13ed44423bf43be26c0fb35391b88ad7c1354a2b44cb6288",
+          "initial_pixels_sha256": "c71f012a10e3a2a56e729b8964a0011b9d6786ab87ef020f20b7cd40911248c4"
+        },
+        "exterior": {
+          "video_sha256": "fe0a79e59d5cb4f94ecb8b675f19cd19e4256e99a657c5341be25b0882b2e3c4",
+          "initial_file_sha256": "c657a5de563211a422997cacf1bc0110a324ddee8de962714a960bcb718f28d2",
+          "initial_pixels_sha256": "849d4d624b475233667602017455b30e8fe9495971de9862b5bc96760aba0bb5"
+        }
+      }
+    },
+    {
+      "folder": "/Users/yardas/vla-post-training/outputs/molmo-videos/headline/scaling144-clips/ogpo/molmo_356/episode_00",
+      "task_id": 356,
+      "episode": 0,
+      "training_tasks": 144,
+      "split": "unseen_object",
+      "house_index": 412,
+      "object_name": "bowl_1225dcc85067784fe806e13437861b11_1_0_2",
+      "prompt": "pick up the bowl.",
+      "success": true,
+      "truncated": false,
+      "steps": 25,
+      "frames": 26,
+      "environment_seed": 356000,
+      "action_seed": 1356000,
+      "fps": "500/33",
+      "n_samples": 1,
+      "replan_steps": 5,
+      "denoising_steps": 10,
+      "action_horizon": 15,
+      "python_hash_seed": "0",
+      "initial_randomization": true,
+      "name": "mt144_bronet_qvr16_r15_seed0_15k",
+      "checkpoint": "/capstor/scratch/cscs/yardas/molmo-generalization-videos/drive-checkpoints/mt144_bronet_qvr16_r15_seed0_15k",
+      "source_url": "https://drive.google.com/drive/folders/1d_LD5MN72lZ1Pm0degmskeNiFX8hWD0H",
+      "training_seed": 0,
+      "step": 15000,
+      "source_commit": "42a2a53e0a96099daf0a889480092e854a0a5ae3",
+      "params_metadata_sha256": "c6fdd698f1dd28cd8b376529398ed607605caa75fde03e3c2e135dbcb9749e5c",
+      "norm_stats_sha256": "57ce9956f9e07d65f8a8205aabec72d436a2c8927f53edb40c7a77b14a5a90c7",
+      "camera_recorder_sha256": "3d24bbb490a81d8b823aff6e67b5c6165f72cd6dfc0d6d4c4dded188b6a88302",
+      "recorder_sha256": "ee337928d904b7dfe7da832b23ad58851fff5d6221e9863948eb5d0e5cf1d256",
+      "plan_sha256": "55aafd102745801885efabf65901ae0e3e87b10a730841a8985b638fbb83e512",
+      "inference_config": "pi05_molmo_online_filtered_sft (policy transforms only)",
+      "metadata_sha256": "0f0f3b4b570d3302c2f6f7ff3f2aee12f8e1704ccefa680229b95e37e6b6eea6",
+      "benchmark_episode_sha256": "5031a2ecaf047079692071baf5ee6535743f386273bf21dd2f5d00f47dabbc4e",
+      "initial_state_sha256": "674682e98c65b82ed7bceff41b646bf46e2c8e0009b6b081d495c82cffa2dffc",
+      "success_frame": 25,
+      "media": {
+        "wrist": {
+          "video_sha256": "b1e4d7099bfee929cc9ad9670de68584734c513d3a79494e78942167b70355d7",
+          "initial_file_sha256": "ab5aadfce3ef41f88497d1a8081ca0f1de813dd609f962fd8484dc3e01db71a1",
+          "initial_pixels_sha256": "ce79a9c4fba40fb0dcc42f3aa4ecc12b3078be9887b1207034ac9e1bf32e6453"
+        },
+        "exterior": {
+          "video_sha256": "eb15282e6ec1816c16d7917ae3951d586bfa32f97a65ec32c72094a9759429fe",
+          "initial_file_sha256": "d376b408509662583bd4d1b62b0e5c7010e8b7d029898d095b7cb283bde9122a",
+          "initial_pixels_sha256": "90f9ec951f4cc81cebddd57a55c219517726a4e0f90c5916b9b11384962df13b"
+        }
+      }
+    },
+    {
+      "folder": "/Users/yardas/vla-post-training/outputs/molmo-videos/headline/scaling144-clips/ogpo/molmo_345/episode_00",
+      "task_id": 345,
+      "episode": 0,
+      "training_tasks": 144,
+      "split": "unseen_object",
+      "house_index": 402,
+      "object_name": "fork_a17d780ca6a79038b069eb7768c962c4_1_0_2",
+      "prompt": "pick up the fork.",
+      "success": false,
+      "truncated": true,
+      "steps": 450,
+      "frames": 451,
+      "environment_seed": 345000,
+      "action_seed": 1345000,
+      "fps": "500/33",
+      "n_samples": 1,
+      "replan_steps": 5,
+      "denoising_steps": 10,
+      "action_horizon": 15,
+      "python_hash_seed": "0",
+      "initial_randomization": true,
+      "name": "mt144_bronet_qvr16_r15_seed0_15k",
+      "checkpoint": "/capstor/scratch/cscs/yardas/molmo-generalization-videos/drive-checkpoints/mt144_bronet_qvr16_r15_seed0_15k",
+      "source_url": "https://drive.google.com/drive/folders/1d_LD5MN72lZ1Pm0degmskeNiFX8hWD0H",
+      "training_seed": 0,
+      "step": 15000,
+      "source_commit": "42a2a53e0a96099daf0a889480092e854a0a5ae3",
+      "params_metadata_sha256": "c6fdd698f1dd28cd8b376529398ed607605caa75fde03e3c2e135dbcb9749e5c",
+      "norm_stats_sha256": "57ce9956f9e07d65f8a8205aabec72d436a2c8927f53edb40c7a77b14a5a90c7",
+      "camera_recorder_sha256": "3d24bbb490a81d8b823aff6e67b5c6165f72cd6dfc0d6d4c4dded188b6a88302",
+      "recorder_sha256": "ee337928d904b7dfe7da832b23ad58851fff5d6221e9863948eb5d0e5cf1d256",
+      "plan_sha256": "55aafd102745801885efabf65901ae0e3e87b10a730841a8985b638fbb83e512",
+      "inference_config": "pi05_molmo_online_filtered_sft (policy transforms only)",
+      "metadata_sha256": "27ae7c086ced1d7f36fb93863d26ad3a3c965119ad88f56acbba28ffd6d0e884",
+      "benchmark_episode_sha256": "c0e7572ed621981c61a76d80dbfe459bde4df16ad67202e6cb088ca019fb82c7",
+      "initial_state_sha256": "ca1499a744a7d693b30443877a715d975683f09647b1472d24f033189ca42eab",
+      "success_frame": null,
+      "media": {
+        "wrist": {
+          "video_sha256": "6dc61bc3b425c080a17cc9d807e0435ea8f3b13fc114af820d41fb4caa69a937",
+          "initial_file_sha256": "c6ab9367ad41264cb73a43199b5d4bb234031210764edd8d0bd3f2cde57dfd98",
+          "initial_pixels_sha256": "deba6227cc6b046968e1790b0ba96327a434dd70d119028df6315e9c493b8558"
+        },
+        "exterior": {
+          "video_sha256": "dc8b8835e5a26e5c4203239fcb31c7338764f1cedb7764f90133cec430d0d563",
+          "initial_file_sha256": "28ce0b4085aa6207d700e33371d5bd2f214508c97b039642a68dc95699e01f3c",
+          "initial_pixels_sha256": "168a35051195c1b68bb3758cbeca415e50edf29d751cb743163bea9879e40bb9"
+        }
+      }
+    },
+    {
+      "folder": "/Users/yardas/vla-post-training/outputs/molmo-videos/headline/scaling144-clips/ogpo/molmo_155/episode_00",
+      "task_id": 155,
+      "episode": 0,
+      "training_tasks": 144,
+      "split": "unseen_object",
+      "house_index": 237,
+      "object_name": "butterknife_f211d9b5a6beb604cda0c1df985a0093_1_0_6",
+      "prompt": "pick up the knife.",
+      "success": true,
+      "truncated": false,
+      "steps": 30,
+      "frames": 31,
+      "environment_seed": 155000,
+      "action_seed": 1155000,
+      "fps": "500/33",
+      "n_samples": 1,
+      "replan_steps": 5,
+      "denoising_steps": 10,
+      "action_horizon": 15,
+      "python_hash_seed": "0",
+      "initial_randomization": true,
+      "name": "mt144_bronet_qvr16_r15_seed0_15k",
+      "checkpoint": "/capstor/scratch/cscs/yardas/molmo-generalization-videos/drive-checkpoints/mt144_bronet_qvr16_r15_seed0_15k",
+      "source_url": "https://drive.google.com/drive/folders/1d_LD5MN72lZ1Pm0degmskeNiFX8hWD0H",
+      "training_seed": 0,
+      "step": 15000,
+      "source_commit": "42a2a53e0a96099daf0a889480092e854a0a5ae3",
+      "params_metadata_sha256": "c6fdd698f1dd28cd8b376529398ed607605caa75fde03e3c2e135dbcb9749e5c",
+      "norm_stats_sha256": "57ce9956f9e07d65f8a8205aabec72d436a2c8927f53edb40c7a77b14a5a90c7",
+      "camera_recorder_sha256": "3d24bbb490a81d8b823aff6e67b5c6165f72cd6dfc0d6d4c4dded188b6a88302",
+      "recorder_sha256": "ee337928d904b7dfe7da832b23ad58851fff5d6221e9863948eb5d0e5cf1d256",
+      "plan_sha256": "55aafd102745801885efabf65901ae0e3e87b10a730841a8985b638fbb83e512",
+      "inference_config": "pi05_molmo_online_filtered_sft (policy transforms only)",
+      "metadata_sha256": "6a29c90bdd758b78c6e7066d85efd9f5a413480820db36d4e4300f33ab7b2356",
+      "benchmark_episode_sha256": "716bcbdc1c44bcc58b393fce3e6632627f7fd374e15f83c0f3b9eb0308a5549f",
+      "initial_state_sha256": "23b00b0c3d4864aeb3030f30d452cf263dc54cb3c244fe1e442537d4b316e363",
+      "success_frame": 30,
+      "media": {
+        "wrist": {
+          "video_sha256": "10291f287bd0ac895668448ad7bc5afe1e7aea5f165a3f2157d448d3daa307a9",
+          "initial_file_sha256": "571f0a3d04e89cc4c07ace5f5fe2adb59930455656eb34dd293d9df0085ca3ac",
+          "initial_pixels_sha256": "c1fd63bc0de9ab6a50ad58f0ed8db4b18c8ee7425b4e411ad666c8863b31a5a7"
+        },
+        "exterior": {
+          "video_sha256": "b3960dc763078ad7385215e4a20aaf0f7400b845af8b1063e79c39c117527f4e",
+          "initial_file_sha256": "d6e0064a39f0203d0cc17502725b827a9230785b3c9285af551bb428b530ce1e",
+          "initial_pixels_sha256": "244dc21e3878ce852219b3a1da841c58c8ba3d8a73e89d3d5b23c4902fc322f6"
+        }
+      }
+    },
+    {
+      "folder": "/Users/yardas/vla-post-training/outputs/molmo-videos/headline/scaling144-clips/ogpo/molmo_357/episode_00",
+      "task_id": 357,
+      "episode": 0,
+      "training_tasks": 144,
+      "split": "unseen_object",
+      "house_index": 412,
+      "object_name": "remotecontrol_488ea7924f7cb4d329c991926df62222_1_0_2",
+      "prompt": "pick up the remote.",
+      "success": true,
+      "truncated": false,
+      "steps": 21,
+      "frames": 22,
+      "environment_seed": 357000,
+      "action_seed": 1357000,
+      "fps": "500/33",
+      "n_samples": 1,
+      "replan_steps": 5,
+      "denoising_steps": 10,
+      "action_horizon": 15,
+      "python_hash_seed": "0",
+      "initial_randomization": true,
+      "name": "mt144_bronet_qvr16_r15_seed0_15k",
+      "checkpoint": "/capstor/scratch/cscs/yardas/molmo-generalization-videos/drive-checkpoints/mt144_bronet_qvr16_r15_seed0_15k",
+      "source_url": "https://drive.google.com/drive/folders/1d_LD5MN72lZ1Pm0degmskeNiFX8hWD0H",
+      "training_seed": 0,
+      "step": 15000,
+      "source_commit": "42a2a53e0a96099daf0a889480092e854a0a5ae3",
+      "params_metadata_sha256": "c6fdd698f1dd28cd8b376529398ed607605caa75fde03e3c2e135dbcb9749e5c",
+      "norm_stats_sha256": "57ce9956f9e07d65f8a8205aabec72d436a2c8927f53edb40c7a77b14a5a90c7",
+      "camera_recorder_sha256": "3d24bbb490a81d8b823aff6e67b5c6165f72cd6dfc0d6d4c4dded188b6a88302",
+      "recorder_sha256": "ee337928d904b7dfe7da832b23ad58851fff5d6221e9863948eb5d0e5cf1d256",
+      "plan_sha256": "55aafd102745801885efabf65901ae0e3e87b10a730841a8985b638fbb83e512",
+      "inference_config": "pi05_molmo_online_filtered_sft (policy transforms only)",
+      "metadata_sha256": "f240e9fa0ce6b0b2c7cf1a3d52fd5bac444f0132a18111e829fc9c9933187c92",
+      "benchmark_episode_sha256": "d86e2bf8f454fbe109e7275dad5ac32e4aa9b52c5abc93ab929e29020944fbff",
+      "initial_state_sha256": "112effcdee913943c8558047664ec5ace86dbed12209ccfb6e544e480240b8b2",
+      "success_frame": 21,
+      "media": {
+        "wrist": {
+          "video_sha256": "3510a370f988da0c90f91637fc4ecde23b769527f54101e2a8ce05c0cd73fbd9",
+          "initial_file_sha256": "07ef82737c3c4a9ad9eef84de9065eac35b964c345c130093c4cffeea9ae686b",
+          "initial_pixels_sha256": "2b8167e0eff690b726d00aedeca713c40961e1d58b52a5f2f811ebed0ac1e16d"
+        },
+        "exterior": {
+          "video_sha256": "81702a52fd011ae416d22b0674e84e826cb8babdc9cb5d05b238c2f4f72ba8d6",
+          "initial_file_sha256": "d6f0a9ad93058e0fb4457fd92b57817004777aaaaf551f6176f596754ae2adbe",
+          "initial_pixels_sha256": "526f3fd1ca09cd907e68efc7b1b9424de287078aa2d97cae3f8ba472532842ba"
+        }
+      }
+    },
+    {
+      "folder": "/Users/yardas/vla-post-training/outputs/molmo-videos/headline/scaling144-clips/ogpo/molmo_226/episode_00",
+      "task_id": 226,
+      "episode": 0,
+      "training_tasks": 144,
+      "split": "unseen_object",
+      "house_index": 300,
+      "object_name": "winebottle_201eb4050e30f10e57909e4c975910e9_1_0_6",
+      "prompt": "pick up the bottle.",
+      "success": false,
+      "truncated": true,
+      "steps": 450,
+      "frames": 451,
+      "environment_seed": 226000,
+      "action_seed": 1226000,
+      "fps": "500/33",
+      "n_samples": 1,
+      "replan_steps": 5,
+      "denoising_steps": 10,
+      "action_horizon": 15,
+      "python_hash_seed": "0",
+      "initial_randomization": true,
+      "name": "mt144_bronet_qvr16_r15_seed0_15k",
+      "checkpoint": "/capstor/scratch/cscs/yardas/molmo-generalization-videos/drive-checkpoints/mt144_bronet_qvr16_r15_seed0_15k",
+      "source_url": "https://drive.google.com/drive/folders/1d_LD5MN72lZ1Pm0degmskeNiFX8hWD0H",
+      "training_seed": 0,
+      "step": 15000,
+      "source_commit": "42a2a53e0a96099daf0a889480092e854a0a5ae3",
+      "params_metadata_sha256": "c6fdd698f1dd28cd8b376529398ed607605caa75fde03e3c2e135dbcb9749e5c",
+      "norm_stats_sha256": "57ce9956f9e07d65f8a8205aabec72d436a2c8927f53edb40c7a77b14a5a90c7",
+      "camera_recorder_sha256": "3d24bbb490a81d8b823aff6e67b5c6165f72cd6dfc0d6d4c4dded188b6a88302",
+      "recorder_sha256": "ee337928d904b7dfe7da832b23ad58851fff5d6221e9863948eb5d0e5cf1d256",
+      "plan_sha256": "55aafd102745801885efabf65901ae0e3e87b10a730841a8985b638fbb83e512",
+      "inference_config": "pi05_molmo_online_filtered_sft (policy transforms only)",
+      "metadata_sha256": "4e25023979b4a0cd6a0cbe88168baeb8e37eee03b7804a23769761cb3e694dfd",
+      "benchmark_episode_sha256": "747191e0b4b94f3e55b8c99c12853c1580e67c7128ea8ff1c148178d0c9a4b69",
+      "initial_state_sha256": "16e188b4cfb7bd1863992c79407847966b09b98d8c99cd5f0742e75828ac0bfb",
+      "success_frame": null,
+      "media": {
+        "wrist": {
+          "video_sha256": "a10cd809bfdfac0f50c2cb3463dfd0059c6a98c49b7257aa2485c97cf5f03af0",
+          "initial_file_sha256": "c425ff149dace4afe0593350bb2a9d11b56c02a806562dd5f91b5c9974dfabd5",
+          "initial_pixels_sha256": "498e79a7e1da70fa135fec0a94eec8578682088d7e983ba0a49da57e48f5056d"
+        },
+        "exterior": {
+          "video_sha256": "9977cd56d6a0b90756f68d2d820c7ef92618efdead0b21293786fbf6a7108ce4",
+          "initial_file_sha256": "cfafc9bf9e7028c5c3b8502015007fc9f25623c6d07457d5152b67efd84afdc0",
+          "initial_pixels_sha256": "b02608223814226f5b7f948ffa6f5e3ca0cc893eb63a4f66f804ee552e7bfab4"
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "baseline": 0.623,
+    "expanded": 0.6775,
+    "label": "Success on unseen objects",
+    "source_label": "Aggregate results \u00b7 rounded from the accompanying figure",
+    "source_url": "#tldr",
+    "approximate": true,
+    "delta_percentage_points": 5.45,
+    "relative_improvement_percent": 8.74799358,
+    "error_bars": {
+      "baseline": {
+        "low": 0.608,
+        "high": 0.644
+      },
+      "expanded": {
+        "low": 0.671,
+        "high": 0.684
+      }
+    },
+    "provenance": "Means and error-bar endpoints recovered from the published vector figures, not raw evaluation data. The six videos are a separate illustrative fixed sample. Error-bar interval definition is not inferred.",
+    "sources": [
+      {
+        "path": "static/figures/unseen-objects.svg",
+        "sha256": "5c4898787e6826f499cbdd18517c02ceab85da7a5291cb6b4532147e7a1900e0",
+        "panel": "Hook: unseen-task label, same unseen-object series",
+        "points": [
+          {
+            "training_tasks": 64,
+            "mean": 0.623,
+            "low": 0.608,
+            "high": 0.644
+          },
+          {
+            "training_tasks": 144,
+            "mean": 0.6775,
+            "low": 0.671,
+            "high": 0.684
+          }
+        ]
+      },
+      {
+        "path": "static/figures/scaling.svg",
+        "sha256": "a2aed574cf15d78041800c1c2abdb136e42f5993cc3c95a387031f28db1bffb7",
+        "panel": "Unseen objects",
+        "points": [
+          {
+            "training_tasks": 64,
+            "mean": 0.623,
+            "low": 0.608,
+            "high": 0.644
+          },
+          {
+            "training_tasks": 144,
+            "mean": 0.6775,
+            "low": 0.671,
+            "high": 0.684
+          }
+        ]
+      }
+    ]
+  }
+}

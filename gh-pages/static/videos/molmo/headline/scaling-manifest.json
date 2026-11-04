@@ -1,0 +1,303 @@
+{
+  "version": 1,
+  "ready": true,
+  "stages": [
+    {
+      "id": "scaling64-evaluation",
+      "title": "64 training tasks",
+      "subtitle": "The same six unseen objects",
+      "training_tasks": 64,
+      "video": "ogpo-64-unseen-objects-wrist-success-v1.mp4",
+      "poster": "ogpo-64-unseen-objects-wrist-success-v1.jpg",
+      "task_count": 6,
+      "rows": 2,
+      "columns": 3,
+      "tasks": [
+        140,
+        356,
+        345,
+        155,
+        357,
+        226
+      ],
+      "outcomes": [
+        {
+          "task_id": 140,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 356,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 345,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 155,
+          "episode": 0,
+          "success": true,
+          "success_frame": 20,
+          "success_seconds": 1.32,
+          "source_frames": 21
+        },
+        {
+          "task_id": 357,
+          "episode": 0,
+          "success": true,
+          "success_frame": 273,
+          "success_seconds": 18.018,
+          "source_frames": 274
+        },
+        {
+          "task_id": 226,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        }
+      ],
+      "width": 1872,
+      "height": 704,
+      "fps": "500/33",
+      "frames": 482,
+      "duration_seconds": 31.812,
+      "sha256": "a7850bbd44583fab8a1e214d709e15ebeeb09a2b2d43e86a710ae627dfd69d60",
+      "poster_sha256": "88e39936aaeab554b5f4f8300e3d119a817b79a5c05397bd9ccce8848c9703ae",
+      "sources": [
+        {
+          "task_id": 140,
+          "metadata_sha256": "fc6a7d9573cff82f88db8c1da181a029b6be4afd5ffcb6489232d196b939112a",
+          "video_sha256": "4d59cc8ece0c9f96141b9546bfd70643ec92e5b7dc6bcf95800f82bec5965789"
+        },
+        {
+          "task_id": 356,
+          "metadata_sha256": "dc1861985103ce26c6f3441d5f55f8d5219ac33734a23c280a67a689e55d2f2d",
+          "video_sha256": "e3a45e00e10cc6ebfc9ed6fe9aadc480b441917e445630457b24832a59b66584"
+        },
+        {
+          "task_id": 345,
+          "metadata_sha256": "91b5e396308741a8d0d8656c28d1f5f6dd354b77cde7c030786ca24d945b44f5",
+          "video_sha256": "58ecf889786badd0c91cf7c6a8fc7a1dfb9b79bf994d4cf3d416f33641bcaadc"
+        },
+        {
+          "task_id": 155,
+          "metadata_sha256": "4061185b22c05da5ee0bffe8c4fcbf3b7a29650d9221fdeeea2abcc50e4cde10",
+          "video_sha256": "e44a3826eb043b4b62d6c62d95fbc73938d70a7288a3eae00d5943ace9437c41"
+        },
+        {
+          "task_id": 357,
+          "metadata_sha256": "12a4634350333dc2b6d0e18d3b9faa51d53ef0c4a220387086a435ee41ad7f86",
+          "video_sha256": "5e3c61fedb19a0c4d6c755e1ccb46a84cc82a39fabaf46516ae12cbe6b4dd24a"
+        },
+        {
+          "task_id": 226,
+          "metadata_sha256": "92366e9b757226a54a0ea222292e72f976cfdf1ec4285995b6f093d57d24bfc8",
+          "video_sha256": "0290282c2394e29fbe686b679cb2c40b1d731506495fc414b4aef17c9567e02a"
+        }
+      ]
+    },
+    {
+      "id": "scaling144-evaluation",
+      "title": "144 training tasks",
+      "subtitle": "The same six unseen objects",
+      "training_tasks": 144,
+      "video": "ogpo-144-unseen-objects-wrist-success-v1.mp4",
+      "poster": "ogpo-144-unseen-objects-wrist-success-v1.jpg",
+      "task_count": 6,
+      "rows": 2,
+      "columns": 3,
+      "tasks": [
+        140,
+        356,
+        345,
+        155,
+        357,
+        226
+      ],
+      "outcomes": [
+        {
+          "task_id": 140,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 356,
+          "episode": 0,
+          "success": true,
+          "success_frame": 25,
+          "success_seconds": 1.65,
+          "source_frames": 26
+        },
+        {
+          "task_id": 345,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 155,
+          "episode": 0,
+          "success": true,
+          "success_frame": 30,
+          "success_seconds": 1.98,
+          "source_frames": 31
+        },
+        {
+          "task_id": 357,
+          "episode": 0,
+          "success": true,
+          "success_frame": 21,
+          "success_seconds": 1.386,
+          "source_frames": 22
+        },
+        {
+          "task_id": 226,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        }
+      ],
+      "width": 1872,
+      "height": 704,
+      "fps": "500/33",
+      "frames": 482,
+      "duration_seconds": 31.812,
+      "sha256": "c406c1729293e50ff3004613c2adf2d361c67d0d338c2fef2c43313f47c137f2",
+      "poster_sha256": "f868012c228b78b01b82f0d3d78f1cff8a530180f9542c4c2497c94e29c4eee9",
+      "sources": [
+        {
+          "task_id": 140,
+          "metadata_sha256": "ec943d763da69de361d2fc3ce04964f7209428fc202e6ce4758badf517553201",
+          "video_sha256": "20e8b78d14ed188250d5f011def802c8e817de4a36ac35362633f1cf41a2b8c5"
+        },
+        {
+          "task_id": 356,
+          "metadata_sha256": "0f0f3b4b570d3302c2f6f7ff3f2aee12f8e1704ccefa680229b95e37e6b6eea6",
+          "video_sha256": "b1e4d7099bfee929cc9ad9670de68584734c513d3a79494e78942167b70355d7"
+        },
+        {
+          "task_id": 345,
+          "metadata_sha256": "27ae7c086ced1d7f36fb93863d26ad3a3c965119ad88f56acbba28ffd6d0e884",
+          "video_sha256": "6dc61bc3b425c080a17cc9d807e0435ea8f3b13fc114af820d41fb4caa69a937"
+        },
+        {
+          "task_id": 155,
+          "metadata_sha256": "6a29c90bdd758b78c6e7066d85efd9f5a413480820db36d4e4300f33ab7b2356",
+          "video_sha256": "10291f287bd0ac895668448ad7bc5afe1e7aea5f165a3f2157d448d3daa307a9"
+        },
+        {
+          "task_id": 357,
+          "metadata_sha256": "f240e9fa0ce6b0b2c7cf1a3d52fd5bac444f0132a18111e829fc9c9933187c92",
+          "video_sha256": "3510a370f988da0c90f91637fc4ecde23b769527f54101e2a8ce05c0cd73fbd9"
+        },
+        {
+          "task_id": 226,
+          "metadata_sha256": "4e25023979b4a0cd6a0cbe88168baeb8e37eee03b7804a23769761cb3e694dfd",
+          "video_sha256": "a10cd809bfdfac0f50c2cb3463dfd0059c6a98c49b7257aa2485c97cf5f03af0"
+        }
+      ]
+    }
+  ],
+  "camera": "wrist",
+  "tasks": [
+    140,
+    356,
+    345,
+    155,
+    357,
+    226
+  ],
+  "fps": "500/33",
+  "frames": 482,
+  "duration_seconds": 31.812,
+  "checkpoints": {
+    "64": "mt64_bronet_qvr16_seed0_10k",
+    "144": "mt144_bronet_qvr16_r15_seed0_15k"
+  },
+  "sampling_rule": "One fixed seeded episode (episode 0) per shared unseen-object task, matching the original 64-task recordings. All six outcomes are retained without outcome-based selection.",
+  "aggregate": {
+    "baseline": 0.623,
+    "expanded": 0.6775,
+    "label": "Success on unseen objects",
+    "source_label": "Aggregate results \u00b7 rounded from the accompanying figure",
+    "source_url": "#tldr",
+    "approximate": true,
+    "delta_percentage_points": 5.45,
+    "relative_improvement_percent": 8.74799358,
+    "error_bars": {
+      "baseline": {
+        "low": 0.608,
+        "high": 0.644
+      },
+      "expanded": {
+        "low": 0.671,
+        "high": 0.684
+      }
+    },
+    "provenance": "Means and error-bar endpoints recovered from the published vector figures, not raw evaluation data. The six videos are a separate illustrative fixed sample. Error-bar interval definition is not inferred.",
+    "sources": [
+      {
+        "path": "static/figures/unseen-objects.svg",
+        "sha256": "5c4898787e6826f499cbdd18517c02ceab85da7a5291cb6b4532147e7a1900e0",
+        "panel": "Hook: unseen-task label, same unseen-object series",
+        "points": [
+          {
+            "training_tasks": 64,
+            "mean": 0.623,
+            "low": 0.608,
+            "high": 0.644
+          },
+          {
+            "training_tasks": 144,
+            "mean": 0.6775,
+            "low": 0.671,
+            "high": 0.684
+          }
+        ]
+      },
+      {
+        "path": "static/figures/scaling.svg",
+        "sha256": "a2aed574cf15d78041800c1c2abdb136e42f5993cc3c95a387031f28db1bffb7",
+        "panel": "Unseen objects",
+        "points": [
+          {
+            "training_tasks": 64,
+            "mean": 0.623,
+            "low": 0.608,
+            "high": 0.644
+          },
+          {
+            "training_tasks": 144,
+            "mean": 0.6775,
+            "low": 0.671,
+            "high": 0.684
+          }
+        ]
+      }
+    ]
+  },
+  "audit": "scaling-audit-v1.json",
+  "audit_sha256": "153312d7f2129619efe9642d330efdf59ebc819f6ef51e7e8cd7068dd8f50b55",
+  "success_marker": "Green = simulator success, beginning at the terminal recorded frame."
+}

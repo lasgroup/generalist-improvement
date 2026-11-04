@@ -1,0 +1,66 @@
+{
+  "expected_episodes": 12,
+  "sampling_plan": [
+    {
+      "training_seed": 0,
+      "task_id": 155,
+      "matched_initial_states": 6
+    }
+  ],
+  "validated_episodes": 12,
+  "pairs": [
+    {
+      "training_seed": 0,
+      "task_id": 155,
+      "episode": 0,
+      "success_64": true,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 155,
+      "episode": 1,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 155,
+      "episode": 2,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 155,
+      "episode": 3,
+      "success_64": true,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 155,
+      "episode": 4,
+      "success_64": false,
+      "success_144": false,
+      "identical_initial_images": true
+    },
+    {
+      "training_seed": 0,
+      "task_id": 155,
+      "episode": 5,
+      "success_64": false,
+      "success_144": true,
+      "identical_initial_images": true
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "interpretation": "Qualitative rollout examples, not a new performance estimate.",
+  "recording_job": "3843659",
+  "review_note": "Episodes 3\u20135 added after the original success/success clip showed abrupt terminal motion. The new sample contains no success/success pair. Original episode 0 retained with a visible motion note."
+}

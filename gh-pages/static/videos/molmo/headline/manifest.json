@@ -1,0 +1,1302 @@
+{
+  "version": 3,
+  "ready": true,
+  "stages": [
+    {
+      "id": "base-training",
+      "title": "Base policy",
+      "subtitle": "64 training tasks \u00b7 8 objects, 8 scenes each",
+      "video": "base-training-wrist-success-v3.mp4",
+      "poster": "base-training-wrist-success-v3.jpg",
+      "task_count": 64,
+      "rows": 8,
+      "columns": 8,
+      "tasks": [
+        332,
+        33,
+        242,
+        369,
+        126,
+        383,
+        295,
+        81,
+        164,
+        86,
+        70,
+        267,
+        366,
+        138,
+        143,
+        212,
+        18,
+        292,
+        48,
+        185,
+        24,
+        62,
+        377,
+        78,
+        28,
+        311,
+        50,
+        56,
+        399,
+        187,
+        121,
+        27,
+        309,
+        227,
+        265,
+        325,
+        277,
+        127,
+        254,
+        166,
+        11,
+        361,
+        103,
+        4,
+        260,
+        221,
+        348,
+        305,
+        22,
+        210,
+        176,
+        373,
+        93,
+        394,
+        6,
+        47,
+        19,
+        296,
+        82,
+        39,
+        162,
+        148,
+        150,
+        7
+      ],
+      "outcomes": [
+        {
+          "task_id": 332,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 33,
+          "episode": 0,
+          "success": true,
+          "success_frame": 251,
+          "success_seconds": 16.566,
+          "source_frames": 252
+        },
+        {
+          "task_id": 242,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 369,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 126,
+          "episode": 0,
+          "success": true,
+          "success_frame": 333,
+          "success_seconds": 21.978,
+          "source_frames": 334
+        },
+        {
+          "task_id": 383,
+          "episode": 0,
+          "success": true,
+          "success_frame": 152,
+          "success_seconds": 10.032,
+          "source_frames": 153
+        },
+        {
+          "task_id": 295,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 81,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 164,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 86,
+          "episode": 0,
+          "success": true,
+          "success_frame": 408,
+          "success_seconds": 26.928,
+          "source_frames": 409
+        },
+        {
+          "task_id": 70,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 267,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 366,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 138,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 143,
+          "episode": 0,
+          "success": true,
+          "success_frame": 278,
+          "success_seconds": 18.348,
+          "source_frames": 279
+        },
+        {
+          "task_id": 212,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 18,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 292,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 48,
+          "episode": 0,
+          "success": true,
+          "success_frame": 88,
+          "success_seconds": 5.808,
+          "source_frames": 89
+        },
+        {
+          "task_id": 185,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 24,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 62,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 377,
+          "episode": 0,
+          "success": true,
+          "success_frame": 429,
+          "success_seconds": 28.314,
+          "source_frames": 430
+        },
+        {
+          "task_id": 78,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 28,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 311,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 50,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 56,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 399,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 187,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 121,
+          "episode": 0,
+          "success": true,
+          "success_frame": 146,
+          "success_seconds": 9.636,
+          "source_frames": 147
+        },
+        {
+          "task_id": 27,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 309,
+          "episode": 0,
+          "success": true,
+          "success_frame": 408,
+          "success_seconds": 26.928,
+          "source_frames": 409
+        },
+        {
+          "task_id": 227,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 265,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 325,
+          "episode": 0,
+          "success": true,
+          "success_frame": 198,
+          "success_seconds": 13.068,
+          "source_frames": 199
+        },
+        {
+          "task_id": 277,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 127,
+          "episode": 0,
+          "success": true,
+          "success_frame": 132,
+          "success_seconds": 8.712,
+          "source_frames": 133
+        },
+        {
+          "task_id": 254,
+          "episode": 0,
+          "success": true,
+          "success_frame": 231,
+          "success_seconds": 15.246,
+          "source_frames": 232
+        },
+        {
+          "task_id": 166,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 11,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 361,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 103,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 4,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 260,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 221,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 348,
+          "episode": 0,
+          "success": true,
+          "success_frame": 116,
+          "success_seconds": 7.656,
+          "source_frames": 117
+        },
+        {
+          "task_id": 305,
+          "episode": 0,
+          "success": true,
+          "success_frame": 92,
+          "success_seconds": 6.072,
+          "source_frames": 93
+        },
+        {
+          "task_id": 22,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 210,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 176,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 373,
+          "episode": 0,
+          "success": true,
+          "success_frame": 206,
+          "success_seconds": 13.596,
+          "source_frames": 207
+        },
+        {
+          "task_id": 93,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 394,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 6,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 47,
+          "episode": 0,
+          "success": true,
+          "success_frame": 201,
+          "success_seconds": 13.266,
+          "source_frames": 202
+        },
+        {
+          "task_id": 19,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 296,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 82,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 39,
+          "episode": 0,
+          "success": true,
+          "success_frame": 371,
+          "success_seconds": 24.486,
+          "source_frames": 372
+        },
+        {
+          "task_id": 162,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 148,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 150,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 7,
+          "episode": 0,
+          "success": true,
+          "success_frame": 191,
+          "success_seconds": 12.606,
+          "source_frames": 192
+        }
+      ],
+      "width": 1872,
+      "height": 1056,
+      "duration_seconds": 31.812,
+      "sha256": "f5de923bde4870dc56b2dbe68afb70e1c55341152d606899ca7bfdab0bab9394"
+    },
+    {
+      "id": "ogpo-training",
+      "title": "OGPO",
+      "subtitle": "The same 64 training tasks",
+      "video": "ogpo-training-wrist-success-v3.mp4",
+      "poster": "ogpo-training-wrist-success-v3.jpg",
+      "task_count": 64,
+      "rows": 8,
+      "columns": 8,
+      "tasks": [
+        332,
+        33,
+        242,
+        369,
+        126,
+        383,
+        295,
+        81,
+        164,
+        86,
+        70,
+        267,
+        366,
+        138,
+        143,
+        212,
+        18,
+        292,
+        48,
+        185,
+        24,
+        62,
+        377,
+        78,
+        28,
+        311,
+        50,
+        56,
+        399,
+        187,
+        121,
+        27,
+        309,
+        227,
+        265,
+        325,
+        277,
+        127,
+        254,
+        166,
+        11,
+        361,
+        103,
+        4,
+        260,
+        221,
+        348,
+        305,
+        22,
+        210,
+        176,
+        373,
+        93,
+        394,
+        6,
+        47,
+        19,
+        296,
+        82,
+        39,
+        162,
+        148,
+        150,
+        7
+      ],
+      "outcomes": [
+        {
+          "task_id": 332,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 33,
+          "episode": 0,
+          "success": true,
+          "success_frame": 20,
+          "success_seconds": 1.32,
+          "source_frames": 21
+        },
+        {
+          "task_id": 242,
+          "episode": 0,
+          "success": true,
+          "success_frame": 20,
+          "success_seconds": 1.32,
+          "source_frames": 21
+        },
+        {
+          "task_id": 369,
+          "episode": 0,
+          "success": true,
+          "success_frame": 31,
+          "success_seconds": 2.046,
+          "source_frames": 32
+        },
+        {
+          "task_id": 126,
+          "episode": 0,
+          "success": true,
+          "success_frame": 16,
+          "success_seconds": 1.056,
+          "source_frames": 17
+        },
+        {
+          "task_id": 383,
+          "episode": 0,
+          "success": true,
+          "success_frame": 20,
+          "success_seconds": 1.32,
+          "source_frames": 21
+        },
+        {
+          "task_id": 295,
+          "episode": 0,
+          "success": true,
+          "success_frame": 25,
+          "success_seconds": 1.65,
+          "source_frames": 26
+        },
+        {
+          "task_id": 81,
+          "episode": 0,
+          "success": true,
+          "success_frame": 20,
+          "success_seconds": 1.32,
+          "source_frames": 21
+        },
+        {
+          "task_id": 164,
+          "episode": 0,
+          "success": true,
+          "success_frame": 30,
+          "success_seconds": 1.98,
+          "source_frames": 31
+        },
+        {
+          "task_id": 86,
+          "episode": 0,
+          "success": true,
+          "success_frame": 90,
+          "success_seconds": 5.94,
+          "source_frames": 91
+        },
+        {
+          "task_id": 70,
+          "episode": 0,
+          "success": true,
+          "success_frame": 16,
+          "success_seconds": 1.056,
+          "source_frames": 17
+        },
+        {
+          "task_id": 267,
+          "episode": 0,
+          "success": true,
+          "success_frame": 20,
+          "success_seconds": 1.32,
+          "source_frames": 21
+        },
+        {
+          "task_id": 366,
+          "episode": 0,
+          "success": true,
+          "success_frame": 65,
+          "success_seconds": 4.29,
+          "source_frames": 66
+        },
+        {
+          "task_id": 138,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 143,
+          "episode": 0,
+          "success": true,
+          "success_frame": 21,
+          "success_seconds": 1.386,
+          "source_frames": 22
+        },
+        {
+          "task_id": 212,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 18,
+          "episode": 0,
+          "success": true,
+          "success_frame": 20,
+          "success_seconds": 1.32,
+          "source_frames": 21
+        },
+        {
+          "task_id": 292,
+          "episode": 0,
+          "success": true,
+          "success_frame": 25,
+          "success_seconds": 1.65,
+          "source_frames": 26
+        },
+        {
+          "task_id": 48,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 185,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 24,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 62,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 377,
+          "episode": 0,
+          "success": true,
+          "success_frame": 57,
+          "success_seconds": 3.762,
+          "source_frames": 58
+        },
+        {
+          "task_id": 78,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 28,
+          "episode": 0,
+          "success": true,
+          "success_frame": 25,
+          "success_seconds": 1.65,
+          "source_frames": 26
+        },
+        {
+          "task_id": 311,
+          "episode": 0,
+          "success": true,
+          "success_frame": 23,
+          "success_seconds": 1.518,
+          "source_frames": 24
+        },
+        {
+          "task_id": 50,
+          "episode": 0,
+          "success": true,
+          "success_frame": 20,
+          "success_seconds": 1.32,
+          "source_frames": 21
+        },
+        {
+          "task_id": 56,
+          "episode": 0,
+          "success": true,
+          "success_frame": 30,
+          "success_seconds": 1.98,
+          "source_frames": 31
+        },
+        {
+          "task_id": 399,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 187,
+          "episode": 0,
+          "success": true,
+          "success_frame": 60,
+          "success_seconds": 3.96,
+          "source_frames": 61
+        },
+        {
+          "task_id": 121,
+          "episode": 0,
+          "success": true,
+          "success_frame": 25,
+          "success_seconds": 1.65,
+          "source_frames": 26
+        },
+        {
+          "task_id": 27,
+          "episode": 0,
+          "success": true,
+          "success_frame": 16,
+          "success_seconds": 1.056,
+          "source_frames": 17
+        },
+        {
+          "task_id": 309,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 227,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 265,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 325,
+          "episode": 0,
+          "success": true,
+          "success_frame": 31,
+          "success_seconds": 2.046,
+          "source_frames": 32
+        },
+        {
+          "task_id": 277,
+          "episode": 0,
+          "success": true,
+          "success_frame": 20,
+          "success_seconds": 1.32,
+          "source_frames": 21
+        },
+        {
+          "task_id": 127,
+          "episode": 0,
+          "success": true,
+          "success_frame": 25,
+          "success_seconds": 1.65,
+          "source_frames": 26
+        },
+        {
+          "task_id": 254,
+          "episode": 0,
+          "success": true,
+          "success_frame": 21,
+          "success_seconds": 1.386,
+          "source_frames": 22
+        },
+        {
+          "task_id": 166,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 11,
+          "episode": 0,
+          "success": true,
+          "success_frame": 20,
+          "success_seconds": 1.32,
+          "source_frames": 21
+        },
+        {
+          "task_id": 361,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 103,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 4,
+          "episode": 0,
+          "success": true,
+          "success_frame": 22,
+          "success_seconds": 1.452,
+          "source_frames": 23
+        },
+        {
+          "task_id": 260,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 221,
+          "episode": 0,
+          "success": true,
+          "success_frame": 25,
+          "success_seconds": 1.65,
+          "source_frames": 26
+        },
+        {
+          "task_id": 348,
+          "episode": 0,
+          "success": true,
+          "success_frame": 35,
+          "success_seconds": 2.31,
+          "source_frames": 36
+        },
+        {
+          "task_id": 305,
+          "episode": 0,
+          "success": true,
+          "success_frame": 30,
+          "success_seconds": 1.98,
+          "source_frames": 31
+        },
+        {
+          "task_id": 22,
+          "episode": 0,
+          "success": true,
+          "success_frame": 25,
+          "success_seconds": 1.65,
+          "source_frames": 26
+        },
+        {
+          "task_id": 210,
+          "episode": 0,
+          "success": true,
+          "success_frame": 85,
+          "success_seconds": 5.61,
+          "source_frames": 86
+        },
+        {
+          "task_id": 176,
+          "episode": 0,
+          "success": true,
+          "success_frame": 25,
+          "success_seconds": 1.65,
+          "source_frames": 26
+        },
+        {
+          "task_id": 373,
+          "episode": 0,
+          "success": true,
+          "success_frame": 20,
+          "success_seconds": 1.32,
+          "source_frames": 21
+        },
+        {
+          "task_id": 93,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 394,
+          "episode": 0,
+          "success": true,
+          "success_frame": 30,
+          "success_seconds": 1.98,
+          "source_frames": 31
+        },
+        {
+          "task_id": 6,
+          "episode": 0,
+          "success": false,
+          "success_frame": null,
+          "success_seconds": null,
+          "source_frames": 451
+        },
+        {
+          "task_id": 47,
+          "episode": 0,
+          "success": true,
+          "success_frame": 99,
+          "success_seconds": 6.534,
+          "source_frames": 100
+        },
+        {
+          "task_id": 19,
+          "episode": 0,
+          "success": true,
+          "success_frame": 20,
+          "success_seconds": 1.32,
+          "source_frames": 21
+        },
+        {
+          "task_id": 296,
+          "episode": 0,
+          "success": true,
+          "success_frame": 65,
+          "success_seconds": 4.29,
+          "source_frames": 66
+        },
+        {
+          "task_id": 82,
+          "episode": 0,
+          "success": true,
+          "success_frame": 45,
+          "success_seconds": 2.97,
+          "source_frames": 46
+        },
+        {
+          "task_id": 39,
+          "episode": 0,
+          "success": true,
+          "success_frame": 160,
+          "success_seconds": 10.56,
+          "source_frames": 161
+        },
+        {
+          "task_id": 162,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 148,
+          "episode": 0,
+          "success": true,
+          "success_frame": 20,
+          "success_seconds": 1.32,
+          "source_frames": 21
+        },
+        {
+          "task_id": 150,
+          "episode": 0,
+          "success": true,
+          "success_frame": 50,
+          "success_seconds": 3.3,
+          "source_frames": 51
+        },
+        {
+          "task_id": 7,
+          "episode": 0,
+          "success": true,
+          "success_frame": 138,
+          "success_seconds": 9.108,
+          "source_frames": 139
+        }
+      ],
+      "width": 1872,
+      "height": 1056,
+      "duration_seconds": 31.812,
+      "sha256": "e4b5b74991f20c5166ddcc9ad64df03397cd84660998bc56209c6b685078d3f1"
+    },
+    {
+      "id": "ogpo-evaluation",
+      "title": "OGPO",
+      "subtitle": "9 successful held-out examples \u00b7 new scenes and objects",
+      "video": "ogpo-evaluation-wrist-success-v3-cleaner.mp4",
+      "poster": "ogpo-evaluation-wrist-success-v3-cleaner.jpg",
+      "task_count": 9,
+      "rows": 3,
+      "columns": 3,
+      "tasks": [
+        8,
+        273,
+        222,
+        73,
+        346,
+        140,
+        345,
+        155,
+        357
+      ],
+      "outcomes": [
+        {
+          "task_id": 8,
+          "episode": 0,
+          "success": true,
+          "success_frame": 20,
+          "success_seconds": 1.32,
+          "source_frames": 21
+        },
+        {
+          "task_id": 273,
+          "episode": 0,
+          "success": true,
+          "success_frame": 20,
+          "success_seconds": 1.32,
+          "source_frames": 21
+        },
+        {
+          "task_id": 222,
+          "episode": 1,
+          "success": true,
+          "success_frame": 35,
+          "success_seconds": 2.31,
+          "source_frames": 36
+        },
+        {
+          "task_id": 73,
+          "episode": 3,
+          "success": true,
+          "success_frame": 20,
+          "success_seconds": 1.32,
+          "source_frames": 21
+        },
+        {
+          "task_id": 346,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 140,
+          "episode": 0,
+          "success": true,
+          "success_frame": 15,
+          "success_seconds": 0.99,
+          "source_frames": 16
+        },
+        {
+          "task_id": 345,
+          "episode": 2,
+          "success": true,
+          "success_frame": 45,
+          "success_seconds": 2.97,
+          "source_frames": 46
+        },
+        {
+          "task_id": 155,
+          "episode": 0,
+          "success": true,
+          "success_frame": 20,
+          "success_seconds": 1.32,
+          "source_frames": 21
+        },
+        {
+          "task_id": 357,
+          "episode": 2,
+          "success": true,
+          "success_frame": 40,
+          "success_seconds": 2.64,
+          "source_frames": 41
+        }
+      ],
+      "width": 1872,
+      "height": 1056,
+      "duration_seconds": 31.812,
+      "sha256": "285e760b71b07df1beaea289209f1d9eb317fe503659bf8ad11d385cca7b983a"
+    }
+  ],
+  "camera": "wrist",
+  "training_tasks": 64,
+  "evaluation_revision": "cleaner",
+  "checkpoint": "mt64_bronet_qvr16_seed0_10k",
+  "audit": "audit-v3-cleaner.json",
+  "fps": "500/33",
+  "frames": 482,
+  "duration_seconds": 31.812,
+  "success_marker": "Green = simulator success, beginning at the terminal recorded frame."
+}

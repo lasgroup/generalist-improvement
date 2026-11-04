@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reinforcement Learning Enables Scaling Generalist Robot Policy Improvement</title>
+  <meta name="description" content="A study of multi-task VLA post-training: how critic-guided reinforcement learning scales robot policy improvement to unseen scenes and objects.">
+  <meta name="theme-color" content="#3070b3">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Reinforcement Learning Enables Scaling Generalist Robot Policy Improvement">
+  <meta property="og:description" content="From task-specific adaptation to generalist improvement: scaling robot reinforcement learning with task diversity.">
+  <meta property="og:url" content="https://lasgroup.github.io/generalist_improvement/">
+  <meta property="og:image" content="https://lasgroup.github.io/generalist_improvement/static/images/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Generalist robot policy improvement: results on training tasks, unseen scenes, and unseen objects.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="citation_title" content="Reinforcement Learning Enables Scaling Generalist Robot Policy Improvement">
+  <meta name="citation_author" content="Michal Korniak">
+  <meta name="citation_author" content="Marco Bagatella">
+  <meta name="citation_author" content="Ralf Römer">
+  <meta name="citation_author" content="Michal Nauman">
+  <meta name="citation_author" content="Yarden As">
+  <meta name="citation_author" content="Pranav Vignesh">
+  <meta name="citation_author" content="Manan Agarwal">
+  <meta name="citation_author" content="Leander Diaz-Bone">
+  <meta name="citation_author" content="Piotr Zalewski">
+  <meta name="citation_author" content="Mikołaj Czarnecki">
+  <meta name="citation_author" content="Lenart Treven">
+  <meta name="citation_author" content="Shashwat Saxena">
+  <meta name="citation_author" content="Sreyas Venkataraman">
+  <meta name="citation_author" content="Sarvesh Patil">
+  <meta name="citation_author" content="Zhiyuan Zhou">
+  <meta name="citation_author" content="Daniel Marta">
+  <meta name="citation_author" content="Oier Mees">
+  <meta name="citation_author" content="Nur Muhammad Mahi Shafiullah">
+  <meta name="citation_author" content="Carmelo Sferrazza">
+  <meta name="citation_author" content="Bhavya Sukhija">
+  <meta name="citation_author" content="Angela P. Schoellig">
+  <meta name="citation_author" content="Andreas Krause">
+  <meta name="citation_author" content="Max Simchowitz">
+  <meta name="citation_author" content="Andrew Wagenmaker">
+  <meta name="citation_pdf_url" content="https://lasgroup.github.io/generalist_improvement/static/paper/generalist-policy-improvement.pdf">
+  <link rel="canonical" href="https://lasgroup.github.io/generalist_improvement/">
+  <link rel="icon" type="image/svg+xml" href="static/images/favicon.svg">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css?v=20261104-immersive-restored">
+  <script defer src="static/js/index.js?v=20261103-shape-photos"></script>
+  <script defer src="static/js/headline.js?v=20261104-editable-captions"></script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<main id="main-content">
+  <section class="teaser section" id="top" aria-labelledby="teaser-title">
+    <div class="container headline-container">
+      <div class="teaser-layout">
+        <div class="teaser-story">
+          <h2 id="teaser-title">Diverse experience and the right recipe enable <span>generalist improvement.</span></h2>
+          <div class="teaser-scenes"><figure class="scene"><img src="static/images/molmo-70.jpg" alt="MolmoSpaces robot manipulation scene: Training: box" loading="lazy" width="624" height="352"><figcaption>Training: box</figcaption></figure><figure class="scene"><img src="static/images/molmo-273.jpg" alt="MolmoSpaces robot manipulation scene: New scene: box" loading="lazy" width="624" height="352"><figcaption>New scene: box</figcaption></figure><figure class="scene"><img src="static/images/molmo-357.jpg" alt="MolmoSpaces robot manipulation scene: New object: remote control" loading="lazy" width="624" height="352"><figcaption>New object: remote control</figcaption></figure></div>
+          <section class="headline-collage" aria-label="From base policy to generalization" hidden>
+            <div class="headline-board">
+              <figure class="headline-panel" data-headline-stage="base-training">
+                <figcaption><span class="headline-kicker">Before post-training</span><p data-headline-subtitle>64 training tasks · 8 objects, 8 scenes each</p></figcaption>
+                <div class="headline-frame"><canvas data-headline-canvas aria-hidden="true"></canvas><video muted playsinline preload="metadata" width="1872" height="1056" aria-label="Base policy on 64 training tasks"></video></div>
+                <div class="headline-panel-footer"><span data-headline-count></span><button type="button" data-headline-fullscreen aria-label="Expand base policy collage" title="Full screen">⛶</button></div>
+              </figure>
+              <figure class="headline-panel" data-headline-stage="ogpo-training">
+                <figcaption><span class="headline-kicker">Learning from experience</span><p data-headline-subtitle>The same 64 training tasks</p></figcaption>
+                <div class="headline-frame"><canvas data-headline-canvas aria-hidden="true"></canvas><video muted playsinline preload="metadata" width="1872" height="1056" aria-label="OGPO on the same 64 training tasks"></video></div>
+                <div class="headline-panel-footer"><span data-headline-count></span><button type="button" data-headline-fullscreen aria-label="Expand OGPO training collage" title="Full screen">⛶</button></div>
+              </figure>
+              <figure class="headline-panel headline-panel-evaluation" data-headline-stage="ogpo-evaluation">
+                <!-- Edit the visible held-out panel heading and subtitle here. -->
+                <figcaption>
+                  <span class="headline-kicker">Generalizing beyond training</span>
+                  <p data-headline-subtitle>9 successful held-out examples</p>
+                </figcaption>
+                <div class="headline-frame"><canvas data-headline-canvas aria-hidden="true"></canvas><video muted playsinline preload="metadata" width="1872" height="1056" aria-label="OGPO on held-out scenes and objects"></video></div>
+                <div class="headline-panel-footer"><span data-headline-count></span><button type="button" data-headline-fullscreen aria-label="Expand OGPO held-out collage" title="Full screen">⛶</button></div>
+              </figure>
+            </div>
+            <div class="headline-footer">
+              <span class="headline-legend" data-headline-legend hidden><span aria-hidden="true">✓</span> Green marks a successful rollout</span>
+              <a class="headline-scroll" href="#paper">Scroll to explore <span aria-hidden="true">↓</span></a>
+            </div>
+            <p class="headline-error" role="status" hidden>Video playback unavailable. Reload the page to retry.</p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero" id="paper" aria-labelledby="paper-title">
+    <div class="hero-body">
+      <div class="container is-max-desktop has-text-centered">
+        <h1 class="title is-1 publication-title" id="paper-title">Reinforcement Learning Enables Scaling <span>Generalist Robot Policy Improvement</span></h1>
+        <!-- <p class="publication-venue">ICLR 2027 <span>· Submission</span></p> -->
+        <!-- OpenReview author list
+<div class="publication-authors"><span class="author"><a href="https://openreview.net/profile?id=~Micha%C5%82_Korniak1">Michal Korniak</a><sup>1</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Marco_Bagatella1">Marco Bagatella</a><sup>1,2</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Ralf_R%C3%B6mer1">Ralf Römer</a><sup>3</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Michal_Nauman1">Michal Nauman</a><sup>4,5</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Yarden_As1">Yarden As</a><sup>1</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Pranav_Vignesh1">Pranav Vignesh</a><sup>6</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Manan_Agarwal1">Manan Agarwal</a><sup>6</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Leander_Diaz-Bone1">Leander Diaz-Bone</a><sup>1,2</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Piotr_Zalewski1">Piotr Zalewski</a><sup>5</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Miko%C5%82aj_Czarnecki1">Mikołaj Czarnecki</a><sup>4</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Lenart_Treven1">Lenart Treven</a><sup>1</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Shashwat_Saxena1">Shashwat Saxena</a><sup>6</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Sreyas_Venkataraman1">Sreyas Venkataraman</a><sup>6</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Sarvesh_Patil1">Sarvesh Patil</a><sup>6</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Zhiyuan_Zhou2">Zhiyuan Zhou</a><sup>7</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Daniel_Marta1">Daniel Marta</a><sup>1</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Oier_Mees1">Oier Mees</a><sup>1,8</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Nur_Muhammad_Mahi_Shafiullah1">Nur Muhammad Mahi Shafiullah</a><sup>7</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Carmelo_Sferrazza1">Carmelo Sferrazza</a><sup>7</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Bhavya_Sukhija1">Bhavya Sukhija</a><sup>1</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Angela_P._Schoellig1">Angela P. Schoellig</a><sup>3</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Andreas_Krause1">Andreas Krause</a><sup>1</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Max_Simchowitz1">Max Simchowitz</a><sup>6,9</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Andrew_Wagenmaker1">Andrew Wagenmaker</a><sup>7,10</sup></span></div>
+-->
+        <div class="publication-authors"><span class="author"><a href="https://www.linkedin.com/in/michalkorniak/">Michal Korniak</a><sup>1,*</sup></span>
+<span class="author"><a href="https://marbaga.github.io">Marco Bagatella</a><sup>1,2,*</sup></span>
+<span class="author"><a href="https://ralfroemer.com">Ralf Römer</a><sup>3,*</sup></span>
+<span class="author"><a href="https://www.linkedin.com/in/michal-nauman/">Michal Nauman</a><sup>4,5</sup></span>
+<span class="author"><a href="https://yas.pub">Yarden As</a><sup>1</sup></span>
+<span class="author"><a href="https://www.linkedin.com/in/pranav-vignesh-770798223/">Pranav Vignesh</a><sup>6</sup></span>
+<span class="author"><a href="https://mananag007.github.io">Manan Agarwal</a><sup>6</sup></span>
+<span class="author"><a href="https://leanderdiazbone.github.io">Leander Diaz-Bone</a><sup>1,2</sup></span>
+<span class="author"><a href="https://openreview.net/profile?id=~Piotr_Zalewski1">Piotr Zalewski</a><sup>5</sup></span>
+<span class="author"><a href="https://www.linkedin.com/in/mikocz/">Mikołaj Czarnecki</a><sup>4</sup></span>
+<span class="author"><a href="https://lenarttreven.github.io">Lenart Treven</a><sup>1</sup></span>
+<span class="author"><a href="https://www.linkedin.com/in/shashwat-saxena-2475841a2/">Shashwat Saxena</a><sup>6</sup></span>
+<span class="author"><a href="https://vsreyas.github.io/">Sreyas Venkataraman</a><sup>6</sup></span>
+<span class="author"><a href="https://servo97.github.io">Sarvesh Patil</a><sup>6</sup></span>
+<span class="author"><a href="https://zhouzypaul.github.io">Zhiyuan Zhou</a><sup>7</sup></span>
+<span class="author"><a href="https://daniellsm.github.io/">Daniel Marta</a><sup>1</sup></span>
+<span class="author"><a href="https://www.oiermees.com/">Oier Mees</a><sup>1,8,†</sup></span>
+<span class="author"><a href="https://mahis.life/">Nur Muhammad Mahi Shafiullah</a><sup>7,†</sup></span>
+<span class="author"><a href="https://sferrazza.cc/">Carmelo Sferrazza</a><sup>7,†</sup></span>
+<span class="author"><a href="https://sukhijab.github.io/">Bhavya Sukhija</a><sup>1,†</sup></span>
+<span class="author"><a href="https://www.ce.cit.tum.de/lsy/prof-angela-schoellig/">Angela P. Schoellig</a><sup>3,†</sup></span>
+<span class="author"><a href="https://las.inf.ethz.ch/krausea">Andreas Krause</a><sup>1,†</sup></span>
+<span class="author"><a href="https://msimchowitz.github.io/">Max Simchowitz</a><sup>6,9,‡</sup></span>
+<span class="author"><a href="https://wagenmaker.github.io/">Andrew Wagenmaker</a><sup>7,10,‡</sup></span></div>
+        <p class="author-notes"><span><sup>*</sup>Co-first authors, order by coin flip</span><span><sup>†</sup>Co-principal investigators</span><span><sup>‡</sup>Lead principal investigators</span></p>
+        <details class="affiliations"><summary>Author affiliations</summary><ol><li><sup>1</sup> ETH Zurich</li>
+<li><sup>2</sup> Max Planck Institute for Intelligent Systems, Tübingen</li>
+<li><sup>3</sup> Technical University of Munich</li>
+<li><sup>4</sup> University of Warsaw</li>
+<li><sup>5</sup> Nomagic</li>
+<li><sup>6</sup> Carnegie Mellon University</li>
+<li><sup>7</sup> University of California, Berkeley</li>
+<li><sup>8</sup> Microsoft</li>
+<li><sup>9</sup> Amazon FAR</li>
+<li><sup>10</sup> Physical Intelligence</li></ol></details>
+        <div class="publication-links">
+          <a class="button is-dark" href="static/paper/generalist-policy-improvement.pdf"><span aria-hidden="true">↗</span> Paper</a>
+          <a class="button is-dark" href="https://github.com/lasgroup/generalist_improvement"><span aria-hidden="true">&lt;/&gt;</span> Code</a>
+          <a class="button is-dark" href="#results"><span aria-hidden="true">↗</span> Results</a>
+          <a class="button is-dark" href="#BibTeX"><span aria-hidden="true">{ }</span> BibTeX</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band" id="tldr" aria-labelledby="tldr-title">
+    <div class="container is-max-desktop">
+      <h2 class="section-title" id="tldr-title">TL;DR</h2>
+      <div class="tldr-layout">
+      <div class="content tldr-copy">
+        <p>Post-training of generalist policies often specializes them to a narrow set of tasks and reduces performance elsewhere. We study whether learning from experience across diverse tasks can improve a single policy on both its training tasks and related tasks it has not seen during post-training.</p>
+        <p>We show that with a sufficiently broad task distribution, critic-guided reinforcement learning (BON, OGPO) improves performance on unseen scenes and objects in MolmoSpaces. Filtered supervised fine-tuning (FSFT) also improves training-task performance, but generalizes less reliably. Our results identify <strong>task diversity</strong> and <strong>value learning</strong> as key ingredients for generalist policy improvement.</p>
+      </div>
+      <div class="teaser-chart"><figure class="paper-figure"><a class="figure-link" href="static/figures/unseen-objects.svg?v=20261102" data-zoom aria-label="Enlarge: Success on unseen tasks rises with task diversity from 1 to 144 training tasks, with OGPO and BoN improving far more than FSFT and surpassing the base policy."><img width="611" height="598" src="static/figures/unseen-objects.svg?v=20261102" alt="Success on unseen tasks rises with task diversity from 1 to 144 training tasks, with OGPO and BoN improving far more than FSFT and surpassing the base policy." loading="lazy" decoding="async"><span class="zoom-label" aria-hidden="true">↗ Enlarge figure</span></a><figcaption><strong>From forgetting to generalization.</strong> Success on unseen tasks in MolmoSpaces.</figcaption></figure></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="evaluation" aria-labelledby="evaluation-title">
+    <div class="container is-max-desktop">
+      <h2 class="section-title" id="evaluation-title">Setup</h2>
+      <figure class="paper-figure"><a class="figure-link" href="static/figures/overview.svg?v=20261102" data-zoom aria-label="Enlarge: Overview of the protocol: (1) a generalist policy collects rollouts across training tasks; (2) the experience is pooled in a shared buffer and used for direct policy adaptation (FSFT), critic-guided refinement (BoN), or critic-guided policy extraction (OGPO), repeated for M iterations; (3) the policy is evaluated on training tasks and on held-out tasks in LIBERO-90 and MolmoSpaces."><img width="1182" height="511" src="static/figures/overview.svg?v=20261102" alt="Overview of the protocol: (1) a generalist policy collects rollouts across training tasks; (2) the experience is pooled in a shared buffer and used for direct policy adaptation (FSFT), critic-guided refinement (BoN), or critic-guided policy extraction (OGPO), repeated for M iterations; (3) the policy is evaluated on training tasks and on held-out tasks in LIBERO-90 and MolmoSpaces." loading="lazy" decoding="async"><span class="zoom-label" aria-hidden="true">↗ Enlarge figure</span></a><figcaption><strong>Generalist improvement and evaluation.</strong> (1) A generalist policy collects <i>K</i> rollouts on each training task. (2) The experience is pooled in a shared buffer and used to update the policy directly (FSFT), train a critic that ranks actions (BoN), or train a critic and extract a better policy from it (OGPO). This process is repeated for <i>M</i> iterations. (3) The policy is evaluated on its training tasks and on unseen tasks to test generalization.</figcaption></figure>
+      <p class="section-lead">Separate task improvement from generalization</p>
+      <div class="content tldr-copy"><p>MolmoSpaces lets us vary two axes of task diversity: <strong>the object to manipulate</strong> and <strong>the scene it appears in</strong>. We scale from 1 to 144 training tasks and evaluate transfer to unseen scenes and unseen objects.</p></div>
+      <div class="task-gallery">
+        <div class="task-group training"><h3>Training tasks</h3><div class="scene-grid"><figure class="scene"><img src="static/images/molmo-70.jpg" alt="MolmoSpaces robot manipulation scene: Box" loading="lazy" width="624" height="352"><figcaption>Box</figcaption></figure><figure class="scene"><img src="static/images/molmo-267.jpg" alt="MolmoSpaces robot manipulation scene: Box" loading="lazy" width="624" height="352"><figcaption>Box</figcaption></figure><figure class="scene"><img src="static/images/molmo-311.jpg" alt="MolmoSpaces robot manipulation scene: Ladle" loading="lazy" width="624" height="352"><figcaption>Ladle</figcaption></figure><figure class="scene"><img src="static/images/molmo-121.jpg" alt="MolmoSpaces robot manipulation scene: Ladle" loading="lazy" width="624" height="352"><figcaption>Ladle</figcaption></figure></div></div>
+        <div class="task-group"><h3>Unseen scenes</h3><div class="scene-grid single"><figure class="scene"><img src="static/images/molmo-273.jpg" alt="MolmoSpaces robot manipulation scene: Box" loading="lazy" width="624" height="352"><figcaption>Box</figcaption></figure><figure class="scene"><img src="static/images/molmo-73.jpg" alt="MolmoSpaces robot manipulation scene: Ladle" loading="lazy" width="624" height="352"><figcaption>Ladle</figcaption></figure></div></div>
+        <div class="task-group"><h3>Unseen objects</h3><div class="scene-grid single"><figure class="scene"><img src="static/images/molmo-357.jpg" alt="MolmoSpaces robot manipulation scene: Remote control" loading="lazy" width="624" height="352"><figcaption>Remote control</figcaption></figure><figure class="scene"><img src="static/images/molmo-226.jpg" alt="MolmoSpaces robot manipulation scene: Wine bottle" loading="lazy" width="624" height="352"><figcaption>Wine bottle</figcaption></figure></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band" id="results" aria-labelledby="results-title">
+    <div class="container is-max-desktop">
+      <h2 class="section-title" id="results-title">Results</h2>
+      <p class="section-lead">The first examples of generalization in RL post-training of robot foundation models</p>
+      <div class="content tldr-copy"><p>Single-task post-training generally leads to forgetting — while we can improve on the task we train on, performance degrades on others. However, as we scale the number of training tasks, critic-based recipes (OGPO and BoN) exhibit a transition from forgetting to generalization. We observe performance gains over the base policy of up to +<span style="color:red">??</span> pp for unseen scenes and +<span style="color:red">??</span> pp for unseen objects.</p></div>
+      <figure class="paper-figure"><a class="figure-link" href="static/figures/scaling.svg?v=20261102" data-zoom aria-label="Enlarge: MolmoSpaces success rates for OGPO, BoN, and FSFT across 1, 4, 16, 64, and 144 training tasks, evaluated on seen tasks, unseen scenes, and unseen objects."><img width="1666" height="589" src="static/figures/scaling.svg?v=20261102" alt="MolmoSpaces success rates for OGPO, BoN, and FSFT across 1, 4, 16, 64, and 144 training tasks, evaluated on seen tasks, unseen scenes, and unseen objects." loading="lazy" decoding="async"><span class="zoom-label" aria-hidden="true">↗ Enlarge figure</span></a><figcaption><strong>Value-based improvement generalizes beyond the training tasks.</strong> Final success rates on training tasks (left) and held-out tasks (center and right) as the training set grows.</figcaption></figure>
+      <div class="result-detail">
+        <div><h3>What kind of diversity matters?</h3><div class="content tldr-copy"><p>Diversifying scenes helps generalize to new scenes and diversifying objects helps generalize to new objects. Only scaling object diversity surpasses the base policy on both axes in this comparison.</p><p>To achieve generalization to novel manipulation strategies, it is necessary to train on tasks requiring a diversity of manipulation behaviors, and doing so can transfer to robustness over the scene layout and appearance.</p></div></div>        
+        <figure class="paper-figure"><a class="figure-link" href="static/figures/generalization.svg" data-zoom aria-label="Enlarge: Generalization when scaling scene diversity versus object diversity."><img width="1073" height="581" src="static/figures/generalization.svg" alt="Generalization when scaling scene diversity versus object diversity." loading="lazy" decoding="async"><span class="zoom-label" aria-hidden="true">↗ Enlarge figure</span></a><figcaption><strong>Diversification transfers best along its own axis.</strong> OGPO success rate when scaling scenes of a single object, or objects with one scene each, evaluated on eight unseen scenes (left) and eight unseen objects (right).</figcaption></figure>
+      </div>
+      <h3 class="result-part-title" id="shape-transfer">Transfer to unseen objects</h3>
+      <div class="shape-evidence">
+        <p>Scaling from <strong>64 to 144 training tasks</strong> introduces four additional object categories:</p>
+        <div class="object-transfer" id="object-transfer">
+          <div class="object-transfer-group" role="group" aria-labelledby="added-categories-title">
+            <h4 id="added-categories-title">Added training categories</h4>
+              <ul class="added-categories" id="added-training-objects" aria-label="Additional training object categories">
+                <li data-shape-match="true"><div class="object-photo"><img src="static/images/salt-shaker-closeup.png" alt="Salt shaker: actual MolmoSpaces training object" loading="lazy" width="1024" height="1024"></div><span>Salt shaker</span></li>
+                <li data-shape-match="true"><div class="object-photo"><img src="static/images/soap-dispenser-closeup.png" alt="Soap dispenser: actual MolmoSpaces training object" loading="lazy" width="1024" height="1024"></div><span>Soap dispenser</span></li>
+                <li><div class="object-photo"><img src="static/images/mug-closeup.png" alt="Mug: actual MolmoSpaces training object" loading="lazy" width="1024" height="1024"></div><span>Mug</span></li>
+                <li><div class="object-photo"><img src="static/images/fruit-closeup.png" alt="Fruit &amp; vegetables: actual MolmoSpaces training object" loading="lazy" width="1024" height="1024"></div><span>Fruit &amp; vegetables</span></li>
+              </ul>
+          </div>
+          <div class="object-transfer-arrow" aria-hidden="true">
+            <svg viewBox="0 0 32 36" fill="none"><path d="M16 3v28M5 20l11 11 11-11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <section class="object-explorer" id="rollout-viewer" aria-labelledby="explorer-title" data-default-task="226">
+          <header class="explorer-heading">
+            <div class="explorer-identity">
+              <p class="explorer-eyebrow">Transfer to unseen objects · 64 → 144 tasks</p>
+              <div class="explorer-title-row">
+                <div class="explorer-object">
+                  <img class="explorer-object-photo" src="static/images/wine-bottle-closeup.png" alt="" width="44" height="52">
+                  <h3 id="explorer-title">Wine bottle</h3>
+                </div>
+                <div class="shape-relation" aria-label="Shape similarity to newly added training objects">
+                  <span class="shape-relation-arrow" aria-hidden="true">↔</span>
+                  <div class="shape-relatives">
+                    <p>Similar shapes added at 144 tasks</p>
+                    <div class="shape-relative-chips">
+                      <span><img src="static/images/salt-shaker-closeup.png" alt="" width="32" height="32">Salt shaker</span>
+                      <span><img src="static/images/soap-dispenser-closeup.png" alt="" width="32" height="32">Soap dispenser</span>
+                    </div>
+                  </div>
+                  <p class="shape-no-match" hidden>No close shape match among the added objects</p>
+                </div>
+              </div>
+            </div>
+            <div class="rollout-methods" role="group" aria-label="Choose a method" hidden>
+              <button type="button" data-rollout-method="bon" aria-pressed="true">BoN</button>
+              <button type="button" data-rollout-method="fsft" aria-pressed="false" disabled>FSFT</button>
+            </div>
+          </header>
+          <div class="explorer-stage">
+            <div class="explorer-playback">
+              <video class="rollout-video" controls muted loop playsinline preload="none" width="1248" height="762"
+                poster="static/videos/molmo/wine-bottle-bon-seed1-episode01-outcomes.jpg" src="static/videos/molmo/wine-bottle-bon-seed1-episode01-outcomes.mp4"
+                aria-label="BoN wine bottle: 64 tasks Failure; 144 tasks Success. Outcomes from the simulator evaluator; synchronized wrist and exterior cameras.">
+                Your browser does not support embedded video. <a href="static/videos/molmo/wine-bottle-bon-seed1-episode01-outcomes.mp4">Download the comparison.</a>
+              </video>
+              <p class="rollout-observation" hidden></p>
+            </div>
+            <aside class="explorer-result" aria-labelledby="figure-result-title" hidden>
+              <p class="explorer-eyebrow" id="figure-result-title">BoN · Success rate</p>
+              <p class="rate-delta" data-rate-delta></p>
+              <p class="rate-baseline">percentage points vs. 64 tasks</p>
+              <div class="rate-chart" role="img" aria-label="Success rate at 64 and 144 training tasks">
+                <div class="rate-row" data-rate-row="64"><div class="rate-label"><span>64 tasks</span><strong></strong></div><div class="rate-track"><span class="rate-fill"></span><span class="rate-error"></span></div></div>
+                <div class="rate-row" data-rate-row="144"><div class="rate-label"><span>144 tasks</span><strong></strong></div><div class="rate-track"><span class="rate-fill"></span><span class="rate-error"></span></div></div>
+                <div class="rate-axis" aria-hidden="true"><span>0%</span><span>50%</span><span>100%</span></div>
+              </div>
+              <p class="rate-source">Rounded from the accompanying figure, with its error bars.</p>
+            </aside>
+          </div>
+          <div class="explorer-picker">
+            <h4 id="unseen-categories-title">Choose an unseen object</h4>
+            <div class="unseen-categories" id="unseen-evaluation-objects" role="group" aria-labelledby="unseen-categories-title">
+              <button class="object-choice" type="button" data-rollout-task="140" aria-pressed="false" aria-controls="rollout-viewer" disabled><span class="object-photo"><img src="static/images/atomizer-closeup.png" alt="" loading="lazy" width="1024" height="1024"></span><span class="object-choice-label">Atomizer</span><span class="object-shape-hint has-match"><span aria-hidden="true">↔</span> Similar new shapes</span></button>
+              <button class="object-choice" type="button" data-rollout-task="356" aria-pressed="false" aria-controls="rollout-viewer" disabled><span class="object-photo"><img src="static/images/bowl-closeup.png?v=20261103" alt="" loading="lazy" width="1024" height="1024"></span><span class="object-choice-label">Bowl</span><span class="object-shape-hint">No close new match</span></button>
+              <button class="object-choice" type="button" data-rollout-task="345" aria-pressed="false" aria-controls="rollout-viewer" disabled><span class="object-photo"><img src="static/images/fork-closeup.png" alt="" loading="lazy" width="1024" height="1024"></span><span class="object-choice-label">Fork</span><span class="object-shape-hint">No close new match</span></button>
+              <button class="object-choice" type="button" data-rollout-task="155" aria-pressed="false" aria-controls="rollout-viewer" disabled><span class="object-photo"><img src="static/images/knife-closeup.png" alt="" loading="lazy" width="1024" height="1024"></span><span class="object-choice-label">Knife</span><span class="object-shape-hint">No close new match</span></button>
+              <button class="object-choice" type="button" data-rollout-task="357" aria-pressed="false" aria-controls="rollout-viewer" disabled><span class="object-photo"><img src="static/images/remote-control-closeup.png" alt="" loading="lazy" width="1024" height="1024"></span><span class="object-choice-label">Remote control</span><span class="object-shape-hint">No close new match</span></button>
+              <button class="object-choice" type="button" data-rollout-task="226" aria-pressed="true" aria-controls="rollout-viewer"><span class="object-photo"><img src="static/images/wine-bottle-closeup.png" alt="" loading="lazy" width="1024" height="1024"></span><span class="object-choice-label">Wine bottle</span><span class="object-shape-hint has-match"><span aria-hidden="true">↔</span> Similar new shapes</span></button>
+            </div>
+          </div>
+          <p class="explorer-status sr-only" role="status" aria-live="polite"></p>
+        </section>
+        <p>BoN improves most on <strong>atomizers and wine bottles</strong> from 64 to 144 tasks. Both share upright, bottle-like shapes with the newly added <strong>salt shakers and soap dispensers</strong>. The other evaluated objects have no close shape match among these additions and show little additional improvement. This pattern suggests that BoN transfers across similar object shapes.</p>
+        <figure class="paper-figure">
+          <a class="figure-link" href="static/figures/shape-transfer.svg?v=20261102" data-zoom aria-label="Enlarge success rates for six unseen object categories">
+            <img width="1650" height="395" src="static/figures/shape-transfer.svg?v=20261102" alt="Per-object success rates on six unseen object categories: from 64 to 144 training tasks, BoN improves on atomizers and wine bottles, with little change on forks, knives, and remote controls." loading="lazy" decoding="async">
+            <span class="zoom-label" aria-hidden="true">↗ Enlarge figure</span>
+          </a>
+          <figcaption><strong>Critic-based methods clearly generalize to unseen objects that resemble the training objects.</strong> Final success rate on each of the 6 unseen objects, none of which appears in any training split, as a function of the number of training tasks.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="BibTeX" aria-labelledby="citation-title">
+    <div class="container reading-width">
+      <div class="bibtex-header"><h2 id="citation-title">BibTeX</h2><button class="copy-bibtex-btn" type="button">Copy citation</button></div>
+      <pre id="bibtex-code"><code>@misc{korniak2026generalist,
+  title = {Reinforcement Learning Enables Scaling Generalist Robot Policy Improvement},
+  author = {Michal Korniak and
+            Marco Bagatella and
+            Ralf Römer and
+            Michal Nauman and
+            Yarden As and
+            Pranav Vignesh and
+            Manan Agarwal and
+            Leander Diaz-Bone and
+            Piotr Zalewski and
+            Mikołaj Czarnecki and
+            Lenart Treven and
+            Shashwat Saxena and
+            Sreyas Venkataraman and
+            Sarvesh Patil and
+            Zhiyuan Zhou and
+            Daniel Marta and
+            Oier Mees and
+            Nur Muhammad Mahi Shafiullah and
+            Carmelo Sferrazza and
+            Bhavya Sukhija and
+            Angela P. Schoellig and
+            Andreas Krause and
+            Max Simchowitz and
+            Andrew Wagenmaker},
+  year = {2026},
+  note = {Manuscript submitted to ICLR 2027},
+  url = {https://lasgroup.github.io/generalist_improvement/}
+}</code></pre>
+      <p class="copy-status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+<footer class="footer"><div class="container reading-width"><p>Adapted from the <a href="https://tum-lsy.github.io/fiper_website/">FIPER project page</a> and the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a>, originally based on <a href="https://nerfies.github.io/">Nerfies</a>.</p><p>Website template: <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Research figures and manuscript are from the authors’ paper.</p></div></footer>
+<a class="scroll-to-top" href="#top" aria-label="Back to top">↑</a>
+<dialog id="figure-dialog" aria-labelledby="figure-dialog-title"><div class="dialog-toolbar"><h2 id="figure-dialog-title">Figure</h2><button type="button" class="close-dialog" aria-label="Close enlarged figure">Close ×</button></div><div class="zoom-scroll"><img alt="" id="enlarged-figure"></div><p>Scroll to explore the figure. Press Escape or Close to return.</p></dialog>
+</body>
+</html>

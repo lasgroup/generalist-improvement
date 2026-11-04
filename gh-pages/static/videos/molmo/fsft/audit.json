@@ -1,0 +1,460 @@
+{
+  "audit_passed": true,
+  "validated_episodes": 76,
+  "sampling_plan": {
+    "140": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "226": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "345": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "155": [
+      0,
+      1,
+      2
+    ],
+    "357": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "356": [
+      0,
+      1,
+      2
+    ]
+  },
+  "checkpoint_provenance": {
+    "64": {
+      "source_params": "/capstor/store/cscs/swissai/a0220/mkorniak/results/vla-post-training_multitask_fsft_molmo_tasks64_seed1_v0/0/pi05_molmo_online_filtered_sft/vla-post-training_20260619-125229_19dad8_seed1/2499/params",
+      "identity_note": "Original 64-task seed-1 checkpoint.",
+      "params_metadata_sha256": "86ce212e30e542d8511900e28943a1aa6a4c2626d2ec8ced1543b368605e5a62",
+      "norm_stats_source": "/capstor/store/cscs/swissai/a0220/mkorniak/results/vla-post-training_multitask_fsft_molmo_tasks64_seed1_v0/0/pi05_molmo_online_filtered_sft/vla-post-training_20260619-125229_19dad8_seed1/2499/assets/droid/norm_stats.json",
+      "norm_stats_sha256": "57ce9956f9e07d65f8a8205aabec72d436a2c8927f53edb40c7a77b14a5a90c7",
+      "training_seed": 1,
+      "step": 2499
+    },
+    "144": {
+      "source_params": "/capstor/store/cscs/swissai/a0220/mbagatella/params",
+      "identity_note": "User-designated copy of the 144-task seed-0 step-2500 checkpoint; original ab037 path is inaccessible, so source identity is not independently verified. Shared DROID normalization supplied from the 64-task checkpoint.",
+      "params_metadata_sha256": "86ce212e30e542d8511900e28943a1aa6a4c2626d2ec8ced1543b368605e5a62",
+      "norm_stats_source": "/capstor/store/cscs/swissai/a0220/mkorniak/results/vla-post-training_multitask_fsft_molmo_tasks64_seed1_v0/0/pi05_molmo_online_filtered_sft/vla-post-training_20260619-125229_19dad8_seed1/2499/assets/droid/norm_stats.json",
+      "norm_stats_sha256": "57ce9956f9e07d65f8a8205aabec72d436a2c8927f53edb40c7a77b14a5a90c7",
+      "training_seed": 0,
+      "step": 2500
+    }
+  },
+  "pairs": [
+    {
+      "task_id": 140,
+      "object": "Atomizer",
+      "episode": 0,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 140,
+      "object": "Atomizer",
+      "episode": 1,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 140,
+      "object": "Atomizer",
+      "episode": 2,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 140,
+      "object": "Atomizer",
+      "episode": 3,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 140,
+      "object": "Atomizer",
+      "episode": 4,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 140,
+      "object": "Atomizer",
+      "episode": 5,
+      "success_64": true,
+      "success_144": false,
+      "steps_64": 145,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 140,
+      "object": "Atomizer",
+      "episode": 6,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 140,
+      "object": "Atomizer",
+      "episode": 7,
+      "success_64": true,
+      "success_144": true,
+      "steps_64": 95,
+      "steps_144": 376,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 140,
+      "object": "Atomizer",
+      "episode": 8,
+      "success_64": false,
+      "success_144": true,
+      "steps_64": 450,
+      "steps_144": 441,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 140,
+      "object": "Atomizer",
+      "episode": 9,
+      "success_64": true,
+      "success_144": false,
+      "steps_64": 335,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 226,
+      "object": "Wine bottle",
+      "episode": 0,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 226,
+      "object": "Wine bottle",
+      "episode": 1,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 226,
+      "object": "Wine bottle",
+      "episode": 2,
+      "success_64": true,
+      "success_144": false,
+      "steps_64": 181,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 226,
+      "object": "Wine bottle",
+      "episode": 4,
+      "success_64": false,
+      "success_144": true,
+      "steps_64": 450,
+      "steps_144": 346,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 345,
+      "object": "Fork",
+      "episode": 0,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 345,
+      "object": "Fork",
+      "episode": 1,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 345,
+      "object": "Fork",
+      "episode": 2,
+      "success_64": false,
+      "success_144": true,
+      "steps_64": 450,
+      "steps_144": 375,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 345,
+      "object": "Fork",
+      "episode": 3,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 345,
+      "object": "Fork",
+      "episode": 4,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 345,
+      "object": "Fork",
+      "episode": 5,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 345,
+      "object": "Fork",
+      "episode": 6,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 345,
+      "object": "Fork",
+      "episode": 7,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 345,
+      "object": "Fork",
+      "episode": 8,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 155,
+      "object": "Knife",
+      "episode": 0,
+      "success_64": true,
+      "success_144": true,
+      "steps_64": 271,
+      "steps_144": 225,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 155,
+      "object": "Knife",
+      "episode": 1,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 155,
+      "object": "Knife",
+      "episode": 2,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 357,
+      "object": "Remote control",
+      "episode": 0,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 357,
+      "object": "Remote control",
+      "episode": 1,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 357,
+      "object": "Remote control",
+      "episode": 2,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 357,
+      "object": "Remote control",
+      "episode": 3,
+      "success_64": true,
+      "success_144": false,
+      "steps_64": 159,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 357,
+      "object": "Remote control",
+      "episode": 4,
+      "success_64": false,
+      "success_144": true,
+      "steps_64": 450,
+      "steps_144": 360,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 357,
+      "object": "Remote control",
+      "episode": 5,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 357,
+      "object": "Remote control",
+      "episode": 6,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 357,
+      "object": "Remote control",
+      "episode": 7,
+      "success_64": false,
+      "success_144": true,
+      "steps_64": 450,
+      "steps_144": 200,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 357,
+      "object": "Remote control",
+      "episode": 8,
+      "success_64": false,
+      "success_144": false,
+      "steps_64": 450,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 356,
+      "object": "Bowl",
+      "episode": 0,
+      "success_64": true,
+      "success_144": true,
+      "steps_64": 131,
+      "steps_144": 157,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 356,
+      "object": "Bowl",
+      "episode": 1,
+      "success_64": true,
+      "success_144": true,
+      "steps_64": 172,
+      "steps_144": 133,
+      "identical_initial_state_and_images": true
+    },
+    {
+      "task_id": 356,
+      "object": "Bowl",
+      "episode": 2,
+      "success_64": true,
+      "success_144": false,
+      "steps_64": 175,
+      "steps_144": 450,
+      "identical_initial_state_and_images": true
+    }
+  ],
+  "interpretation": "Selected qualitative examples; all attempted outcomes retained. Different training seeds and no independent identity verification of the copied 144-task weights. This sample is not an aggregate performance estimate.",
+  "sampling_note": "Initial fixed sample of 20 matched states, followed by six additional matched states each for atomizer, fork, and remote control because the original requested patterns were absent. All 76 completed episodes are retained. One technically interrupted fork episode is archived separately. The user subsequently allowed failure/failure for FSFT little-change examples, with success/success preferred."
+}
