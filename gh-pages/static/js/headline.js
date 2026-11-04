@@ -265,7 +265,6 @@ if (headline) {
         pause();
       }
     });
-    headline.querySelector('[data-headline-legend]').hidden = !manifest.stages.every(stage => Array.isArray(stage.outcomes));
     document.querySelector('.teaser-scenes').hidden = true;
     headline.hidden = false;
     renderCounts();

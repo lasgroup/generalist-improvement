@@ -360,15 +360,12 @@ strong {
 .headline-footer {
   flex:none;
   display:flex;
-  justify-content:space-between;
+  justify-content:flex-end;
   align-items:center;
   gap:12px;
   margin-top:12px;
   padding:0 18px;
   font-size:12px;
-}
-.headline-legend {
-  color:#a7b6c7;
 }
 .headline-scroll {
   display:inline-flex;
@@ -389,19 +386,8 @@ strong {
 #paper {
   scroll-margin-top:-80px;
 }
-.headline-legend[hidden],.headline-error[hidden] {
+.headline-error[hidden] {
   display:none;
-}
-.headline-legend span {
-  display:inline-grid;
-  place-items:center;
-  width:19px;
-  height:19px;
-  border-radius:5px;
-  background:#d4f4e2;
-  color:#167043;
-  font-weight:800;
-  margin-right:5px;
 }
 .headline-error {
   text-align:center;
