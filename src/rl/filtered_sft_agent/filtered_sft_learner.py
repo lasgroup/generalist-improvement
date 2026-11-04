@@ -1,0 +1,708 @@
+import copy
+import dataclasses
+import functools
+import gc
+import json
+import logging
+from typing import Any, Dict
+
+import etils.epath as epath
+import flax.nnx as nnx
+import flax.traverse_util as traverse_util
+import jax
+import jax.numpy as jnp
+import numpy as np
+from jax.experimental import mesh_utils
+
+import openpi.models.model as _model
+import openpi.shared.array_typing as at
+import openpi.shared.nnx_utils as nnx_utils
+import openpi.training.checkpoints as _checkpoints
+import openpi.training.optimizer as _optimizer
+import openpi.training.sharding as sharding
+import openpi.training.utils as training_utils
+import openpi.training.weight_loaders as _weight_loaders
+import openpi.transforms as _transforms
+from openpi.policies import policy_config
+from openpi_client import image_tools
+from src.rl.filtered_sft_agent.update import train_step
+from src.rl.networks.rl_networks import PREFIX_EMBEDDING_NAME
+from src.rl.replay_buffer import ShardedReplayBuffer
+from src.training.config import OnlineTrainConfig
+from src.envs.wrappers import (
+    TimeToSuccessAsRewardWrapper,
+    Pi0ObservationWrapper,
+    QueryFrequencyWrapper,
+)
+from src.envs.venv import SubprocVectorEnv, DummyVectorEnv
+from src.training.runtime_state import load_resume_state
+
+
+def filtered_sft_wrap_env(
+    env_fn,
+    config,
+    env_num: int | None = None,
+):
+    env_num = env_num if env_num is not None else config.collect.env_num
+    replan_steps = config.collect.replan_steps
+    env_class = config.collect.domain
+    seed = config.seed
+    env_factories = []
+    for i in range(env_num):
+
+        def _make_env(rank=i):
+            # Create the base environment
+            base_env = TimeToSuccessAsRewardWrapper(env_fn(rank))
+            # Add Pi related obs to the environment
+            base_env = Pi0ObservationWrapper(
+                env=base_env,
+                env_class=env_class,
+            )
+            # Add query-frequency wrapper to rollout action chunks.
+            base_env = QueryFrequencyWrapper(
+                env=base_env,
+                query_frequency=replan_steps,
+            )
+            return base_env
+
+        env_factories.append(_make_env)
+
+    env = (
+        SubprocVectorEnv(env_factories)
+        if env_num > 1
+        else DummyVectorEnv(env_factories)
+    )
+    # This sets the seed for all environment all at once to be [seed, seed + i, ..., seed + num_envs]
+    env.seed(
+        seed
+    )  # IMPORTANT: seed seems to affect object positions even when using fixed initial state
+    # re-use training seed
+    return env
+
+
+def _load_weights_and_validate(
+    loader: _weight_loaders.WeightLoader, params_shape: at.Params
+) -> at.Params:
+    """Loads and validates the weights. Returns a loaded subset of the weights."""
+    loaded_params = loader.load(params_shape)
+    at.check_pytree_equality(
+        expected=params_shape, got=loaded_params, check_shapes=True, check_dtypes=True
+    )
+
+    # Remove jax.ShapeDtypeStruct from the loaded params. This makes sure that only the loaded params are returned.
+    return traverse_util.unflatten_dict(
+        {
+            k: v
+            for k, v in traverse_util.flatten_dict(loaded_params).items()
+            if not isinstance(v, jax.ShapeDtypeStruct)
+        }
+    )
+
+
+def _batch_axis_sharding(pytree, mesh: jax.sharding.Mesh):
+    n = mesh.shape[sharding.BATCH_AXIS]
+    replicated = jax.sharding.NamedSharding(mesh, jax.sharding.PartitionSpec())
+
+    def shard(arr):
+        if n > 1 and arr.ndim >= 2:
+            for axis in np.argsort(arr.shape)[::-1]:
+                if arr.shape[axis] % n == 0:
+                    spec = [None] * arr.ndim
+                    spec[axis] = sharding.BATCH_AXIS
+                    return jax.sharding.NamedSharding(
+                        mesh, jax.sharding.PartitionSpec(*spec)
+                    )
+        return replicated
+
+    return jax.tree.map(shard, pytree)
+
+
+@at.typecheck
+def init_train_state(
+    config: OnlineTrainConfig,
+    init_rng: at.KeyArrayLike,
+    mesh: jax.sharding.Mesh,
+    *,
+    resume: bool,
+) -> tuple[training_utils.TrainState, Any]:
+    tx = _optimizer.create_optimizer(
+        config.optimizer, config.lr_schedule, weight_decay_mask=None
+    )
+
+    def init(
+        rng: at.KeyArrayLike, partial_params: at.Params | None = None
+    ) -> training_utils.TrainState:
+        rng, model_rng = jax.random.split(rng)
+        # initialize the model (and its parameters).
+        model = config.model.create(model_rng)
+
+        # Merge the partial params into the model.
+        if partial_params is not None:
+            graphdef, state = nnx.split(model)
+            # This will produce an error if the partial params are not a subset of the state.
+            nnx.replace_by_pure_dict(state, partial_params)
+            model = nnx.merge(graphdef, state)
+
+        params = nnx.state(model)
+        # Convert frozen params to bfloat16.
+        params = nnx_utils.state_map(
+            params,
+            config.freeze_filter,
+            lambda p: p.replace(p.value.astype(jnp.bfloat16)),
+        )
+
+        return training_utils.TrainState(
+            step=0,
+            params=params,
+            model_def=nnx.graphdef(model),
+            tx=tx,
+            opt_state=tx.init(nnx.filter_state(params, config.trainable_filter)),
+            ema_decay=config.ema_decay,
+            ema_params=None if config.ema_decay is None else params,
+        )
+
+    train_state_shape = jax.eval_shape(init, init_rng)
+    state_sharding = sharding.fsdp_sharding(train_state_shape, mesh, log=True)
+
+    if resume:
+        return train_state_shape, state_sharding
+
+    partial_params = _load_weights_and_validate(
+        config.weight_loader, nnx.to_pure_dict(train_state_shape.params)
+    )
+    replicated_sharding = jax.sharding.NamedSharding(mesh, jax.sharding.PartitionSpec())
+
+    # Initialize the train state and mix in the partial params.
+    train_state = jax.jit(
+        init,
+        donate_argnums=(1,),  # donate the partial params buffer.
+        in_shardings=replicated_sharding,
+        out_shardings=state_sharding,
+    )(init_rng, partial_params)
+
+    return train_state, state_sharding
+
+
+def _get_post_step_action_filter(domain: str):
+    if domain == "libero":
+        # see https://arxiv.org/pdf/2501.09747, Appendix C - clipping low-magnitude actions
+        # the LIBERO dataset seems to have been filtered accordingly
+        return lambda x: np.where(np.abs(x) < 0.0011, 0.0, x)
+    return lambda x: x
+
+
+def _get_obs_key_process_fn(domain: str):
+    if domain == "libero":
+        return lambda k: k.replace("observation/", "")
+    return lambda k: k
+
+
+class FilteredSFTLearner:
+    training_steps: int = 0
+    total_collected_episodes: int = 0
+    # Whether collection also returns the policy's prefix embedding alongside each
+    # action chunk, and stores it in the replay buffer (used by Best-of-N critics).
+    _store_prefix_rep: bool = False
+    # Observation keys that are never read during training and are not stored.
+    _buffer_obs_drop_keys: tuple[str, ...] = ()
+
+    def __init__(self, config: OnlineTrainConfig):
+        self._config = config
+        self.post_step_action_filter = _get_post_step_action_filter(self._config.collect.domain)
+        self.obs_key_process_fn = _get_obs_key_process_fn(self._config.collect.domain)
+
+        if self._config.batch_size % jax.device_count() != 0:
+            raise ValueError(
+                f"Batch size {config.batch_size} must be divisible by the number of devices {jax.device_count()}."
+            )
+        jax.config.update(
+            "jax_compilation_cache_dir", str(epath.Path("~/.cache/jax").expanduser())
+        )
+        self._rng = jax.random.key(self._config.seed)
+        init_rng, self._rng = jax.random.split(self._rng, 2)
+
+        # set up sharding
+        self._mesh = sharding.make_mesh(self._config.fsdp_devices)
+        self._data_sharding = jax.sharding.NamedSharding(
+            self._mesh, jax.sharding.PartitionSpec(sharding.DATA_AXIS)
+        )
+        self._replicated_sharding = jax.sharding.NamedSharding(
+            self._mesh, jax.sharding.PartitionSpec()
+        )
+
+        # Initialize checkpoint manager.
+        self._checkpoint_manager, self._resuming = (
+            _checkpoints.initialize_checkpoint_dir(
+                self._config.checkpoint_dir,
+                keep_period=self._config.keep_period,
+                overwrite=not self._config.resume,
+                resume=self._config.resume,
+            )
+        )
+
+        # initialize data loader
+        self._data_config = self._config.data.create(
+            self._config.assets_dirs,
+            self._config.model,
+        )
+
+        class DummyDataLoader:
+            def __init__(self, data_config):
+                self._data_config = data_config
+
+            def data_config(self):
+                return self._data_config
+
+        self._data_loader = DummyDataLoader(self._data_config)
+
+        self._online_data_buffer = self._get_online_replay_buffer()
+        if self._resuming:
+            self._resume_state = load_resume_state(self._config)
+            self._online_data_buffer.restore_shards(
+                self._resume_state.replay_shard_dir,
+                rng_state_json=self._resume_state.replay_rng_state_json,
+            )
+        self._collection_success_episodes = 0
+
+        # Initialize train state.
+        self._train_state, self._train_state_sharding = init_train_state(
+            self._config, init_rng, self._mesh, resume=self._resuming
+        )
+        if self._resuming:
+            self._train_state = _checkpoints.restore_state(
+                self._checkpoint_manager,
+                self._train_state,
+                self._data_loader,
+                step=self._resume_state.step,
+            )
+            logging.info(
+                "Restored training checkpoint from %s at committed step %d",
+                self._config.checkpoint_dir,
+                self._resume_state.step,
+            )
+            self.training_steps = int(self._resume_state.step)
+            self.total_collected_episodes = self._resume_state.total_collected_episodes
+            self.set_rng_state_json(self._resume_state.agent_rng_state_json)
+        else:
+            self.training_steps = 0
+
+        jax.block_until_ready(self._train_state)
+        logging.info(
+            f"Initialized train state:\n{training_utils.array_tree_to_info(self._train_state.params)}"
+        )
+
+        # shard the EMA across devices
+        self._ema_sharding = _batch_axis_sharding(self._train_state.ema_params, self._mesh)
+        self._ema = jax.device_put(self._train_state.ema_params, self._ema_sharding)
+        self._train_state = dataclasses.replace(self._train_state, ema_params=None, ema_decay=None)
+        decay = self._config.ema_decay
+        self._ema_update_fn = jax.jit(
+            lambda ema, params: jax.tree.map(
+                lambda e, p: decay * e + (1.0 - decay) * p, ema, params
+            ),
+            in_shardings=(self._ema_sharding, self._train_state_sharding.params),
+            out_shardings=self._ema_sharding,
+            donate_argnums=0,
+        )
+        gc.collect()
+
+        # prepare train_step (the train state no longer holds the EMA, so recompute its sharding)
+        self._train_state_sharding = sharding.fsdp_sharding(self._train_state, self._mesh, log=False)
+        self._train_step = jax.jit(
+            functools.partial(train_step, self._config),
+            in_shardings=(
+                self._replicated_sharding,
+                self._train_state_sharding,
+                self._data_sharding,
+            ),
+            out_shardings=(self._train_state_sharding, self._replicated_sharding),
+            donate_argnums=(1,),
+        )
+
+        # Create temporary episode storage
+        self._episode_storage = [[] for _ in range(self._config.collect.env_num)]
+
+        def _get_prefix_rep_with_model_fn(
+            m: _model.BaseModel, observation: _model.Observation
+        ):
+            hidden_state, _kv_cache = m.get_prefix_rep(observation)
+            return hidden_state
+
+        self._get_prefix_rep_with_model = nnx.jit(_get_prefix_rep_with_model_fn)
+
+        # Create policy for data collection
+        policy_checkpoint_dir = self._config.weight_loader.params_path[
+            : -len("/params")
+        ]
+        self._policy = policy_config.create_trained_policy(
+            self._config,
+            policy_checkpoint_dir,
+        )
+        # This learner always calls `infer_with_model(...)` with the current train-state model.
+        # Drop policy-owned model references to avoid keeping an extra model copy in memory.
+        self._drop_policy_model()
+
+        # prepare transforms for preprocessing episode data into model input format
+        self._policy_transforms = self._get_policy_transforms(self._config.collect.domain)
+
+    def _get_policy_transforms(self, domain: str):
+        if domain == "libero":
+            return _transforms.compose([*self._data_config.repack_transforms.inputs, *self._policy._input_transform.transforms])
+        if domain == "molmo":
+            # TODO: extract these transforms from the policy config instead of hardcoding the order here.
+            # Unfortunately, the policy input transforms do not match what was used for training:
+            # padding should occur before normalization, and delta actions should be considered.
+            delta_action_mask = _transforms.make_bool_mask(7, -1)
+            input_transforms = [
+                copy.deepcopy(self._policy._input_transform.transforms[1]),  # droid inputs
+                _transforms.DeltaActions(delta_action_mask),                 # delta actions
+                copy.deepcopy(self._policy._input_transform.transforms[6]),  # padding
+                copy.deepcopy(self._policy._input_transform.transforms[2]),  # normalize
+                copy.deepcopy(self._policy._input_transform.transforms[4]),  # resizeimages
+                copy.deepcopy(self._policy._input_transform.transforms[0]),  # inject prompt
+                copy.deepcopy(self._policy._input_transform.transforms[5]),  # tokenizer
+            ]
+            return _transforms.compose([*self._data_config.repack_transforms.inputs, *input_transforms])
+        raise NotImplementedError(f"Unknown domain: {domain}")
+
+    def _drop_policy_model(self):
+        self._policy._model = None
+        # These JAX callables are created from bound model methods and can capture model state.
+        self._policy._sample_actions = None
+        self._policy._get_prefix_rep = None
+        gc.collect()
+
+    def _make_buffer_dummy_data(self) -> dict:
+        obs_spec, act_spec = self._config.model.inputs_spec(batch_size=1)
+        obs_spec_dict = obs_spec.to_dict()
+        dummy_obs_dict = jax.tree.map(
+            lambda spec: np.zeros(spec.shape, dtype=spec.dtype), obs_spec_dict
+        )
+        dummy_obs_dict = {k: v for k, v in dummy_obs_dict.items() if v is not None}
+        if "image" in dummy_obs_dict:
+            dummy_obs_dict["image"] = jax.tree.map(
+                lambda v: v.astype(np.uint8), dummy_obs_dict["image"]
+            )
+        return {
+            "observations": dummy_obs_dict,
+            "actions": np.zeros(act_spec.shape, dtype=act_spec.dtype),
+            "reward": np.zeros((1,), dtype=np.float32),
+            "mc_return": np.zeros((1,), dtype=np.float32),
+            "discount": np.zeros((1,), dtype=np.float32),
+            "is_success": np.zeros((1,), dtype=np.float32),
+        }
+
+    def _get_online_replay_buffer(
+        self,
+    ) -> ShardedReplayBuffer:
+        dummy_data = self._make_buffer_dummy_data()
+        logging.info(
+            "Initializing online replay buffer (capacity=%d)",
+            self._config.rl.buffer_capacity,
+        )
+        return ShardedReplayBuffer(
+            dummy_data=dummy_data,
+            max_capacity=self._config.rl.buffer_capacity,
+            data_sharding=self._data_sharding,
+            seed=self._config.seed,
+        )
+
+    def _process_obs_for_pi0(
+        self,
+        observations: Dict,
+        task_description: list[str],
+    ) -> Dict[str, Any]:
+        # With per-step collection enabled, each env step contains a short chunk of
+        # observations. Use the most recent one for policy inference.
+        obs = jax.tree_util.tree_map(lambda x: x[:, -1], observations)
+        h, w = int(self._config.collect.resize_image_h), int(self._config.collect.resize_image_w)
+        resize_fn = lambda x: image_tools.convert_to_uint8(image_tools.resize_with_pad(x, h, w))
+        obs = {k: resize_fn(v) if "image" in k else v for k, v in obs.items()}
+        obs["prompt"] = task_description
+        return obs
+
+    @staticmethod
+    def _batch_transform_inputs(inputs: dict, batch_size: int) -> dict:
+        for key in ("image_mask", "image_masks"):
+            if key in inputs:
+                inputs[key] = {k: np.full((batch_size,), bool(v), dtype=bool) for k, v in inputs[key].items()}
+        for key in ("tokenized_prompt", "tokenized_prompt_mask", "token_ar_mask", "token_loss_mask"):
+            if key in inputs and inputs[key] is not None:
+                arr = np.asarray(inputs[key])
+                if arr.ndim == 1:
+                    inputs[key] = np.repeat(arr[np.newaxis], batch_size, axis=0)
+        return inputs
+
+    def _sample_action(
+        self,
+        observations: Dict,
+        rng: jax.random.PRNGKey,
+        train_state: training_utils.TrainState,
+        return_prefix_rep: bool = False,
+    ) -> np.ndarray | tuple[np.ndarray, np.ndarray]:
+        # Only called during data collection, when the EMA params are on device.
+        model = nnx.merge(train_state.model_def, train_state.ema_params)
+        model.eval()
+        batch_size = np.asarray(next(iter(observations.values()))).shape[0]
+        noise = jax.random.normal(
+            rng, (batch_size, self._policy.action_horizon, self._policy.action_dim)
+        )
+        num_devices = len(jax.devices())
+        sharding_spec = (
+            self._data_sharding if batch_size % num_devices == 0 else None
+        )
+        if not return_prefix_rep:
+            return self._policy.infer_with_model(
+                model=model,
+                obs=observations,
+                noise=noise,
+                return_prefix_rep=False,
+                sharding_spec=sharding_spec,
+            )["actions"]
+
+        # Bypass infer_with_model: _output_transform cannot handle the (actions, prefix) tuple
+        inputs = self._policy._input_transform(observations)
+        inputs = self._batch_transform_inputs(inputs, batch_size=batch_size)
+        if sharding_spec is not None:
+            inputs = jax.device_put(inputs, sharding_spec)
+        observation = _model.Observation.from_dict(inputs)
+        _, sample_rng = jax.random.split(rng)
+        raw_actions, prefix = self._policy._sample_actions_with_model(
+            m=model,
+            observation=observation,
+            noise=noise,
+            rng=sample_rng,
+            return_prefix_rep=True,
+            **self._policy._sample_kwargs,
+        )
+        outputs = {"state": inputs["state"], "actions": raw_actions}
+        actions = self._policy._output_transform(outputs)["actions"]
+        return actions, np.asarray(prefix, dtype=np.float32)
+
+    def sample_actions(
+        self,
+        observations: np.ndarray | Dict,
+        task_description: list[str],
+    ) -> np.ndarray | tuple[np.ndarray, np.ndarray]:
+        rng, self._rng = jax.random.split(self._rng)
+        processed_obs = self._process_obs_for_pi0(
+            observations, task_description=task_description
+        )
+        actions = self._sample_action(
+            observations=processed_obs,
+            rng=rng,
+            train_state=self._train_state,
+            return_prefix_rep=self._store_prefix_rep,
+        )
+        if isinstance(actions, (tuple, list)):
+            return tuple(np.asarray(x, dtype=np.float32) for x in actions)
+
+        return np.asarray(actions, dtype=np.float32)
+
+    def save_checkpoint(self, step: int | None = None):
+        ema_rep = jax.device_put(self._ema, self._replicated_sharding)
+        state_to_save = dataclasses.replace(
+            self._train_state, ema_params=ema_rep, ema_decay=self._config.ema_decay
+        )
+        _checkpoints.save_state(
+            self._checkpoint_manager, state_to_save, self._data_loader, step
+        )
+        self._checkpoint_manager.wait_until_finished()
+
+    def rng_state_json(self) -> str:
+        """Serialize the agent PRNG key as JSON for resumable runtime state."""
+        key_data = np.asarray(jax.device_get(jax.random.key_data(self._rng)))
+        return json.dumps(
+            {
+                "dtype": str(key_data.dtype),
+                "shape": list(key_data.shape),
+                "data": key_data.reshape(-1).tolist(),
+            }
+        )
+
+    def set_rng_state_json(self, rng_state_json: str | None) -> None:
+        """Restore the agent PRNG key from a `rng_state_json` snapshot."""
+        if rng_state_json is None:
+            return
+        payload = json.loads(rng_state_json)
+        key_data = np.array(payload["data"], dtype=payload["dtype"]).reshape(
+            payload["shape"]
+        )
+        self._rng = jax.random.wrap_key_data(jnp.asarray(key_data))
+
+    def add_data(self, step_data):
+        for i in range(self._config.collect.env_num):
+            self._episode_storage[i].append(jax.tree.map(lambda x: x[i], step_data))
+
+    def _attach_prefix_embeddings_to_episode_data(
+        self,
+        episode_data: list[Dict[str, Any]],
+        task_description: str,
+    ) -> None:
+        """Unpack `(actions, prefix)` payloads and align prefixes to transitions.
+
+        - Replaces each `ep["action"]` payload with pure actions.
+        - Writes the unpacked prefix embedding to `ep["observation"]`.
+        - Writes the shifted prefix embedding to `ep["next_observation"]`
+          using the next step's payload.
+        - Computes the final next-observation prefix with the current model.
+        """
+
+        next_observation = jax.tree.map(
+            lambda x: x[np.newaxis], episode_data[-1]["next_observation"]
+        )
+        processed_obs = self._process_obs_for_pi0(next_observation, task_description)
+        model = nnx.merge(self._train_state.model_def, self._train_state.ema_params)
+        model.eval()
+        inputs = self._policy._input_transform(processed_obs)
+        inputs = self._batch_transform_inputs(inputs, batch_size=1)
+        observation = _model.Observation.from_dict(inputs)
+        next_prefix = self._get_prefix_rep_with_model(m=model, observation=observation)
+        next_prefix = np.asarray(next_prefix, dtype=np.float32)
+        if next_prefix.ndim == 3:
+            next_prefix = next_prefix[0]
+        next_prefix = next_prefix.reshape((-1, next_prefix.shape[-1])).mean(axis=0)
+
+        for idx in reversed(range(len(episode_data))):
+            ep = episode_data[idx]
+            ep["action"], prefix = ep["action"]
+            prefix = np.asarray(prefix, dtype=np.float32)
+            prefix = prefix.reshape((-1, prefix.shape[-1])).mean(axis=0)
+            horizon = next(iter(ep["observation"].values())).shape[0]
+            ep["observation"][f"observation/{PREFIX_EMBEDDING_NAME}"] = np.repeat(
+                prefix[None, ...], horizon, axis=0
+            )
+            ep["next_observation"][f"observation/{PREFIX_EMBEDDING_NAME}"] = np.repeat(
+                next_prefix[None, ...], horizon, axis=0
+            )
+            next_prefix = prefix
+
+    def save_episode(self, is_success: bool, env_index: int, task_description: str):
+
+        assert env_index in range(
+            len(self._episode_storage)
+        ), f"env_index must be between 0 and {len(self._episode_storage) - 1}, but got {env_index}."
+        # extract episode data from storage and empty it
+        episode_data = self._episode_storage[env_index]
+        self._episode_storage[env_index] = []
+        # filtered SFT keeps only successful episodes.
+        if is_success:
+            self._save_episode_in_buffer(episode_data, task_description, is_success=True)
+
+    def _save_episode_in_buffer(self, episode_data, task_description, is_success: bool = False):
+        if self._store_prefix_rep:
+            self._attach_prefix_embeddings_to_episode_data(
+                episode_data, task_description=task_description
+            )
+
+        # concatenate all chunks
+        episode_data = jax.tree_util.tree_map(
+            lambda *xs: np.concatenate(xs, axis=0), *episode_data
+        )
+        done = np.logical_or(episode_data["terminate"], episode_data["truncate"])
+        terminate = episode_data["terminate"]  # only true terminations should zero out the discount
+        n_steps = np.where(done)[0][0] + 1
+        act_h = int(self._config.model.action_horizon)
+        last_gamma = float(self._config.rl.discount**act_h)
+        all_gammas = np.array([self._config.rl.discount**i for i in range(n_steps)])
+        w_gammas = all_gammas[:act_h]
+        n_windows = n_steps - act_h + 1
+        if n_windows <= 0:
+            return
+
+        # in order to optimize memory usage, we join observations and next observations
+        # into a single array, and store it directly
+        # `observation` and `next_observation` are the same series shifted by one
+        _full_obs = {
+            self.obs_key_process_fn(k): np.concatenate(
+                [v[:n_steps], episode_data["next_observation"][k][n_steps - 1 : n_steps]], axis=0
+            )
+            for k, v in episode_data["observation"].items()
+        }
+        _actions = np.stack([episode_data["action"][start : start + act_h] for start in range(n_windows)])
+        _actions = self.post_step_action_filter(_actions)
+        _reward = np.asarray([(episode_data["reward"][start : start + act_h] * w_gammas).sum() for start in range(n_windows)])
+        # Bootstrap after truncation: only zero out discount on true termination, not truncation.
+        # Truncated episodes ended due to time limit — the next state still has value, so we bootstrap.
+        _discount = np.asarray([0.0 if np.any(terminate[start : start + act_h]) else last_gamma for start in range(n_windows)])
+        _mc_return = ((all_gammas * episode_data["reward"][:n_steps])[::-1].cumsum()[::-1] / all_gammas)[:n_windows]
+
+        # if the reward is constant, set the MC returns to reward/(1-gamma)
+        if np.all(episode_data["reward"] == episode_data["reward"][0]):
+            _mc_return = np.full_like(_mc_return, episode_data["reward"][0] / (1 - self._config.rl.discount))
+
+        def transform(input):
+            obs = self._policy_transforms(input)
+            actions = obs.pop("actions")
+            return obs, actions
+
+        prefix_emb = _full_obs.pop(self.obs_key_process_fn(f"observation/{PREFIX_EMBEDDING_NAME}"), None)
+        actions_padded = np.concatenate([_actions, np.repeat(_actions[-1:], act_h, axis=0)], axis=0)
+        _full_obs, actions_out = transform(
+            {**_full_obs, "actions": actions_padded, "prompt": str(task_description)}
+        )
+        if prefix_emb is not None:
+            _full_obs[PREFIX_EMBEDDING_NAME] = prefix_emb
+        _actions = actions_out[:n_windows]
+
+        obs_index = np.arange(n_windows, dtype=np.int64)
+        next_obs_index = obs_index + act_h
+        _is_success = np.full((n_windows,), float(is_success), dtype=np.float32)
+        # Drop unused keys so what we store matches the buffer schema built by
+        # _make_buffer_dummy_data.
+        for k in self._buffer_obs_drop_keys:
+            _full_obs.pop(k, None)
+        self._online_data_buffer.insert(
+            {
+                "observations": _full_obs,
+                "obs_index": obs_index,
+                "next_obs_index": next_obs_index,
+                "actions": _actions.astype(np.float32),
+                "reward": _reward.astype(np.float32),
+                "mc_return": _mc_return.astype(np.float32),
+                "discount": _discount.astype(np.float32),
+                "is_success": _is_success,
+            }
+        )
+        self._collection_success_episodes += 1
+
+    def start_data_collection(self):
+        # Reset episode storage
+        self._episode_storage = [[] for _ in range(self._config.collect.env_num)]
+        self._collection_success_episodes = 0
+        assert self._train_state.ema_params is None, "EMA parameters should be offloaded except during data collection."
+        ema_rep = jax.device_put(self._ema, self._replicated_sharding)
+        self._train_state = dataclasses.replace(self._train_state, ema_params=ema_rep)
+
+    def end_data_collection(self) -> int:
+        collected_episodes = int(self._collection_success_episodes)
+        # Reset episode storage and counter for the next collection round.
+        self._episode_storage = [[] for _ in range(self._config.collect.env_num)]
+        self._collection_success_episodes = 0
+        # offload EMA
+        assert self._train_state.ema_params is not None, "EMA parameters should be on device during data collection."
+        self._train_state = dataclasses.replace(self._train_state, ema_params=None)
+        gc.collect()
+        return collected_episodes
+
+    def update(self):
+        self.training_steps += 1
+        if self.training_steps % self._config.rl.policy.update_interval != 0:
+            return {"online_buffer_size": self._online_data_buffer.size}
+
+        if self._online_data_buffer.size == 0:
+            return {}
+        online_batch = self._online_data_buffer.sample(batch_size=self._config.batch_size)
+        batch = (_model.Observation.from_dict(online_batch["observation"]), online_batch["actions"])
+
+        train_rng, self._rng = jax.random.split(self._rng)
+        with sharding.set_mesh(self._mesh):
+            policy_state, info = self._train_step(train_rng, self._train_state, batch)
+        self._train_state = policy_state
+        self._ema = self._ema_update_fn(self._ema, self._train_state.params)
+        info = info | {
+            "online_buffer_size": jnp.asarray(
+                float(self._online_data_buffer.size), dtype=jnp.float32
+            )
+        }
+        return info

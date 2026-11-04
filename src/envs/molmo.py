@@ -1,0 +1,246 @@
+import dataclasses
+import logging
+import os
+import warnings
+from contextlib import contextmanager, redirect_stderr, redirect_stdout
+from pathlib import Path
+from typing import Any
+
+import gymnasium as gym
+from gymnasium.wrappers import TimeLimit
+import numpy as np
+
+
+logger = logging.getLogger(__name__)
+
+
+@contextmanager
+def _suppress_molmo_spaces_output():
+    # Keep errors visible, but suppress the INFO-level noise emitted by MolmoSpaces.
+    logging.getLogger("molmo_spaces").setLevel(logging.ERROR)
+    with open(os.devnull, "w") as devnull:
+        with warnings.catch_warnings():
+            warnings.filterwarnings(
+                "ignore",
+                message=r"Using objaverse data version .*",
+                category=UserWarning,
+            )
+            with redirect_stdout(devnull), redirect_stderr(devnull):
+                yield
+
+
+with _suppress_molmo_spaces_output():
+    from molmo_spaces.evaluation.benchmark_schema import load_all_episodes
+    from molmo_spaces.molmo_spaces_constants import ASSETS_DIR
+    from molmo_spaces.policy.learned_policy.utils import PromptSampler
+    from molmo_spaces.tasks.json_eval_task_sampler import JsonEvalTaskSampler
+
+
+# FrankaPickDroidMiniBench inside the MolmoSpaces assets dir (MLSPACES_ASSETS_DIR);
+# MLSPACES_BENCHMARK_DIR overrides it entirely.
+_DEFAULT_BENCHMARK_DIR = os.environ.get(
+    "MLSPACES_BENCHMARK_DIR",
+    str(
+        ASSETS_DIR
+        / "benchmarks/molmospaces-bench-v1/procthor-10k/FrankaPickDroidMiniBench"
+        / "FrankaPickDroidMiniBench_json_benchmark_20251231"
+    ),
+)
+
+
+class _RegisteredPolicyAdapter:
+    """Minimal policy interface for MolmoSpaces policy-dependent sensors."""
+
+    def __init__(self) -> None:
+        self.target_poses = {"grasp": np.eye(4, dtype=np.float32)}
+        self.task = None
+        self.retry_count = 0
+
+    def reset(self) -> None:
+        return
+
+    def get_phase(self) -> str:
+        return "inference"
+
+    def get_all_phases(self) -> dict[str, int]:
+        return {"inference": 0}
+
+
+@dataclasses.dataclass(frozen=True)
+class MolmoSpacesGymConfig:
+    benchmark_dir: str = _DEFAULT_BENCHMARK_DIR
+    # sensor uuids to drop from the task sensor suite before stepping
+    # i.e. segmentation masks that are ignored by pi0.5
+    drop_sensor_uuids: tuple[str, ...] = ("object_image_points",)
+    # initial-state randomization: perturb object XY and robot init_qpos with rejection sampling.
+    randomize_init_positions: bool = True
+    init_object_position_noise_xy: float = 0.01  # meters, +/- uniform per axis
+    init_qpos_noise: float = 0.01  # radians, +/- uniform per joint
+    randomization_max_attempts: int = 20
+
+
+class MolmoSpacesBenchmarkGymEnv(gym.Env):
+    """Single-env gym adapter for MolmoSpaces benchmark episodes."""
+
+    metadata = {"render_modes": []}
+
+    def __init__(
+        self,
+        render_device: int = 0,
+        config: MolmoSpacesGymConfig = MolmoSpacesGymConfig(),
+    ):
+        super().__init__()
+        self._render_device = render_device
+        self._config = config
+        self._benchmark_dir = Path(config.benchmark_dir).expanduser().resolve()
+        self._episodes = load_all_episodes(self._benchmark_dir)
+        if not self._episodes:
+            raise ValueError(
+                f"No benchmark episodes found in {self._benchmark_dir}. "
+                "Expected benchmark.json or house_*/episode_*.json files."
+            )
+
+        self._sampler: JsonEvalTaskSampler | None = None
+        self._task = None
+        self._task_description: str | None = None
+        self._loaded_episode_id: int | None = None
+        self._prompt_sampler = None
+
+        # Minimal placeholder spaces for v1.
+        self.observation_space = gym.spaces.Dict({})
+        self.action_space = gym.spaces.Dict({})
+
+    def _close_active_episode(self) -> None:
+        if self._sampler is not None:
+            self._sampler.close()
+        self._sampler = None
+        self._task = None
+        self._task_description = None
+
+    def _prune_unused_sensors(self) -> None:
+        sensor_suite = getattr(self._task, "_sensor_suite", None)
+        if sensor_suite is None or not hasattr(sensor_suite, "sensors"):
+            return
+        for uuid in self._config.drop_sensor_uuids:
+            sensor_suite.sensors.pop(uuid, None)
+
+    def reset(self, *, seed: int | None = None, options: dict[str, Any] | None = None):
+        super().reset(seed=seed)
+        # The "seed" command of the vector env resets without options, hence the fallback.
+        task_id = options["task_id"] if (options is not None and "task_id" in options) else "molmo_0"
+        episode_id = int(task_id.split("_")[-1])
+        if not 0 <= episode_id < len(self._episodes):
+            raise ValueError(f"episode_id {episode_id} out of range for available episodes.")
+        episode = self._episodes[episode_id]
+
+        if not (self._sampler is not None and self._loaded_episode_id == episode_id):
+            # Imported lazily so that it only happens in the env worker process.
+            from molmo_spaces.evaluation.configs.evaluation_configs import PiPolicyEvalConfig
+
+            self._close_active_episode()
+            exp_config = PiPolicyEvalConfig()
+            exp_config.scene_dataset = episode.scene_dataset
+            exp_config.data_split = episode.data_split
+            exp_config.task_sampler_config.render_device = self._render_device
+            ts_cfg = exp_config.task_sampler_config
+            ts_cfg.randomize_init_object_positions = self._config.randomize_init_positions
+            ts_cfg.randomize_init_qpos = self._config.randomize_init_positions
+            ts_cfg.init_object_position_noise_xy = self._config.init_object_position_noise_xy
+            ts_cfg.init_qpos_noise = self._config.init_qpos_noise
+            ts_cfg.init_position_randomization_max_attempts = self._config.randomization_max_attempts
+            self._prompt_sampler = PromptSampler(
+                task_type=exp_config.task_type,
+                prompt_templates=exp_config.policy_config.prompt_templates,
+                prompt_object_word_num=exp_config.policy_config.prompt_object_word_num,
+            )
+            with _suppress_molmo_spaces_output():
+                self._sampler = JsonEvalTaskSampler(exp_config, episode)
+            self._loaded_episode_id = episode_id
+
+        self._prompt_sampler.next()
+        with _suppress_molmo_spaces_output():
+            self._task = self._sampler.sample_task(
+                force_advance_scene=False,
+                house_index=episode.house_index,
+            )
+        if self._task is None:
+            raise RuntimeError("JsonEvalTaskSampler returned no task.")
+
+        self._prune_unused_sensors()
+
+        if self._task.env.n_batch != 1:
+            raise ValueError(
+                "MolmoSpacesBenchmarkGymEnv requires n_batch=1, got "
+                f"n_batch={self._task.env.n_batch}."
+            )
+
+        self._task.register_policy(_RegisteredPolicyAdapter())
+        self._task_description = self._prompt_sampler.get_prompt(self._task).lower()
+
+        observations, infos = self._task.reset()
+        return observations[0], {**infos[0], "task_description": self._task_description}
+
+    def step(self, action: dict[str, np.ndarray]):
+        observations, rewards, terminated, truncated, infos = self._task.step(action)
+        return (
+            observations[0],
+            float(rewards[0]),
+            bool(infos[0]["success"]),
+            bool(truncated[0]),
+            {**infos[0], "task_description": self._task_description},
+        )
+
+    def close(self) -> None:
+        self._close_active_episode()
+
+
+class MolmoActionAdapter(gym.ActionWrapper):
+    """Converts OpenPI action vectors into Molmo env action dictionaries."""
+
+    def __init__(
+        self,
+        env: gym.Env,
+    ):
+        super().__init__(env)
+        self.action_space = gym.spaces.Box(
+            low=-np.inf,
+            high=np.inf,
+            shape=(8,),
+            dtype=np.float32,
+        )
+
+    def action(self, action):
+        return {
+            "arm": np.asarray(action[:7], dtype=np.float32),
+            "gripper": np.asarray([255.0 if action[7] > 0.5 else 0.0], dtype=np.float32),
+        }
+
+
+def make_env_molmo(config, tasks, num_devices: int = 4):
+    env_config = MolmoSpacesGymConfig()
+    benchmark_dir = Path(env_config.benchmark_dir).expanduser().resolve()
+
+    with _suppress_molmo_spaces_output():
+        episodes = load_all_episodes(benchmark_dir)
+    max_episode_id = len(episodes) - 1
+    task_ids = [int(task.split("_")[-1]) for task in tasks]
+
+    if not task_ids:
+        raise ValueError("Expected at least one Molmo task.")
+    for task_id in task_ids:
+        if not 0 <= task_id < len(episodes):
+            raise ValueError(
+                f"Task ID {task_id} out of range for available episodes 0..{max_episode_id}."
+            )
+
+    def env_fn(rank: int):
+        env = MolmoSpacesBenchmarkGymEnv(
+            render_device=rank % num_devices,
+            config=env_config,
+        )
+        env = MolmoActionAdapter(env=env)
+        # Add timelimit wrapper
+        env = TimeLimit(env, max_episode_steps=config.collect.max_episode_steps)
+        return env
+
+    return env_fn
