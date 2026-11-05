@@ -19,7 +19,7 @@ import yaml
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 DEFAULT_ACCOUNT = "..."
-DEFAULT_ENVIRONMENT = "generalist-pi"
+DEFAULT_ENVIRONMENT = "generalist-improvement"
 DEFAULT_DURATION = "11:59:00"
 DEFAULT_PARTITION = "normal"
 REQUEUE_EXIT_CODE = 42

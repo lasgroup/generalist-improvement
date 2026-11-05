@@ -1030,7 +1030,7 @@ wheels = [
 ]
 
 [[package]]
-name = "generalist-pi"
+name = "generalist-improvement"
 version = "0.0.1"
 source = { virtual = "." }
 dependencies = [

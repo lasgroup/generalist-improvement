@@ -1,35 +1,36 @@
 # Reinforcement Learning Enables Scaling Generalist Robot Policy Improvement
 
-This repo contains a minimal implementation of multi-task post-training for π0.5 on LIBERO-90 and MolmoSpaces, using filtered SFT (FSFT), Best-of-N (BoN) or OGPO.
+This repo contains a minimal implementation of multi-task post-training for π0.5 on LIBERO-90 and MolmoSpaces, using filtered SFT (FSFT), Best-of-N (BoN). A OGPO implementation is on its way.
 
 ## Setup
 
 ### 1. Clone
 
 ```bash
-git clone --recurse-submodules <repo-url> generalist-pi
+git clone git@github.com:lasgroup/generalist-improvement.git generalist-improvement
 ```
 
-### 2. Build the container
+### 2. Setup
 
-Everything runs inside the container described by [docker/generalist-pi.Dockerfile](docker/generalist-pi.Dockerfile).
+Everything runs inside the container described by [docker/generalist-improvement.Dockerfile](docker/generalist-improvement.Dockerfile).
 
 ```bash
-cd generalist-pi
-docker build . -f docker/generalist-pi.Dockerfile -t generalist-pi
+cd generalist-improvement
+docker build . -f docker/generalist-improvement.Dockerfile -t generalist-improvement
 ```
 
-To start an interactive shell in the container, run this from the repo root. The repo must be mounted at `/app`.
+To start an interactive shell in the container, run this from the repo root.
 
 ```bash
-docker run --rm -it --gpus all --network=host -v "$(pwd)":/app generalist-pi bash
+docker run --rm -it --gpus all --network=host -v "$(pwd)":/app generalist-improvement bash
 ```
 
-The code requires setting these global variables:
+The code requires setting these variables; also consider updating global variables in [scripts/launcher.py](scripts/launcher.py).
 
 ```
 OPENPI_DATA_HOME = "/path/to/openpi_data_home"
 MLSPACES_ASSETS_DIR = "/path/to/molmospaces/assets"
+MLSPACES_CACHE_DIR = "/path/to/molmospaces/cache"
 HF_HOME = "/path/to/hf_home"
 HF_TOKEN = "hf_..."
 WANDB_API_KEY = "..."
@@ -37,11 +38,7 @@ MUJOCO_GL = "egl"
 XLA_PYTHON_CLIENT_MEM_FRACTION = "0.9"
 ```
 
-The code also requires installing assets through assets through
-
-  `uv run scripts/install_molmo_assets.py`.
-
-The remaining assets are downloaded automatically.
+We recommend installing assets through `uv run scripts/install_molmo_assets.py`, which takes a few minutes. The remaining assets are downloaded automatically.
 
 ### 3. Launch
 
