@@ -6,7 +6,7 @@
       "id": "base-training",
       "title": "Base policy",
       "subtitle": "64 training tasks \u00b7 8 objects, 8 scenes each",
-      "video": "base-training-wrist-success-v3.mp4",
+      "video": "base-training-wrist-success-v3-web.mp4",
       "poster": "base-training-wrist-success-v3.jpg",
       "task_count": 64,
       "rows": 8,
@@ -594,13 +594,15 @@
       "width": 1872,
       "height": 1056,
       "duration_seconds": 31.812,
-      "sha256": "f5de923bde4870dc56b2dbe68afb70e1c55341152d606899ca7bfdab0bab9394"
+      "sha256": "d17f28e5f0e5754599fd6a106695e093749dffc16c98931db506f1200ce28abe",
+      "source_video": "base-training-wrist-success-v3.mp4",
+      "source_sha256": "f5de923bde4870dc56b2dbe68afb70e1c55341152d606899ca7bfdab0bab9394"
     },
     {
       "id": "ogpo-training",
       "title": "OGPO",
       "subtitle": "The same 64 training tasks",
-      "video": "ogpo-training-wrist-success-v3.mp4",
+      "video": "ogpo-training-wrist-success-v3-web.mp4",
       "poster": "ogpo-training-wrist-success-v3.jpg",
       "task_count": 64,
       "rows": 8,
@@ -1188,13 +1190,15 @@
       "width": 1872,
       "height": 1056,
       "duration_seconds": 31.812,
-      "sha256": "e4b5b74991f20c5166ddcc9ad64df03397cd84660998bc56209c6b685078d3f1"
+      "sha256": "3d55a0c4cf3589afa1c1d93267bdb0920719df189479861733b7435948eaf2e1",
+      "source_video": "ogpo-training-wrist-success-v3.mp4",
+      "source_sha256": "e4b5b74991f20c5166ddcc9ad64df03397cd84660998bc56209c6b685078d3f1"
     },
     {
       "id": "ogpo-evaluation",
       "title": "OGPO",
       "subtitle": "9 successful held-out examples \u00b7 new scenes and objects",
-      "video": "ogpo-evaluation-wrist-success-v3-cleaner.mp4",
+      "video": "ogpo-evaluation-wrist-success-v3-cleaner-web.mp4",
       "poster": "ogpo-evaluation-wrist-success-v3-cleaner.jpg",
       "task_count": 9,
       "rows": 3,
@@ -1287,7 +1291,9 @@
       "width": 1872,
       "height": 1056,
       "duration_seconds": 31.812,
-      "sha256": "285e760b71b07df1beaea289209f1d9eb317fe503659bf8ad11d385cca7b983a"
+      "sha256": "a03e09fcd6c3f374a6fb1d93f21e884b517a07f06271f2c6c0bc33e4b8b6a4e9",
+      "source_video": "ogpo-evaluation-wrist-success-v3-cleaner.mp4",
+      "source_sha256": "285e760b71b07df1beaea289209f1d9eb317fe503659bf8ad11d385cca7b983a"
     }
   ],
   "camera": "wrist",
@@ -1298,5 +1304,12 @@
   "fps": "500/33",
   "frames": 482,
   "duration_seconds": 31.812,
-  "success_marker": "Green = simulator success, beginning at the terminal recorded frame."
+  "success_marker": "Green = simulator success, beginning at the terminal recorded frame.",
+  "web_encoding": {
+    "codec": "H.264",
+    "pixel_format": "yuv420p",
+    "preset": "slow",
+    "crf": 26,
+    "fast_start": true
+  }
 }

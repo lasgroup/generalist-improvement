@@ -8,13 +8,15 @@ Run `python3 -m http.server 8000 --directory gh-pages` from the repository root 
 
 ## Publish
 
-The workflow in [`.github/workflows/pages.yml`](../.github/workflows/pages.yml) publishes the contents of `gh-pages/` as the website root using GitHub Actions. It runs when website files or the workflow change on the `gh-pages` branch, and supports manual dispatch on that branch. It checks out only `gh-pages/`, then uploads and deploys those static files directly. It does not build the repository or install project dependencies.
+The workflow in [`.github/workflows/pages.yml`](../.github/workflows/pages.yml) publishes `gh-pages/` as the website root using GitHub Actions. It runs when website files, the workflow, or its preparation script change on the `gh-pages` branch, and supports manual dispatch on that branch. It checks out the website and `.github/scripts/prepare-pages.py`, stages the static files, then uploads and deploys the staged directory.
+
+The preparation script includes the videos and posters referenced by the headline manifest and the BoN/FSFT `selected_examples.json` manifests. Archived MP4/JPG files stay in the repository for provenance and are excluded from deployment. Missing active media stops deployment before upload. To inspect the deployment locally, run `python3 .github/scripts/prepare-pages.py gh-pages /tmp/generalist-pages-preview` with a new destination directory.
 
 One-time setup:
 
 1. In the repository's **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**.
 2. If the `github-pages` environment restricts deployment branches, allow `gh-pages` under **Settings → Environments → github-pages**.
-3. Commit the website directory and `.github/workflows/pages.yml`, then push the `gh-pages` branch. Follow the **Deploy research website** run in the Actions tab.
+3. Commit the website directory, `.github/workflows/pages.yml`, and `.github/scripts/prepare-pages.py`, then push the `gh-pages` branch. Follow the **Deploy research website** run in the Actions tab.
 
 The deployed site will be <https://lasgroup.github.io/generalist_improvement/>. The folder name does not add another `/gh-pages/` to the public URL. Deployment uses the built-in `GITHUB_TOKEN`; no personal access token is needed. The workflow and website must be pushed before deployment can run.
 
@@ -27,7 +29,7 @@ See GitHub's [custom Pages workflow documentation](https://docs.github.com/en/pa
 - Source: `_ICLR__27__Multi_task_policy_learning_SwissAI (1).zip`, supplied from Downloads. The teaser and scaling plots were subsequently replaced with the supplied `hook_variant_4.pdf` and `main_figure_variant_8.pdf`, extending the displayed training-task range to 144. Other figure variants follow the active paper source.
 - `static/paper/generalist-policy-improvement.pdf` is compiled from that ZIP with `latexmk -pdf main_ICLR.tex`; it retains the source manuscript's anonymous submission formatting. The website author list and affiliations were supplied separately by the user. Department and alternate-name entries are consolidated into eight institutions (ETH Zurich, MPI for Intelligent Systems, TUM, CMU, University of Warsaw, UC Berkeley, Microsoft, and UT Austin), with author numbers remapped consistently. The generic Max-Planck entry was matched to MPI for Intelligent Systems using [Leander Diaz-Bone’s profile](https://leanderdiazbone.github.io/). No affiliations were inferred for authors without a number.
 - All numerical statements describe the manuscript's simulation experiments. The page labels the manuscript as a submission, not an accepted publication.
-- Source figure mapping: `unseen-objects` → `hook_variant_5`; `scaling` → `main_figure_variant_9`; `generalization` → `many_categories_generalization_variant_7`; `recipe-ablations` → `all_ablations`; `policy-extraction` → `actor_critic_ablation_variant_3`; `overview` → TikZ `figs/flagship_ogpo.tex`, compiled standalone with `pdflatex` (times, `arrows.meta`, `matrix`). All plot images, enlarged views, and figure downloads use SVG converted directly from the source PDFs. The teaser and scaling SVGs use PyMuPDF (`page.get_svg_image(text_as_path=True)`); the remaining SVGs use Poppler (`pdftocairo -svg input.pdf output.svg`). The SVGs contain vector paths, including outlined labels, with no embedded raster images or external font dependencies. PDF originals are retained as source assets; the full manuscript is still available as a PDF. The PNG social-preview image is only used for link previews.
+- Source figure mapping: `unseen-objects` → `hook_variant_5`; `scaling` → `main_figure_variant_9`; `generalization` → `many_categories_generalization_variant_8`; `recipe-ablations` → `all_ablations`; `policy-extraction` → `actor_critic_ablation_variant_3`; `overview` → TikZ `figs/flagship_ogpo.tex`, compiled standalone with `pdflatex` (times, `arrows.meta`, `matrix`). All plot images, enlarged views, and figure downloads use SVG converted directly from the source PDFs. The teaser, scaling, generalization, and shape-transfer SVGs use PyMuPDF (`page.get_svg_image(text_as_path=True)`); the remaining SVGs use Poppler (`pdftocairo -svg input.pdf output.svg`). The SVGs contain vector paths, including outlined labels, with no embedded raster images or external font dependencies. PDF originals are retained as source assets; the full manuscript is still available as a PDF. The PNG social-preview image is only used for link previews.
 - Task images and labels follow `figs/molmo_visualization_small.tex`.
 - The per-object `shape-transfer` figure comes directly from the supplied
   `generalization_per_task_variant_4.pdf`; its SVG was exported with PyMuPDF and
@@ -269,3 +271,12 @@ Canvas checks cover complete tile coverage and ordering, uncropped aspect
 ratios, non-overlapping placement, resize behavior, paired-layout equivalence,
 and progressive fallback to the source video.
 Chrome visual checks cover desktop and 390px phone layouts.
+
+The three headline videos use `*-web.mp4` encodings for delivery, totaling
+16.71 MiB compared with 39.54 MiB for the archived originals. They were encoded
+with FFmpeg/libx264, preset `slow`, CRF 26, `yuv420p`, and `+faststart`.
+All 482 frame timestamps, the 1872×1056 resolution, and the 31.812-second
+duration match each source. The manifest records source and delivery SHA-256
+hashes. Sampled VMAF means were 95.16, 96.36, and 96.55, with representative
+source and compressed frames also reviewed visually. Deployment staging
+reduces the complete website from approximately 265 MiB to 72 MiB.

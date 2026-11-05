@@ -116,7 +116,7 @@ function createHeadlineCanvas(panel, video, stage, onUnavailable) {
 const headline = document.querySelector('.headline-collage');
 if (headline) {
   const base = 'static/videos/molmo/headline/';
-  fetch(`${base}manifest.json?v=20261104-cleaner`).then(response => {
+  fetch(`${base}manifest.json?v=20261105-web`).then(response => {
     if (!response.ok) throw new Error('Headline manifest unavailable');
     return response.json();
   }).then(manifest => {

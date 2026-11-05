@@ -9,8 +9,8 @@
   <meta property="og:type" content="article">
   <meta property="og:title" content="Reinforcement Learning Enables Scaling Generalist Robot Policy Improvement">
   <meta property="og:description" content="From task-specific adaptation to generalist improvement: scaling robot reinforcement learning with task diversity.">
-  <meta property="og:url" content="https://lasgroup.github.io/generalist_improvement/">
-  <meta property="og:image" content="https://lasgroup.github.io/generalist_improvement/static/images/social-preview.png">
+  <meta property="og:url" content="https://lasgroup.github.io/generalist-improvement/">
+  <meta property="og:image" content="https://lasgroup.github.io/generalist-improvement/static/images/social-preview.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Generalist robot policy improvement: results on training tasks, unseen scenes, and unseen objects.">
@@ -40,13 +40,13 @@
   <meta name="citation_author" content="Andreas Krause">
   <meta name="citation_author" content="Max Simchowitz">
   <meta name="citation_author" content="Andrew Wagenmaker">
-  <meta name="citation_pdf_url" content="https://lasgroup.github.io/generalist_improvement/static/paper/generalist-policy-improvement.pdf">
-  <link rel="canonical" href="https://lasgroup.github.io/generalist_improvement/">
+  <meta name="citation_pdf_url" content="https://lasgroup.github.io/generalist-improvement/static/paper/generalist-policy-improvement.pdf">
+  <link rel="canonical" href="https://lasgroup.github.io/generalist-improvement/">
   <link rel="icon" type="image/x-icon" sizes="32x32" href="static/images/favicon.ico?v=20261104-las">
   <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/index.css?v=20261104-no-legend">
-  <script defer src="static/js/index.js?v=20261103-shape-photos"></script>
-  <script defer src="static/js/headline.js?v=20261104-no-legend"></script>
+  <link rel="stylesheet" href="static/css/index.css?v=20261105-ogpo">
+  <script defer src="static/js/index.js?v=20261105-ogpo"></script>
+  <script defer src="static/js/headline.js?v=20261105-web"></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
@@ -55,7 +55,14 @@
     <div class="container headline-container">
       <div class="teaser-layout">
         <div class="teaser-story">
-          <h2 id="teaser-title">Diverse experience and the right recipe enable <span>generalist improvement.</span></h2>
+          <div class="teaser-heading">
+            <h2 id="teaser-title">Diverse experience and the right recipe enable <span>generalist improvement.</span></h2>
+            <!-- Frame the visible logo inside the supplied PNG's transparent margins. -->
+            <svg class="swiss-ai-logo" viewBox="275 498 755 467" role="img" aria-labelledby="swiss-ai-logo-title">
+              <title id="swiss-ai-logo-title">Swiss AI Initiative</title>
+              <image href="static/a4c5cd_db11f7a288834745a1c6bd2cb33c69d0~mv2.png" width="1330" height="1330" />
+            </svg>
+          </div>
           <div class="teaser-scenes"><figure class="scene"><img src="static/images/molmo-70.jpg" alt="MolmoSpaces robot manipulation scene: Training: box" loading="lazy" width="624" height="352"><figcaption>Training: box</figcaption></figure><figure class="scene"><img src="static/images/molmo-273.jpg" alt="MolmoSpaces robot manipulation scene: New scene: box" loading="lazy" width="624" height="352"><figcaption>New scene: box</figcaption></figure><figure class="scene"><img src="static/images/molmo-357.jpg" alt="MolmoSpaces robot manipulation scene: New object: remote control" loading="lazy" width="624" height="352"><figcaption>New object: remote control</figcaption></figure></div>
           <section class="headline-collage" aria-label="From base policy to generalization" hidden>
             <div class="headline-board">
@@ -80,7 +87,7 @@
               </figure>
             </div>
             <div class="headline-footer">
-              <a class="headline-scroll" href="https://github.com/lasgroup/generalist_improvement" target="_blank" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a>
+              <a class="headline-scroll" href="https://github.com/lasgroup/generalist-improvement" target="_blank" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a>
               <a class="headline-scroll" href="#paper">Scroll to explore <span aria-hidden="true">↓</span></a>
             </div>
             <p class="headline-error" role="status" hidden>Video playback unavailable. Reload the page to retry.</p>
@@ -158,7 +165,7 @@
 <li><sup>10</sup> Physical Intelligence</li></ol></details>
         <div class="publication-links">
           <a class="button is-dark" href="static/paper/generalist-policy-improvement.pdf"><span aria-hidden="true">↗</span> Paper</a>
-          <a class="button is-dark" href="https://github.com/lasgroup/generalist_improvement" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">&lt;/&gt;</span> GitHub</a>
+          <a class="button is-dark" href="https://github.com/lasgroup/generalist-improvement" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">&lt;/&gt;</span> GitHub</a>
           <a class="button is-dark" href="#results"><span aria-hidden="true">↗</span> Results</a>
           <a class="button is-dark" href="#BibTeX"><span aria-hidden="true">{ }</span> BibTeX</a>
         </div>
@@ -198,11 +205,11 @@
     <div class="container is-max-desktop">
       <h2 class="section-title" id="results-title">Results</h2>
       <p class="section-lead">The first examples of generalization in RL post-training of robot foundation models</p>
-      <div class="content tldr-copy"><p>Single-task post-training generally leads to forgetting — while we can improve on the task we train on, performance degrades on others. However, as we scale the number of training tasks, critic-based recipes (OGPO and BoN) exhibit a transition from forgetting to generalization. We observe performance gains over the base policy of up to +<span style="color:red">??</span> pp for unseen scenes and +<span style="color:red">??</span> pp for unseen objects.</p></div>
-      <figure class="paper-figure"><a class="figure-link" href="static/figures/scaling.svg?v=20261102" data-zoom aria-label="Enlarge: MolmoSpaces success rates for OGPO, BoN, and FSFT across 1, 4, 16, 64, and 144 training tasks, evaluated on seen tasks, unseen scenes, and unseen objects."><img width="1666" height="589" src="static/figures/scaling.svg?v=20261102" alt="MolmoSpaces success rates for OGPO, BoN, and FSFT across 1, 4, 16, 64, and 144 training tasks, evaluated on seen tasks, unseen scenes, and unseen objects." loading="lazy" decoding="async"><span class="zoom-label" aria-hidden="true">↗ Enlarge figure</span></a><figcaption><strong>Value-based improvement generalizes beyond the training tasks.</strong> Final success rates on training tasks (left) and held-out tasks (center and right) as the training set grows.</figcaption></figure>
+      <div class="content tldr-copy"><p>Single-task post-training generally leads to forgetting — while we can improve on the task we train on, performance degrades on others. However, as we scale the number of training tasks, critic-based recipes (OGPO and BoN) exhibit a transition from forgetting to generalization. We observe performance gains over the base policy of up to +58 pp for unseen scenes and +39 pp for unseen objects.</p></div>
+      <figure class="paper-figure"><a class="figure-link" href="static/figures/scaling.svg?v=20261105" data-zoom aria-label="Enlarge: MolmoSpaces success rates for OGPO, BoN, and FSFT across 1, 4, 16, 64, and 144 training tasks, evaluated on seen tasks, unseen scenes, and unseen objects."><img width="1666" height="589" src="static/figures/scaling.svg?v=20261105" alt="MolmoSpaces success rates for OGPO, BoN, and FSFT across 1, 4, 16, 64, and 144 training tasks, evaluated on seen tasks, unseen scenes, and unseen objects." loading="lazy" decoding="async"><span class="zoom-label" aria-hidden="true">↗ Enlarge figure</span></a><figcaption><strong>Value-based improvement generalizes beyond the training tasks.</strong> Final success rates on training tasks (left) and held-out tasks (center and right) as the training set grows.</figcaption></figure>
       <div class="result-detail">
         <div><h3>What kind of diversity matters?</h3><div class="content tldr-copy"><p>Diversifying scenes helps generalize to new scenes and diversifying objects helps generalize to new objects. Only scaling object diversity surpasses the base policy on both axes in this comparison.</p><p>To achieve generalization to novel manipulation strategies, it is necessary to train on tasks requiring a diversity of manipulation behaviors, and doing so can transfer to robustness over the scene layout and appearance.</p></div></div>        
-        <figure class="paper-figure"><a class="figure-link" href="static/figures/generalization.svg" data-zoom aria-label="Enlarge: Generalization when scaling scene diversity versus object diversity."><img width="1073" height="581" src="static/figures/generalization.svg" alt="Generalization when scaling scene diversity versus object diversity." loading="lazy" decoding="async"><span class="zoom-label" aria-hidden="true">↗ Enlarge figure</span></a><figcaption><strong>Diversification transfers best along its own axis.</strong> OGPO success rate when scaling scenes of a single object, or objects with one scene each, evaluated on eight unseen scenes (left) and eight unseen objects (right).</figcaption></figure>
+        <figure class="paper-figure"><a class="figure-link" href="static/figures/generalization.svg?v=20261105" data-zoom aria-label="Enlarge: Generalization when scaling scene diversity versus object diversity."><img width="1073" height="583" src="static/figures/generalization.svg?v=20261105" alt="Generalization when scaling scene diversity versus object diversity." loading="lazy" decoding="async"><span class="zoom-label" aria-hidden="true">↗ Enlarge figure</span></a><figcaption><strong>Diversification transfers best along its own axis.</strong> OGPO success rate when scaling scenes of a single object, or objects with one scene each, evaluated on eight unseen scenes (left) and eight unseen objects (right).</figcaption></figure>
       </div>
       <h3 class="result-part-title" id="shape-transfer">Transfer to unseen objects</h3>
       <div class="shape-evidence">
@@ -245,6 +252,7 @@
             </div>
             <div class="rollout-methods" role="group" aria-label="Choose a method" hidden>
               <button type="button" data-rollout-method="bon" aria-pressed="true">BoN</button>
+              <button type="button" data-rollout-method="ogpo" aria-pressed="false" disabled>OGPO</button>
               <button type="button" data-rollout-method="fsft" aria-pressed="false" disabled>FSFT</button>
             </div>
           </header>
@@ -283,12 +291,13 @@
           <p class="explorer-status sr-only" role="status" aria-live="polite"></p>
         </section>
         <p>BoN improves most on <strong>atomizers and wine bottles</strong> from 64 to 144 tasks. Both share upright, bottle-like shapes with the newly added <strong>salt shakers and soap dispensers</strong>. The other evaluated objects have no close shape match among these additions and show little additional improvement. This pattern suggests that BoN transfers across similar object shapes.</p>
+        <p>For <strong>OGPO</strong>, the largest gain over the same range is on <strong>atomizers</strong> (about +16 percentage points). Wine-bottle success remains low, increasing from about 9% to 12%, while bowls, forks, and remote controls reach high success rates. The selected videos illustrate individual outcomes; the accompanying bars and plot show aggregate performance.</p>
         <figure class="paper-figure">
-          <a class="figure-link" href="static/figures/shape-transfer.svg?v=20261102" data-zoom aria-label="Enlarge success rates for six unseen object categories">
-            <img width="1650" height="395" src="static/figures/shape-transfer.svg?v=20261102" alt="Per-object success rates on six unseen object categories: from 64 to 144 training tasks, BoN improves on atomizers and wine bottles, with little change on forks, knives, and remote controls." loading="lazy" decoding="async">
+          <a class="figure-link" href="static/figures/shape-transfer.svg?v=20261105" data-zoom aria-label="Enlarge success rates for six unseen object categories">
+            <img width="1650" height="395" src="static/figures/shape-transfer.svg?v=20261105" alt="Per-object success rates for OGPO, BoN, and FSFT on six unseen object categories. From 64 to 144 tasks, BoN improves most on atomizers and wine bottles; OGPO improves most on atomizers, while its wine-bottle success remains low." loading="lazy" decoding="async">
             <span class="zoom-label" aria-hidden="true">↗ Enlarge figure</span>
           </a>
-          <figcaption><strong>Critic-based methods clearly generalize to unseen objects that resemble the training objects.</strong> Final success rate on each of the 6 unseen objects, none of which appears in any training split, as a function of the number of training tasks.</figcaption>
+          <figcaption><strong>Generalization varies by object and method.</strong> Final success rate on each of the 6 unseen objects, none of which appears in any training split, as a function of the number of training tasks.</figcaption>
         </figure>
       </div>
     </div>
@@ -297,7 +306,7 @@
   <section class="section" id="BibTeX" aria-labelledby="citation-title">
     <div class="container reading-width">
       <div class="bibtex-header"><h2 id="citation-title">BibTeX</h2><button class="copy-bibtex-btn" type="button">Copy citation</button></div>
-      <pre id="bibtex-code"><code>@misc{korniak2026generalist,
+      <pre id="bibtex-code"><code>@misc{korniak2026reinforcementlearningenablesscaling,
   title = {Reinforcement Learning Enables Scaling Generalist Robot Policy Improvement},
   author = {Michal Korniak and
             Marco Bagatella and
@@ -324,10 +333,20 @@
             Max Simchowitz and
             Andrew Wagenmaker},
   year = {2026},
-  note = {Manuscript submitted to ICLR 2027},
-  url = {https://lasgroup.github.io/generalist-improvement/}
+  eprint = {2611.06905},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.LG},
+  url = {https://arxiv.org/abs/2611.06905}
 }</code></pre>
       <p class="copy-status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="section band acknowledgements" id="acknowledgements" aria-labelledby="acknowledgements-title">
+    <div class="container reading-width">
+      <h2 class="section-title" id="acknowledgements-title">Acknowledgements</h2>
+      <!-- Swiss AI acknowledgment from arXiv:2611.06905v1, page 13. -->
+      <p>This work was supported under project IDs 143, 037 and 0220 as part of the Swiss AI Initiative, through a grant from the ETH Domain and computational resources provided by the Swiss National Supercomputing Centre (CSCS) under the Alps infrastructure.</p>
     </div>
   </section>
 </main>

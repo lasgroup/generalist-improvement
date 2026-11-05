@@ -1,0 +1,221 @@
+{
+  "method": "OGPO",
+  "audit_passed": true,
+  "validated_episodes": 12,
+  "timing": "Native simulation speed; shorter rollouts hold their final frame.",
+  "camera_layout": "Wrist above exterior; 64 tasks left, 144 right.",
+  "interpretation": "Selected paired rollouts illustrate individual outcomes. Aggregate success rates come independently from the accompanying figure.",
+  "examples": [
+    {
+      "episode": 3,
+      "combined_file": "atomizer-ogpo-64-vs-144-both.mp4",
+      "training_tasks": [
+        64,
+        144
+      ],
+      "training_seed": 0,
+      "checkpoints": {
+        "64": "mt64_bronet_qvr16_seed0_10k",
+        "144": "mt144_bronet_qvr16_r15_seed0_15k"
+      },
+      "checkpoint_steps": {
+        "64": 10000,
+        "144": 15000
+      },
+      "success_64": true,
+      "success_144": true,
+      "frames": 16,
+      "fps": "500/33",
+      "identical_initial_state_and_images": true,
+      "selection_rule": "Existing website initial state, fixed before either OGPO rollout.",
+      "task_id": 140,
+      "object": "Atomizer",
+      "source_recordings": [
+        "outputs/molmo-videos/ogpo64/clips/molmo_140/episode_03",
+        "outputs/molmo-videos/ogpo/clips/molmo_140/episode_03"
+      ],
+      "video_sha256": "11e9fcfad6854a58d1f56bc497cdd48f748862d82320e0f36126b777ebdf9210",
+      "source_metadata_sha256": [
+        "7ac81d0308722d738534c73593f90225b9efa3a07aa74a6b831729ba39a098bc",
+        "d81c7d8f34bd053bbe9eb7f2fe6ee29f4270091bec9b9c4bf36a69e0d168c00c"
+      ],
+      "visual_review_note": "Both checkpoints succeed in this episode. The accompanying bars show the gain across the full evaluation."
+    },
+    {
+      "task_id": 356,
+      "object": "Bowl",
+      "episode": 0,
+      "combined_file": "bowl-ogpo-64-vs-144-both.mp4",
+      "training_tasks": [
+        64,
+        144
+      ],
+      "training_seed": 0,
+      "checkpoints": {
+        "64": "mt64_bronet_qvr16_seed0_10k",
+        "144": "mt144_bronet_qvr16_r15_seed0_15k"
+      },
+      "checkpoint_steps": {
+        "64": 10000,
+        "144": 15000
+      },
+      "success_64": false,
+      "success_144": true,
+      "frames": 451,
+      "fps": "500/33",
+      "identical_initial_state_and_images": true,
+      "selection_rule": "Episode 0 from the existing headline scaling recordings; the 144-task rollout uses the fixed 64-task initial state.",
+      "source_recordings": [
+        "outputs/molmo-videos/headline/clips/ogpo/molmo_356/episode_00",
+        "outputs/molmo-videos/headline/scaling144-clips/ogpo/molmo_356/episode_00"
+      ],
+      "video_sha256": "acd8f68998be60e3158f06dc86f2ded440230405a1cbf45addb361ed8e6e6b7a",
+      "source_metadata_sha256": [
+        "dc1861985103ce26c6f3441d5f55f8d5219ac33734a23c280a67a689e55d2f2d",
+        "0f0f3b4b570d3302c2f6f7ff3f2aee12f8e1704ccefa680229b95e37e6b6eea6"
+      ],
+      "visual_review_note": "This episode changes from failure to success. Aggregate success is already high at both training sizes."
+    },
+    {
+      "episode": 1,
+      "combined_file": "fork-ogpo-64-vs-144-both.mp4",
+      "training_tasks": [
+        64,
+        144
+      ],
+      "training_seed": 0,
+      "checkpoints": {
+        "64": "mt64_bronet_qvr16_seed0_10k",
+        "144": "mt144_bronet_qvr16_r15_seed0_15k"
+      },
+      "checkpoint_steps": {
+        "64": 10000,
+        "144": 15000
+      },
+      "success_64": false,
+      "success_144": true,
+      "frames": 451,
+      "fps": "500/33",
+      "identical_initial_state_and_images": true,
+      "selection_rule": "Existing website initial state, fixed before either OGPO rollout.",
+      "task_id": 345,
+      "object": "Fork",
+      "source_recordings": [
+        "outputs/molmo-videos/ogpo64/clips/molmo_345/episode_01",
+        "outputs/molmo-videos/ogpo/clips/molmo_345/episode_01"
+      ],
+      "video_sha256": "1310031571da47133c843fee92b62bc67f1b455b0ea1024ecf7d10dac4b15041",
+      "source_metadata_sha256": [
+        "e4a1afe18328952379310f9e74f527a5ae4bc88908cea636c4ce4d7e23ec0858",
+        "d1c0b5d541e22ba020c5c5c7e47c2a67a47add04491df6f97f8a54d04a1917f0"
+      ],
+      "visual_review_note": "This episode changes from failure to success, while aggregate success decreases slightly."
+    },
+    {
+      "episode": 0,
+      "combined_file": "knife-ogpo-64-vs-144-both.mp4",
+      "training_tasks": [
+        64,
+        144
+      ],
+      "training_seed": 0,
+      "checkpoints": {
+        "64": "mt64_bronet_qvr16_seed0_10k",
+        "144": "mt144_bronet_qvr16_r15_seed0_15k"
+      },
+      "checkpoint_steps": {
+        "64": 10000,
+        "144": 15000
+      },
+      "success_64": true,
+      "success_144": false,
+      "frames": 451,
+      "fps": "500/33",
+      "identical_initial_state_and_images": true,
+      "selection_rule": "Existing website initial state, fixed before either OGPO rollout.",
+      "task_id": 155,
+      "object": "Knife",
+      "source_recordings": [
+        "outputs/molmo-videos/ogpo64/clips/molmo_155/episode_00",
+        "outputs/molmo-videos/ogpo/clips/molmo_155/episode_00"
+      ],
+      "video_sha256": "5aa78647ae9f372177c7f4cf7d3155598f0537b3d7009b6df88c8fe8b4657f37",
+      "source_metadata_sha256": [
+        "1b19137a5cd8a775ce32edba4807a67ab6ef83820f8b47a76c74ff9861374cd9",
+        "84f6b5c0b66569cbd6e1e15d302a6639a881f3cbff2c56f36873dd81f9af4ef2"
+      ],
+      "visual_review_note": "This episode changes from success to failure, while aggregate success increases."
+    },
+    {
+      "episode": 2,
+      "combined_file": "remote-control-ogpo-64-vs-144-both.mp4",
+      "training_tasks": [
+        64,
+        144
+      ],
+      "training_seed": 0,
+      "checkpoints": {
+        "64": "mt64_bronet_qvr16_seed0_10k",
+        "144": "mt144_bronet_qvr16_r15_seed0_15k"
+      },
+      "checkpoint_steps": {
+        "64": 10000,
+        "144": 15000
+      },
+      "success_64": true,
+      "success_144": true,
+      "frames": 71,
+      "fps": "500/33",
+      "identical_initial_state_and_images": true,
+      "selection_rule": "Existing website initial state, fixed before either OGPO rollout.",
+      "task_id": 357,
+      "object": "Remote control",
+      "source_recordings": [
+        "outputs/molmo-videos/ogpo64/clips/molmo_357/episode_02",
+        "outputs/molmo-videos/ogpo/clips/molmo_357/episode_02"
+      ],
+      "video_sha256": "c98311632fe98a7261141a7b845b7fc223a06506b5d230ddcc9f65b1a4489698",
+      "source_metadata_sha256": [
+        "7d2d72cd8f9f65f0053aeb0bd23fba1e1f6e38f983b158012e8a1aba6636d2d2",
+        "4a9d730bcbad2f3e09b8ef851d13841d3ff27cc9557fae1d2b86e96819a5dbcc"
+      ],
+      "visual_review_note": "Both checkpoints succeed in this episode. The accompanying bars show the gain across the full evaluation."
+    },
+    {
+      "task_id": 226,
+      "object": "Wine bottle",
+      "episode": 4,
+      "combined_file": "wine-bottle-episode-04-ogpo-64-vs-144-both.mp4",
+      "training_tasks": [
+        64,
+        144
+      ],
+      "training_seed": 0,
+      "checkpoints": {
+        "64": "mt64_bronet_qvr16_seed0_10k",
+        "144": "mt144_bronet_qvr16_r15_seed0_15k"
+      },
+      "checkpoint_steps": {
+        "64": 10000,
+        "144": 15000
+      },
+      "success_64": false,
+      "success_144": true,
+      "frames": 451,
+      "fps": "500/33",
+      "identical_initial_state_and_images": true,
+      "selection_rule": "Selected episode 4 from a fixed six-state matched sample after the original episode-1 timeout. This pair is a 64-task failure and 144-task success; all attempts are retained. This is an illustrative example, not an aggregate performance estimate.",
+      "sampling_audit": "wine-additional-sample.json",
+      "source_recordings": [
+        "outputs/molmo-videos/ogpo-wine-extra/mt64_bronet_qvr16_seed0_10k/molmo_226/episode_04",
+        "outputs/molmo-videos/ogpo-wine-extra/mt144_bronet_qvr16_r15_seed0_15k/molmo_226/episode_04"
+      ],
+      "video_sha256": "2dca3e6abac76559910d0005a021075b7e8fb064e94c290b627715d84aa57a14",
+      "source_metadata_sha256": [
+        "58c101c96f3e4c942ede244778f3070eaa169765b777ec4440c2f716feccbf9a",
+        "dc916be159fae5143167ed44edfbf0024f110db20ded1fdf4ce08c3e4c372bc0"
+      ],
+      "visual_review_note": "This selected episode changes from failure to success. Aggregate success remains low at both training sizes."
+    }
+  ]
+}

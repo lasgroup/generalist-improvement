@@ -56,6 +56,7 @@ const explorer = document.querySelector('.object-explorer');
 if (explorer) {
   const methods = {
     bon: { label: 'BoN', base: 'static/videos/molmo/' },
+    ogpo: { label: 'OGPO', base: 'static/videos/molmo/ogpo/' },
     fsft: { label: 'FSFT', base: 'static/videos/molmo/fsft/' },
   };
   let selectedMethod = 'bon';
@@ -183,7 +184,7 @@ if (explorer) {
   }));
 
   Object.entries(methods).forEach(([key, method]) => {
-    fetch(`${method.base}selected_examples.json?v=20261103-outcomes`).then(response => {
+    fetch(`${method.base}selected_examples.json?v=20261105-ogpo`).then(response => {
       if (!response.ok) throw new Error('Video manifest unavailable');
       return response.json();
     }).then(data => {
@@ -199,7 +200,7 @@ if (explorer) {
       if (key === selectedMethod) objectButtons.forEach(button => { button.disabled = true; });
     });
   });
-  fetch('static/videos/molmo/figure_rates.json?v=20261103-outcomes').then(response => {
+  fetch('static/videos/molmo/figure_rates.json?v=20261105-ogpo').then(response => {
     if (!response.ok) throw new Error('Figure data unavailable');
     return response.json();
   }).then(data => {

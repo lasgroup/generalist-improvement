@@ -207,6 +207,20 @@ strong {
   display:flex;
   flex-direction:column;
 }
+.teaser-heading {
+  flex:none;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 144px;
+  align-items:center;
+  gap:24px;
+}
+.swiss-ai-logo {
+  display:block;
+  width:144px;
+  aspect-ratio:755 / 467;
+  background:#fff;
+  border-radius:8px;
+}
 .teaser-story h2 {
   flex:none;
   font-size:clamp(28px,2.8vw,44px);
@@ -411,6 +425,15 @@ strong {
   .tldr-layout { gap:30px; grid-template-columns:minmax(0,1fr) 290px; }
 }
 @media(max-width:900px) {
+  .teaser-heading {
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  .swiss-ai-logo {
+    grid-row:1;
+    justify-self:end;
+    width:112px;
+  }
   .headline-board {
     grid-template-columns:none;
     grid-auto-flow:column;
@@ -758,6 +781,17 @@ pre code {
   background:var(--light);
   border-top:1px solid var(--line);
   padding:35px 24px;
+}
+.acknowledgements {
+  padding-block:40px;
+}
+.acknowledgements .section-title {
+  font-size:24px;
+  margin-bottom:16px;
+}
+.acknowledgements p {
+  color:var(--muted);
+  line-height:1.8;
 }
 .footer p {
   font-size:12px;
@@ -1189,6 +1223,10 @@ body.figure-open {
 .object-explorer[data-method="fsft"] {
   --method-color:#1d6996;
   --method-tint:#eef6fc;
+}
+.object-explorer[data-method="ogpo"] {
+  --method-color:#0f8554;
+  --method-tint:#edf8f2;
 }
 .explorer-heading {
   display:flex;
